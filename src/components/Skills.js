@@ -46,7 +46,7 @@ const Skills = () => {
       </div>
       <div className="w-full bg-gray-200 rounded-full h-2">
         <div
-          className="bg-gradient-to-r from-blue-600 to-purple-600 h-2 rounded-full transition-all duration-1000 ease-out"
+          className="bg-gradient-to-r from-emerald-600 to-slate-700 h-2 rounded-full transition-all duration-1000 ease-out"
           style={{ width: `${skill.level}%` }}
         ></div>
       </div>
@@ -59,7 +59,7 @@ const Skills = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Skills & Technologies</h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto mb-4"></div>
+          <div className="w-20 h-1 bg-slate-700 mx-auto mb-4"></div>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Here are the technologies I work with and the skills I'm continuously developing 
             as I grow in my React development journey.
@@ -83,7 +83,7 @@ const Skills = () => {
 
         {/* Additional Info */}
         <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-blue-600 to-purple-700 rounded-lg p-8 text-white">
+          <div className="bg-gradient-to-r from-slate-700 to-emerald-800 rounded-lg p-8 text-white">
             <h3 className="text-2xl font-bold mb-4">Always Learning</h3>
             <p className="text-lg mb-6">
               As a passionate developer, I'm constantly expanding my skill set and staying up-to-date 
