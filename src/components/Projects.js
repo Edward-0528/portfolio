@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import MinimalNetworkBackground from './MinimalNetworkBackground';
 import { projectsService } from '../lib/supabase';
 
@@ -48,7 +48,7 @@ const Projects = () => {
       title: "Portfolio Website",
       category: "React",
       description: "This very portfolio website showcasing my projects and skills, built with React and Tailwind CSS. Features responsive design, smooth animations, and modern UI components.",
-      technologies: ["React", "Tailwind CSS", "Responsive Design", "React Icons"],
+      technologies: ["React", "Tailwind CSS", "Responsive Design", "CSS Animations"],
       image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
       github: "https://github.com/Edward-0528/portfolio",
       live: "https://edwardgranados.netlify.app",
@@ -78,12 +78,7 @@ const Projects = () => {
     }
   ];
 
-  // Load projects from Supabase on component mount
-  useEffect(() => {
-    loadProjects();
-  }, []);
-
-  const loadProjects = async () => {
+  const loadProjects = useCallback(async () => {
     try {
       setLoading(true);
       const data = await projectsService.getAllProjects();
@@ -101,7 +96,12 @@ const Projects = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [fallbackProjects]);
+
+  // Load projects from Supabase on component mount
+  useEffect(() => {
+    loadProjects();
+  }, [loadProjects]);
 
   const categories = ['All', 'React', 'Mobile', 'Game Development'];
 
