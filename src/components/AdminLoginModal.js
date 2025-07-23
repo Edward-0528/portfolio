@@ -181,14 +181,8 @@ const AdminLoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
             </button>
           </form>
 
-          {/* Demo Credentials */}
-          <div className="mt-6 p-4 bg-gray-50 rounded-md">
-            <h4 className="text-sm font-medium text-gray-700 mb-2">Demo Credentials:</h4>
-            <div className="text-sm text-gray-600 space-y-1">
-              <div><strong>Username:</strong> edward | <strong>Password:</strong> admin123</div>
-              <div><strong>Username:</strong> admin | <strong>Password:</strong> secure456</div>
-            </div>
-          </div>
+          
+          
         </div>
       </div>
     </div>

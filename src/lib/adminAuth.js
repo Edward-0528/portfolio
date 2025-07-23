@@ -1,28 +1,5 @@
-// Admin authentication service
-
-// Admin user data - In production, this should be stored securely in your database
-const ADMIN_USERS = [
-  {
-    id: 1,
-    username: 'edward',
-    email: 'edward@example.com',
-    password: 'admin123', // In production, this should be hashed
-    role: 'super_admin',
-    created_at: '2024-01-01',
-    last_login: null,
-    is_active: true
-  },
-  {
-    id: 2,
-    username: 'admin',
-    email: 'admin@example.com',
-    password: 'secure456', // In production, this should be hashed
-    role: 'admin',
-    created_at: '2024-01-01',
-    last_login: null,
-    is_active: true
-  }
-];
+// Admin authentication service with Supabase integration
+import { usersService } from './supabase';
 
 class AdminAuthService {
   constructor() {
@@ -62,19 +39,32 @@ class AdminAuthService {
   // Authenticate admin user
   async authenticate(username, password) {
     try {
-      // Find admin user
-      const admin = ADMIN_USERS.find(
-        user => (user.username === username || user.email === username) && 
-                user.password === password && 
-                user.is_active
-      );
-
+      console.log('Attempting authentication for:', username);
+      
+      // Authenticate using Supabase database only
+      const admin = await usersService.getUserByCredentials(username);
+      
       if (!admin) {
+        console.error('No user found with username/email:', username);
         throw new Error('Invalid credentials');
       }
 
-      // Update last login (in production, update this in database)
-      admin.last_login = new Date().toISOString();
+      // Check password (in production, use proper password hashing)
+      console.log('Checking password for user:', admin.username);
+      if (admin.password !== password) {
+        console.error('Password mismatch for user:', admin.username);
+        throw new Error('Invalid credentials');
+      }
+
+      console.log('Authentication successful for:', admin.username);
+
+      // Update last login
+      try {
+        await usersService.updateLastLogin(admin.id);
+        admin.last_login = new Date().toISOString();
+      } catch (error) {
+        console.warn('Could not update last login in database:', error);
+      }
 
       // Create session
       this.currentAdmin = {
@@ -92,7 +82,7 @@ class AdminAuthService {
       };
       localStorage.setItem(this.sessionKey, JSON.stringify(sessionData));
 
-      // Log admin activity (optional)
+      // Log admin activity
       await this.logAdminActivity('login', 'Admin logged in');
 
       return {
@@ -104,7 +94,7 @@ class AdminAuthService {
       console.error('Authentication error:', error);
       return {
         success: false,
-        error: error.message
+        error: error.message || 'Authentication failed'
       };
     }
   }
@@ -119,6 +109,11 @@ class AdminAuthService {
     return this.currentAdmin;
   }
 
+  // Get current user (alias for getCurrentAdmin for consistency)
+  getCurrentUser() {
+    return this.currentAdmin;
+  }
+
   // Logout admin user
   logout() {
     if (this.currentAdmin) {
@@ -130,16 +125,23 @@ class AdminAuthService {
   }
 
   // Get all admin users (for management purposes)
-  getAllAdmins() {
-    return ADMIN_USERS.map(admin => ({
-      id: admin.id,
-      username: admin.username,
-      email: admin.email,
-      role: admin.role,
-      created_at: admin.created_at,
-      last_login: admin.last_login,
-      is_active: admin.is_active
-    }));
+  async getAllAdmins() {
+    try {
+      // Get users from Supabase database
+      const users = await usersService.getAllUsers();
+      return users.map(admin => ({
+        id: admin.id,
+        username: admin.username,
+        email: admin.email,
+        role: admin.role,
+        created_at: admin.created_at,
+        last_login: admin.last_login,
+        is_active: admin.is_active
+      }));
+    } catch (error) {
+      console.error('Error getting admin users from database:', error);
+      throw new Error('Failed to retrieve admin users from database');
+    }
   }
 
   // Log admin activity (optional logging to database)
@@ -200,17 +202,57 @@ class AdminAuthService {
       throw new Error('Not authenticated');
     }
 
-    const admin = ADMIN_USERS.find(user => user.id === this.currentAdmin.id);
-    if (!admin || admin.password !== oldPassword) {
-      throw new Error('Invalid current password');
-    }
+    try {
+      // Try to update in Supabase first
+      const user = await usersService.getUserById(this.currentAdmin.id);
+      if (!user || user.password !== oldPassword) {
+        throw new Error('Invalid current password');
+      }
 
-    // In production, hash the password
-    admin.password = newPassword;
-    
-    await this.logAdminActivity('password_change', 'Admin changed password');
-    
-    return { success: true };
+      await usersService.updateUser(this.currentAdmin.id, { password: newPassword });
+      await this.logAdminActivity('password_change', 'Admin changed password');
+      
+      return { success: true };
+    } catch (error) {
+      console.error('Error changing password:', error);
+      throw new Error('Failed to change password');
+    }
+  }
+
+  // Create new admin user
+  async createUser(userData) {
+    try {
+      const newUser = await usersService.createUser(userData);
+      await this.logAdminActivity('user_create', `Created user: ${userData.username}`);
+      return newUser;
+    } catch (error) {
+      console.error('Error creating user:', error);
+      throw error;
+    }
+  }
+
+  // Update admin user
+  async updateUser(id, userData) {
+    try {
+      const updatedUser = await usersService.updateUser(id, userData);
+      await this.logAdminActivity('user_update', `Updated user ID: ${id}`);
+      return updatedUser;
+    } catch (error) {
+      console.error('Error updating user:', error);
+      throw error;
+    }
+  }
+
+  // Delete admin user
+  async deleteUser(id) {
+    try {
+      await usersService.deleteUser(id);
+      await this.logAdminActivity('user_delete', `Deleted user ID: ${id}`);
+      return true;
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      throw error;
+    }
   }
 }
 
@@ -219,6 +261,3 @@ export const adminAuth = new AdminAuthService();
 
 // Export the service class for testing
 export { AdminAuthService };
-
-// Export admin data for management (remove in production)
-export { ADMIN_USERS };
