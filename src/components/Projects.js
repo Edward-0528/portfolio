@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import MinimalNetworkBackground from './MinimalNetworkBackground';
 import { projectsService } from '../lib/supabase';
 
