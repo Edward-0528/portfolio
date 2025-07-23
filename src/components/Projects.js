@@ -1,82 +1,82 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import MinimalNetworkBackground from './MinimalNetworkBackground';
 import { projectsService } from '../lib/supabase';
+
+// Move fallback projects outside component to prevent recreation
+const FALLBACK_PROJECTS = [
+  {
+    id: 1,
+    title: "Budget App",
+    category: "React",
+    description: "A comprehensive budget management application featuring intuitive UI/UX design and interactive MUI graphs for visualizing incoming and outgoing transactions. Perfect for personal financial tracking.",
+    technologies: ["React JS", "Tailwind CSS", "MUI", "Local Storage"],
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    github: "https://github.com/Edward-0528/budget-app",
+    live: "https://budgetappedward.netlify.app",
+    featured: true
+  },
+  {
+    id: 2,
+    title: "Weather App",
+    category: "React",
+    description: "A modern weather application that provides real-time weather data using Open Mateo API with automatic location detection. Features clean UI design and responsive mobile-first approach.",
+    technologies: ["React JS", "Tailwind CSS", "Open Mateo API", "Geolocation API"],
+    image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    github: "https://github.com/Edward-0528/weather-app",
+    live: "https://weatherappedward.netlify.app",
+    featured: true
+  },
+  {
+    id: 3,
+    title: "E-Commerce Platform",
+    category: "React",
+    description: "A full-featured e-commerce application built with AI assistance for UI/UX design. Includes shopping cart functionality, user authentication, and persistent cart data using Supabase database.",
+    technologies: ["React JS", "Tailwind CSS", "Supabase", "Gemini AI"],
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    github: "https://github.com/Edward-0528/ecommerce-app",
+    live: "https://ecomedward.netlify.app",
+    featured: true
+  },
+  {
+    id: 4,
+    title: "Portfolio Website",
+    category: "React",
+    description: "This very portfolio website showcasing my projects and skills, built with React and Tailwind CSS. Features responsive design, smooth animations, and modern UI components.",
+    technologies: ["React", "Tailwind CSS", "Responsive Design", "CSS Animations"],
+    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    github: "https://github.com/Edward-0528/portfolio",
+    live: "https://edwardgranados.netlify.app",
+    featured: false
+  },
+  {
+    id: 5,
+    title: "Android Mobile Apps",
+    category: "Mobile",
+    description: "Collection of Android applications developed using Android Studio, showcasing mobile development skills and understanding of Android ecosystem.",
+    technologies: ["Android Studio", "Java", "XML", "Material Design"],
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    github: "https://github.com/Edward-0528/android-projects",
+    live: "#",
+    featured: false
+  },
+  {
+    id: 6,
+    title: "Unity Game Projects",
+    category: "Game Development",
+    description: "Educational game development projects created while teaching middle school students app development and video game creation using Unity.",
+    technologies: ["Unity", "C#", "Game Development", "Educational Tools"],
+    image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    github: "https://github.com/Edward-0528/unity-games",
+    live: "#",
+    featured: false
+  }
+];
 
 const Projects = () => {
   const [filter, setFilter] = useState('All');
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  // Fallback projects data (in case Supabase is not configured)
-  const fallbackProjects = [
-    {
-      id: 1,
-      title: "Budget App",
-      category: "React",
-      description: "A comprehensive budget management application featuring intuitive UI/UX design and interactive MUI graphs for visualizing incoming and outgoing transactions. Perfect for personal financial tracking.",
-      technologies: ["React JS", "Tailwind CSS", "MUI", "Local Storage"],
-      image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      github: "https://github.com/Edward-0528/budget-app",
-      live: "https://budgetappedward.netlify.app",
-      featured: true
-    },
-    {
-      id: 2,
-      title: "Weather App",
-      category: "React",
-      description: "A modern weather application that provides real-time weather data using Open Mateo API with automatic location detection. Features clean UI design and responsive mobile-first approach.",
-      technologies: ["React JS", "Tailwind CSS", "Open Mateo API", "Geolocation API"],
-      image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      github: "https://github.com/Edward-0528/weather-app",
-      live: "https://weatherappedward.netlify.app",
-      featured: true
-    },
-    {
-      id: 3,
-      title: "E-Commerce Platform",
-      category: "React",
-      description: "A full-featured e-commerce application built with AI assistance for UI/UX design. Includes shopping cart functionality, user authentication, and persistent cart data using Supabase database.",
-      technologies: ["React JS", "Tailwind CSS", "Supabase", "Gemini AI"],
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      github: "https://github.com/Edward-0528/ecommerce-app",
-      live: "https://ecomedward.netlify.app",
-      featured: true
-    },
-    {
-      id: 4,
-      title: "Portfolio Website",
-      category: "React",
-      description: "This very portfolio website showcasing my projects and skills, built with React and Tailwind CSS. Features responsive design, smooth animations, and modern UI components.",
-      technologies: ["React", "Tailwind CSS", "Responsive Design", "CSS Animations"],
-      image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      github: "https://github.com/Edward-0528/portfolio",
-      live: "https://edwardgranados.netlify.app",
-      featured: false
-    },
-    {
-      id: 5,
-      title: "Android Mobile Apps",
-      category: "Mobile",
-      description: "Collection of Android applications developed using Android Studio, showcasing mobile development skills and understanding of Android ecosystem.",
-      technologies: ["Android Studio", "Java", "XML", "Material Design"],
-      image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      github: "https://github.com/Edward-0528/android-projects",
-      live: "#",
-      featured: false
-    },
-    {
-      id: 6,
-      title: "Unity Game Projects",
-      category: "Game Development",
-      description: "Educational game development projects created while teaching middle school students app development and video game creation using Unity.",
-      technologies: ["Unity", "C#", "Game Development", "Educational Tools"],
-      image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      github: "https://github.com/Edward-0528/unity-games",
-      live: "#",
-      featured: false
-    }
-  ];
 
   const loadProjects = useCallback(async () => {
     try {
@@ -87,16 +87,16 @@ const Projects = () => {
       if (data && data.length > 0) {
         setProjects(data);
       } else {
-        setProjects(fallbackProjects);
+        setProjects(FALLBACK_PROJECTS);
       }
     } catch (err) {
       console.error('Error loading projects:', err);
       setError('Failed to load projects');
-      setProjects(fallbackProjects); // Use fallback on error
+      setProjects(FALLBACK_PROJECTS); // Use fallback on error
     } finally {
       setLoading(false);
     }
-  }, [fallbackProjects]);
+  }, []); // No dependencies needed since FALLBACK_PROJECTS is a constant
 
   // Load projects from Supabase on component mount
   useEffect(() => {
