@@ -120,7 +120,7 @@ const AdminPanel = ({ onLogout, currentAdmin }) => {
                 <p className="text-gray-600">
                   Welcome back, <span className="font-semibold text-emerald-700">
                     {currentAdmin?.username || currentAdmin?.email || 'Admin'}
-                  </span>
+                  </span>! Here you can manage your portfolio content.
                 </p>
                 {currentAdmin?.last_login && (
                   <p className="text-sm text-gray-500 mt-1">
@@ -156,19 +156,6 @@ const AdminPanel = ({ onLogout, currentAdmin }) => {
 
               {/* Tab Content */}
               {renderTabContent()}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                
-
-                
-
-                
-              </div>
-
-              
-              
-
-              {/* Project management section */}
-              
             </div>
           </div>
         </div>
