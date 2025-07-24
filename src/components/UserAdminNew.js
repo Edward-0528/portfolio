@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { supabaseAuthAdmin } from '../lib/supabaseAuth';
 import { authService } from '../lib/supabase';
 
 const UserAdmin = () => {

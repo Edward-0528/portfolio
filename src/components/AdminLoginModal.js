@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { adminAuth } from '../lib/adminAuth';
+import { supabaseAuthAdmin } from '../lib/supabaseAuth';
 
 const AdminLoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
   const [credentials, setCredentials] = useState({
-    username: '',
+    email: '',
     password: ''
   });
   const [isLoading, setIsLoading] = useState(false);
@@ -26,13 +26,13 @@ const AdminLoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
     setError('');
 
     try {
-      const result = await adminAuth.authenticate(credentials.username, credentials.password);
+      const result = await supabaseAuthAdmin.signIn(credentials.email, credentials.password);
       
       if (result.success) {
         // Clear form
-        setCredentials({ username: '', password: '' });
+        setCredentials({ email: '', password: '' });
         
-        // Call success callback
+        // Call success callback with admin data
         onLoginSuccess(result.admin);
         
         // Close modal
@@ -49,7 +49,7 @@ const AdminLoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
   };
 
   const handleClose = () => {
-    setCredentials({ username: '', password: '' });
+    setCredentials({ email: '', password: '' });
     setError('');
     setShowPassword(false);
     onClose();
@@ -107,20 +107,20 @@ const AdminLoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Username Field */}
+            {/* Email Field */}
             <div>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2">
-                Username or Email
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                Admin Email
               </label>
               <input
-                type="text"
-                id="username"
-                name="username"
-                value={credentials.username}
+                type="email"
+                id="email"
+                name="email"
+                value={credentials.email}
                 onChange={handleInputChange}
                 required
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition duration-200"
-                placeholder="Enter username or email"
+                placeholder="Enter admin email"
                 disabled={isLoading}
               />
             </div>
@@ -164,7 +164,7 @@ const AdminLoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
             {/* Submit Button */}
             <button
               type="submit"
-              disabled={isLoading || !credentials.username || !credentials.password}
+              disabled={isLoading || !credentials.email || !credentials.password}
               className="w-full bg-emerald-600 text-white py-2 px-4 rounded-md hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition duration-200 flex items-center justify-center"
             >
               {isLoading ? (

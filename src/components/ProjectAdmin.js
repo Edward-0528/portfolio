@@ -46,15 +46,25 @@ const ProjectAdmin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log('ProjectAdmin: Starting form submission...');
+      console.log('ProjectAdmin: Form data:', formData);
+      console.log('ProjectAdmin: Editing project:', editingProject);
+      
       const projectData = {
         ...formData,
         technologies: formData.technologies.split(',').map(tech => tech.trim())
       };
 
+      console.log('ProjectAdmin: Prepared project data:', projectData);
+
       if (editingProject) {
-        await projectsService.updateProject(editingProject.id, projectData);
+        console.log('ProjectAdmin: Updating project with ID:', editingProject.id);
+        const result = await projectsService.updateProject(editingProject.id, projectData);
+        console.log('ProjectAdmin: Update result:', result);
       } else {
-        await projectsService.addProject(projectData);
+        console.log('ProjectAdmin: Adding new project');
+        const result = await projectsService.addProject(projectData);
+        console.log('ProjectAdmin: Add result:', result);
       }
 
       // Reset form and reload projects
@@ -70,10 +80,11 @@ const ProjectAdmin = () => {
       });
       setEditingProject(null);
       setShowAddForm(false);
+      console.log('ProjectAdmin: Reloading projects...');
       loadProjects();
     } catch (error) {
-      console.error('Error saving project:', error);
-      alert('Error saving project. Please try again.');
+      console.error('ProjectAdmin: Error saving project:', error);
+      alert(`Error saving project: ${error.message}`);
     }
   };
 
@@ -121,6 +132,38 @@ const ProjectAdmin = () => {
     setShowAddForm(false);
   };
 
+  const testProjectsDB = async () => {
+    try {
+      console.log('Testing projects database connection...');
+      // Try to get just one project to test connection
+      const testResult = await projectsService.getAllProjects();
+      console.log('Projects DB test result:', testResult);
+      
+      // Test update operation with a dummy update
+      if (testResult.length > 0) {
+        const firstProject = testResult[0];
+        console.log('Testing update operation on project:', firstProject.id);
+        
+        try {
+          // Try a minimal update that shouldn't change anything meaningful
+          const updateResult = await projectsService.updateProject(firstProject.id, {
+            title: firstProject.title // Update with same value
+          });
+          console.log('Update test successful:', updateResult);
+          alert(`✅ Projects database test successful! Found ${testResult.length} projects. Update test: PASSED`);
+        } catch (updateError) {
+          console.error('Update test failed:', updateError);
+          alert(`⚠️ Projects database read: OK (${testResult.length} projects)\n❌ Update test: FAILED\nError: ${updateError.message}`);
+        }
+      } else {
+        alert(`✅ Projects database test successful! Found ${testResult.length} projects.`);
+      }
+    } catch (error) {
+      console.error('Projects DB test failed:', error);
+      alert(`❌ Projects database test failed: ${error.message}`);
+    }
+  };
+
   if (loading) {
     return <div className="p-8 text-center">Loading projects...</div>;
   }
@@ -129,12 +172,20 @@ const ProjectAdmin = () => {
     <div className="max-w-6xl mx-auto p-6">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">Project Admin</h1>
-        <button
-          onClick={() => setShowAddForm(true)}
-          className="bg-emerald-700 text-white px-4 py-2 rounded hover:bg-emerald-800"
-        >
-          Add New Project
-        </button>
+        <div className="flex space-x-4">
+          <button
+            onClick={() => setShowAddForm(true)}
+            className="bg-emerald-700 text-white px-4 py-2 rounded hover:bg-emerald-800"
+          >
+            Add New Project
+          </button>
+          <button
+            onClick={testProjectsDB}
+            className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700"
+          >
+            Test Projects DB
+          </button>
+        </div>
       </div>
 
       {/* Add/Edit Form */}

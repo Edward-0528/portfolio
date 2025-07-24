@@ -109,7 +109,8 @@ const Projects = () => {
     ? projects 
     : projects.filter(project => project.category === filter);
 
-  const featuredProjects = projects.filter(project => project.featured);
+  // Uncomment this if you want to use featured projects in the future
+  // const featuredProjects = projects.filter(project => project.featured);
 
   // Loading state
   if (loading) {
@@ -220,15 +221,8 @@ const Projects = () => {
           </p>
         </div>
 
-        {/* Featured Projects */}
-        <div className="mb-20">
-          <h3 className="text-3xl font-bold text-gray-900 mb-10 text-center">Featured Projects</h3>
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            {featuredProjects.map(project => (
-              <ProjectCard key={project.id} project={project} isFeatured={true} />
-            ))}
-          </div>
-        </div>
+        
+        
 
         {/* Filter Buttons */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">

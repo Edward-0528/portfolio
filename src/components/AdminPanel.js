@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Header from './Header';
 import ProjectAdmin from './ProjectAdmin';
 import UserAdmin from './UserAdmin';
+import Analytics from './Analytics';
+import TaskManager from './TaskManager';
 
 const AdminPanel = ({ onLogout, currentAdmin }) => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -11,6 +13,8 @@ const AdminPanel = ({ onLogout, currentAdmin }) => {
 
   const tabs = [
     { id: 'dashboard', name: 'Dashboard', icon: '📊' },
+    { id: 'analytics', name: 'Analytics', icon: '📈' },
+    { id: 'tasks', name: 'Tasks', icon: '✅' },
     { id: 'projects', name: 'Projects', icon: '🚀' },
     { id: 'users', name: 'Users', icon: '👥' },
     { id: 'settings', name: 'Settings', icon: '⚙️' }
@@ -87,6 +91,10 @@ const AdminPanel = ({ onLogout, currentAdmin }) => {
             
           </>
         );
+      case 'analytics':
+        return <Analytics />;
+      case 'tasks':
+        return <TaskManager />;
       case 'projects':
         return (
           <div className="bg-gray-50 rounded-lg p-6">
@@ -116,22 +124,35 @@ const AdminPanel = ({ onLogout, currentAdmin }) => {
           <div className="bg-white shadow rounded-lg">
             <div className="px-6 py-8">
               <div className="mb-8">
-                <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
-                <p className="text-gray-600">
-                  Welcome back, <span className="font-semibold text-emerald-700">
-                    {currentAdmin?.username || currentAdmin?.email || 'Admin'}
-                  </span>! Here you can manage your portfolio content.
-                </p>
-                {currentAdmin?.last_login && (
-                  <p className="text-sm text-gray-500 mt-1">
-                    Last login: {new Date(currentAdmin.last_login).toLocaleDateString()}
-                  </p>
-                )}
-                {currentAdmin?.role && (
-                  <p className="text-sm text-emerald-600 mt-1">
-                    Role: {currentAdmin.role}
-                  </p>
-                )}
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
+                    <p className="text-gray-600">
+                      Welcome back, <span className="font-semibold text-emerald-700">
+                        {currentAdmin?.username || currentAdmin?.email || 'Admin'}
+                      </span>! Here you can manage your portfolio content.
+                    </p>
+                    {currentAdmin?.last_login && (
+                      <p className="text-sm text-gray-500 mt-1">
+                        Last login: {new Date(currentAdmin.last_login).toLocaleDateString()}
+                      </p>
+                    )}
+                    {currentAdmin?.role && (
+                      <p className="text-sm text-emerald-600 mt-1">
+                        Role: {currentAdmin.role}
+                      </p>
+                    )}
+                  </div>
+                  <button
+                    onClick={onLogout}
+                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-200"
+                  >
+                    <svg className="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                    Logout
+                  </button>
+                </div>
               </div>
 
               {/* Navigation Tabs */}

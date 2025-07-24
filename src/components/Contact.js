@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import MinimalNetworkBackground from './MinimalNetworkBackground';
 
 const Contact = () => {
@@ -21,13 +22,33 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus(''); // Clear any previous status
     
-    // Simulate form submission (replace with actual form handling)
-    setTimeout(() => {
+    try {
+      // EmailJS configuration - you'll need to replace these with your actual values
+      const serviceID = 'service_ipunz27'; // Replace with your EmailJS service ID
+      const templateID = 'template_hq3lind'; // Replace with your EmailJS template ID
+      const publicKey = 'O08IfisoNfuN1KWf1'; // Replace with your EmailJS public key
+      
+      // Prepare template parameters
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_email: 'Alexanders.Edward@Gmail.com', // Your email
+      };
+      
+      // Send email using EmailJS
+      await emailjs.send(serviceID, templateID, templateParams, publicKey);
+      
       setSubmitStatus('success');
+      setFormData({ name: '', email: '', message: '' }); // Clear form
+    } catch (error) {
+      console.error('Email send failed:', error);
+      setSubmitStatus('error');
+    } finally {
       setIsSubmitting(false);
-      setFormData({ name: '', email: '', message: '' });
-    }, 1000);
+    }
   };
 
   const contactInfo = [
@@ -60,16 +81,6 @@ const Contact = () => {
       title: "GitHub",
       info: "View my repositories",
       link: "https://github.com/Edward-0528/"
-    },
-    {
-      icon: (
-        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-        </svg>
-      ),
-      title: "Phone",
-      info: "(310) 722-5816",
-      link: "tel:+13107225816"
     }
   ];
 
@@ -154,6 +165,12 @@ const Contact = () => {
             {submitStatus === 'success' && (
               <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
                 Thank you for your message! I'll get back to you soon.
+              </div>
+            )}
+
+            {submitStatus === 'error' && (
+              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
+                Sorry, there was an error sending your message. Please try again or contact me directly at Alexanders.Edward@Gmail.com
               </div>
             )}
 
