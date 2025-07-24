@@ -8,29 +8,27 @@ const Skills = () => {
       skills: [
         { name: "React JS", level: 90, icon: "⚛️" },
         { name: "JavaScript (ES6+)", level: 85, icon: "🟨" },
-        { name: "HTML", level: 95, icon: "🌐" },
+        { name: "HTML", level: 100, icon: "🌐" },
         { name: "CSS", level: 90, icon: "🎨" },
-        { name: "Tailwind CSS", level: 90, icon: "🎭" }
+        { name: "Tailwind CSS", level: 90, icon: "🎨" }
       ]
     },
     {
-      title: "Mobile & Tools",
+      title: "Tools",
       skills: [
-        { name: "React Native", level: 80, icon: "�" },
-        { name: "Android Studio", level: 85, icon: "🤖" },
-        { name: "VS Code", level: 95, icon: "�" },
-        { name: "Git & GitHub", level: 80, icon: "�" },
-        { name: "Mobile-First Design", level: 90, icon: "�" }
+        { name: "VS Code", level: 90, icon: "�" },
+        { name: "Android Studio", level: 90, icon: "🤖" },
+        { name: "Xcode", level: 80, icon: "�" },
+        { name: "Git & GitHub", level: 100, icon: "�" },
+        { name: "Netlify", level: 90, icon: "�" }
       ]
     },
     {
-      title: "Additional Skills",
+      title: "Backend & Components",
       skills: [
-        { name: "Supabase", level: 70, icon: "�️" },
-        { name: "API Integration", level: 85, icon: "🔌" },
-        { name: "MUI Components", level: 75, icon: "🧩" },
-        { name: "Unity (Game Dev)", level: 70, icon: "🎮" },
-        { name: "Team Leadership", level: 95, icon: "👥" }
+        { name: "Supabase", level: 90, icon: "�️" },
+        { name: "API Integration", level: 90, icon: "🔌" },
+        { name: "MUI Components", level: 100, icon: "🧩" }
       ]
     }
   ];

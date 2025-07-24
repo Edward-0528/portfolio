@@ -1,28 +1,66 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import MinimalNetworkBackground from './MinimalNetworkBackground';
 
 const Hero = () => {
+  const [typedCode, setTypedCode] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showCursor, setShowCursor] = useState(true);
+
+  const fullCode = `const developer = {
+  name: "Edward Granados",
+  skills: [
+    "React", "JavaScript", "Node.js",
+    "TypeScript", "Python", "SQL"
+  ],
+  experience: "9 years",
+  passion: "Building amazing UIs"}`;
+
+  useEffect(() => {
+    if (currentIndex < fullCode.length) {
+      const timer = setTimeout(() => {
+        setTypedCode(fullCode.slice(0, currentIndex + 1));
+        setCurrentIndex(currentIndex + 1);
+      }, 50); // Typing speed
+
+      return () => clearTimeout(timer);
+    } else {
+      // Blink cursor after typing is complete
+      const cursorTimer = setInterval(() => {
+        setShowCursor(prev => !prev);
+      }, 500);
+
+      return () => clearInterval(cursorTimer);
+    }
+  }, [currentIndex, fullCode]);
+
+  // Syntax highlighting function
+  const highlightSyntax = (code) => {
+    return code
+      .replace(/const/g, '<span class="text-blue-400">const</span>')
+      .replace(/developer/g, '<span class="text-yellow-400">developer</span>')
+      .replace(/"([^"]+)"/g, '<span class="text-orange-400">"$1"</span>')
+      .replace(/(name|skills|experience|passion):/g, '<span class="text-green-400">$1</span>:');
+  };
+
   return (
     <section id="home" className="relative text-white min-h-screen flex items-center overflow-hidden">
       <MinimalNetworkBackground />
       {/* Subtle overlay for better text readability */}
       <div className="absolute inset-0 bg-black bg-opacity-20 z-0"></div>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
-            Hi, I'm{' '}
-            <span className="text-emerald-600">Edward Granados</span>
-          </h1>
-          <p className="text-xl sm:text-2xl md:text-3xl mb-8 text-gray-200">
-            Dynamic Software Engineer & React Developer
-          </p>
-          <p className="text-lg sm:text-xl mb-10 max-w-3xl mx-auto text-gray-300">
-            With 9 years of experience uniquely blending retail management insights with robust Front-End and Mobile Development. 
-            Proficient in React, Tailwind CSS, and Android, committed to creating user-friendly, mobile-first applications 
-            that prioritize customer engagement.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left side - Content */}
+          <div className="text-left">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
+              Hi, I'm{' '}
+              <span className="text-emerald-600">Edward</span>
+            </h1>
+            <p className="text-xl sm:text-2xl md:text-3xl mb-8 text-gray-200">
+             A Dynamic Software Engineer!
+            </p>
+            
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-start items-start mb-10">
             <a
               href="#projects"
               className="bg-white hover:bg-gray-200 text-black font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg hover:shadow-white/25"
@@ -38,7 +76,7 @@ const Hero = () => {
           </div>
 
           {/* Social Links */}
-          <div className="flex justify-center space-x-6">
+          <div className="flex justify-start space-x-6">
             <a
               href="https://linkedin.com/in/edward-granados-459342195/"
               target="_blank"
@@ -59,6 +97,32 @@ const Hero = () => {
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
               </svg>
             </a>
+          </div>
+          </div>
+
+          {/* Right side - Code Display Area */}
+          <div className="hidden lg:block">
+            <div className="bg-gray-900 bg-opacity-80 backdrop-blur-sm rounded-lg p-6 border border-gray-700 shadow-2xl">
+              <div className="flex items-center mb-4">
+                <div className="flex space-x-2">
+                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                </div>
+                <span className="ml-4 text-gray-400 text-sm">edward-portfolio.js</span>
+              </div>
+              <div className="text-sm font-mono leading-relaxed min-h-[220px] relative">
+                <pre 
+                  className="text-gray-300 whitespace-pre-wrap"
+                  dangerouslySetInnerHTML={{
+                    __html: highlightSyntax(typedCode)
+                  }}
+                />
+                {showCursor && (
+                  <span className="text-white animate-pulse">|</span>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
