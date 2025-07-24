@@ -9,8 +9,8 @@ const Hero = () => {
   const fullCode = `const developer = {
   name: "Edward Granados",
   skills: [
-    "React", "JavaScript", "Node.js",
-    "TypeScript", "Python", "SQL"
+    "React", "TailwindCSS", "Supabase",
+    "Node.js", "Unity", "SQL"
   ],
   experience: "9 years",
   passion: "Building amazing UIs"}`;
