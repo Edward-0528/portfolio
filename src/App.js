@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -10,6 +11,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import AdminPanel from './components/AdminPanel';
 import AuthDebugger from './components/AuthDebugger';
+import CorePlusSupport from './components/CorePlusSupport';
 import { supabaseAuthAdmin } from './lib/supabaseAuth';
 import { authService } from './lib/supabase';
 import './lib/portfolioAnalytics'; // Initialize analytics tracking
@@ -119,18 +121,9 @@ function App() {
     );
   }
 
-  // Show admin panel if logged in, otherwise show regular portfolio
-  if (isAdmin) {
-    return (
-      <div className="App">
-        <AdminPanel onLogout={handleLogout} currentAdmin={currentAdmin} />
-      </div>
-    );
-  }
-
-  // Regular portfolio view
-  return (
-    <div className="App">
+  // Portfolio component
+  const Portfolio = () => (
+    <>
       <Header 
         isAdmin={isAdmin} 
         onAdminLogin={handleAdminLogin}
@@ -146,7 +139,33 @@ function App() {
       
       {/* Auth Debugger - only shows when ?debug=auth is in URL */}
       <AuthDebugger />
-    </div>
+    </>
+  );
+
+  // Show admin panel if logged in, otherwise show regular portfolio with routing
+  if (isAdmin) {
+    return (
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route path="/coreplus" element={<CorePlusSupport />} />
+            <Route path="/*" element={<AdminPanel onLogout={handleLogout} currentAdmin={currentAdmin} />} />
+          </Routes>
+        </div>
+      </Router>
+    );
+  }
+
+  // Regular portfolio view with routing
+  return (
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/coreplus" element={<CorePlusSupport />} />
+          <Route path="/" element={<Portfolio />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
