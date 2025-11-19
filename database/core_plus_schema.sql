@@ -103,6 +103,12 @@ ALTER TABLE admin_users ENABLE ROW LEVEL SECURITY;
 -- ============================================
 -- 6. CREATE RLS POLICIES FOR AFFILIATE_USAGE
 -- ============================================
+-- Drop existing policies if they exist
+DROP POLICY IF EXISTS "Admins can view affiliate usage" ON affiliate_usage;
+DROP POLICY IF EXISTS "Admins can update affiliate usage" ON affiliate_usage;
+DROP POLICY IF EXISTS "Admins can insert affiliate usage" ON affiliate_usage;
+DROP POLICY IF EXISTS "Users can insert their affiliate usage" ON affiliate_usage;
+
 -- Allow admins to view all affiliate usage
 CREATE POLICY "Admins can view affiliate usage" ON affiliate_usage
   FOR SELECT
@@ -125,7 +131,12 @@ CREATE POLICY "Admins can update affiliate usage" ON affiliate_usage
     )
   );
 
--- Allow admins to insert affiliate usage
+-- Allow ANY authenticated user (from mobile app) to insert affiliate usage
+CREATE POLICY "Users can insert their affiliate usage" ON affiliate_usage
+  FOR INSERT
+  WITH CHECK (auth.uid() = user_id);
+
+-- Allow admins to insert affiliate usage for any user
 CREATE POLICY "Admins can insert affiliate usage" ON affiliate_usage
   FOR INSERT
   WITH CHECK (
