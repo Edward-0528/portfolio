@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import AdminPanel from './components/AdminPanel';
 import AuthDebugger from './components/AuthDebugger';
 import CorePlusSupport from './components/CorePlusSupport';
+import CorePlusDashboard from './components/CorePlusDashboard';
 import { supabaseAuthAdmin } from './lib/supabaseAuth';
 import { authService } from './lib/supabase';
 import './lib/portfolioAnalytics'; // Initialize analytics tracking
@@ -162,6 +163,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/coreplus" element={<CorePlusSupport />} />
+          <Route path="/dashboard" element={<CorePlusDashboard />} />
           <Route path="/" element={<Portfolio />} />
         </Routes>
       </div>

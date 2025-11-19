@@ -118,6 +118,7 @@ function CorePlusSupport() {
                 <li>Food photos and nutrition data you log</li>
                 <li>Weight and health metrics you choose to track</li>
                 <li>App usage data to improve our service</li>
+                <li>Subscription and purchase information processed through our payment provider</li>
               </ul>
             </div>
 
@@ -126,16 +127,50 @@ function CorePlusSupport() {
               <p>We use your information to:</p>
               <ul className="list-disc list-inside ml-4 mt-2 space-y-1">
                 <li>Provide and improve the Core Plus service</li>
-                <li>Analyze food photos using AI</li>
-                <li>Track your nutrition and progress</li>
+                <li>Analyze food photos using AI to provide accurate nutrition data</li>
+                <li>Track your nutrition and progress over time</li>
+                <li>Manage your subscription and account status</li>
                 <li>Send you app updates and support messages</li>
+                <li>Respond to your inquiries and provide customer support</li>
               </ul>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">Subscription Management</h3>
+              <p>
+                Subscriptions are managed via RevenueCat, our trusted third-party payment processor. RevenueCat handles all receipt validation automatically and securely. Your payment information is processed directly through Apple's App Store and is never stored on our servers.
+              </p>
+              <p className="mt-2">
+                To manage your subscription, tap the 'Account' tab in the app, then tap your subscription status to view options. You can upgrade, downgrade, or cancel your subscription at any time through your Apple App Store account settings.
+              </p>
             </div>
 
             <div>
               <h3 className="text-lg font-semibold text-slate-900 mb-2">Data Security</h3>
               <p>
-                We implement industry-standard security measures to protect your data. Your information is encrypted in transit and at rest. We never sell your personal information to third parties.
+                We implement industry-standard security measures to protect your data. Your information is encrypted in transit and at rest. We never sell your personal information to third parties. All payment processing is handled securely through Apple's App Store infrastructure and RevenueCat's secure payment systems.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">Third-Party Services</h3>
+              <p>
+                Core Plus uses the following third-party services:
+              </p>
+              <ul className="list-disc list-inside ml-4 mt-2 space-y-1">
+                <li><strong>RevenueCat:</strong> For subscription management and receipt validation</li>
+                <li><strong>AI Services:</strong> For food image recognition and nutrition analysis</li>
+                <li><strong>Apple App Store:</strong> For payment processing and subscription management</li>
+              </ul>
+              <p className="mt-2">
+                These services have their own privacy policies and handle data according to their respective terms.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">Data Retention</h3>
+              <p>
+                We retain your data for as long as your account is active or as needed to provide you services. You can request deletion of your data at any time by contacting us. Upon deletion request, we will remove your personal information within 30 days, though some data may be retained for legal or security purposes.
               </p>
             </div>
 
@@ -145,9 +180,18 @@ function CorePlusSupport() {
               <ul className="list-disc list-inside ml-4 mt-2 space-y-1">
                 <li>Access your personal data</li>
                 <li>Request deletion of your data</li>
-                <li>Export your data</li>
+                <li>Export your data in a portable format</li>
                 <li>Opt-out of non-essential communications</li>
+                <li>Manage your subscription through your App Store account</li>
+                <li>Request corrections to your personal information</li>
               </ul>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">Children's Privacy</h3>
+              <p>
+                Core Plus is not intended for use by children under the age of 13. We do not knowingly collect personal information from children under 13. If you believe we have collected information from a child under 13, please contact us immediately.
+              </p>
             </div>
 
             <div>
