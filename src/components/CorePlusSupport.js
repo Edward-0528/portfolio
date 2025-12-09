@@ -102,11 +102,23 @@ function CorePlusSupport() {
 
         {/* Privacy Policy */}
         <section className="bg-white rounded-lg shadow-md p-8 mb-8">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">Privacy Policy</h2>
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">Privacy Policy for Core Plus</h2>
           <div className="text-slate-700 space-y-4">
             <p>
-              <strong>Last Updated:</strong> November 17, 2025
+              <strong>Last Updated:</strong> December 8, 2025
             </p>
+
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <p>
+                <strong>App Name:</strong> Core Plus
+              </p>
+              <p>
+                <strong>Developer:</strong> Edward_Granados
+              </p>
+              <p>
+                <strong>Contact Email:</strong> <a href="mailto:coreplushelp@gmail.com" className="text-blue-600 hover:underline">coreplushelp@gmail.com</a>
+              </p>
+            </div>
             
             <div>
               <h3 className="text-lg font-semibold text-slate-900 mb-2">Information We Collect</h3>
@@ -115,11 +127,47 @@ function CorePlusSupport() {
               </p>
               <ul className="list-disc list-inside ml-4 mt-2 space-y-1">
                 <li>Account information (email, profile details)</li>
-                <li>Food photos and nutrition data you log</li>
-                <li>Weight and health metrics you choose to track</li>
+                <li>Food photos for AI nutrition analysis</li>
+                <li>Nutrition data you log (calories, macros, meals)</li>
+                <li>Water intake tracking data</li>
+                <li>Custom foods and recipes you create</li>
                 <li>App usage data to improve our service</li>
                 <li>Subscription and purchase information processed through our payment provider</li>
               </ul>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">Health Data Access and Usage</h3>
+              <p>
+                <strong>Core Plus accesses health data from Apple Health (iOS) and Google Health Connect (Android) with your permission:</strong>
+              </p>
+              
+              <p className="mt-3"><strong>Health Data We Access (Read-Only):</strong></p>
+              <ul className="list-disc list-inside ml-4 mt-2 space-y-1">
+                <li><strong>Active Energy Burned:</strong> Calories burned from workouts and physical activity to calculate your net calories after exercise</li>
+              </ul>
+              
+              <p className="mt-3"><strong>How We Use This Health Data:</strong></p>
+              <ul className="list-disc list-inside ml-4 mt-2 space-y-1">
+                <li>To display net calories by subtracting calories burned from your daily intake</li>
+                <li>To provide a complete picture of your daily energy balance</li>
+              </ul>
+
+              <p className="mt-3"><strong>Important - We Do NOT Store Health Data:</strong></p>
+              <p className="mt-1">
+                Core Plus reads health data from Apple Health and Google Health Connect in real-time but <strong>does not store, upload, or retain this data on our servers</strong>. The health data remains on your device and within Apple Health or Google Health Connect. We only access this data temporarily to display it within the app during your active session.
+              </p>
+
+              <p className="mt-3"><strong>Your Control:</strong></p>
+              <ul className="list-disc list-inside ml-4 mt-2 space-y-1">
+                <li>Health data access requires your explicit permission</li>
+                <li>You can revoke access at any time through your device's Health app settings</li>
+                <li>The app functions fully without health data access - this feature is optional</li>
+              </ul>
+              
+              <p className="mt-3">
+                <strong>Data Security:</strong> Your health data is never sold to third parties, shared with advertisers, or used for any purpose other than displaying your calories burned within the Core Plus app.
+              </p>
             </div>
 
             <div>
@@ -138,17 +186,17 @@ function CorePlusSupport() {
             <div>
               <h3 className="text-lg font-semibold text-slate-900 mb-2">Subscription Management</h3>
               <p>
-                Subscriptions are managed via RevenueCat, our trusted third-party payment processor. RevenueCat handles all receipt validation automatically and securely. Your payment information is processed directly through Apple's App Store and is never stored on our servers.
+                Subscriptions are managed via RevenueCat, our trusted third-party payment processor. RevenueCat handles all receipt validation automatically and securely. Your payment information is processed directly through Apple's App Store or Google Play Store and is never stored on our servers.
               </p>
               <p className="mt-2">
-                To manage your subscription, tap the 'Account' tab in the app, then tap your subscription status to view options. You can upgrade, downgrade, or cancel your subscription at any time through your Apple App Store account settings.
+                To manage your subscription, tap the 'Account' tab in the app, then tap your subscription status to view options. You can upgrade, downgrade, or cancel your subscription at any time through your Apple App Store or Google Play Store account settings.
               </p>
             </div>
 
             <div>
               <h3 className="text-lg font-semibold text-slate-900 mb-2">Data Security</h3>
               <p>
-                We implement industry-standard security measures to protect your data. Your information is encrypted in transit and at rest. We never sell your personal information to third parties. All payment processing is handled securely through Apple's App Store infrastructure and RevenueCat's secure payment systems.
+                We implement industry-standard security measures to protect your data. Your information is encrypted in transit and at rest. We never sell your personal information to third parties. All payment processing is handled securely through Apple's App Store, Google Play Store, and RevenueCat's secure payment systems.
               </p>
             </div>
 
@@ -160,7 +208,10 @@ function CorePlusSupport() {
               <ul className="list-disc list-inside ml-4 mt-2 space-y-1">
                 <li><strong>RevenueCat:</strong> For subscription management and receipt validation</li>
                 <li><strong>AI Services:</strong> For food image recognition and nutrition analysis</li>
-                <li><strong>Apple App Store:</strong> For payment processing and subscription management</li>
+                <li><strong>Apple App Store:</strong> For payment processing and subscription management (iOS)</li>
+                <li><strong>Google Play Store:</strong> For payment processing and subscription management (Android)</li>
+                <li><strong>Apple Health:</strong> For read-only access to calories burned data (iOS) - data is not stored on our servers</li>
+                <li><strong>Google Health Connect:</strong> For read-only access to calories burned data (Android) - data is not stored on our servers</li>
               </ul>
               <p className="mt-2">
                 These services have their own privacy policies and handle data according to their respective terms.
@@ -182,7 +233,7 @@ function CorePlusSupport() {
                 <li>Request deletion of your data</li>
                 <li>Export your data in a portable format</li>
                 <li>Opt-out of non-essential communications</li>
-                <li>Manage your subscription through your App Store account</li>
+                <li>Manage your subscription through your App Store or Google Play account</li>
                 <li>Request corrections to your personal information</li>
               </ul>
             </div>
@@ -197,6 +248,9 @@ function CorePlusSupport() {
             <div>
               <h3 className="text-lg font-semibold text-slate-900 mb-2">Contact Us</h3>
               <p>
+                <strong>Developer:</strong> Edward_Granados
+              </p>
+              <p className="mt-2">
                 For privacy-related questions or requests, contact us at:{' '}
                 <a href="mailto:coreplushelp@gmail.com" className="text-blue-600 hover:underline">
                   coreplushelp@gmail.com
