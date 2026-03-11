@@ -1,130 +1,211 @@
 import React, { useState, useEffect } from 'react';
-import MinimalNetworkBackground from './MinimalNetworkBackground';
+import { motion } from 'framer-motion';
+import { FiGithub, FiLinkedin, FiArrowDown } from 'react-icons/fi';
 
-const Hero = () => {
-  const [typedCode, setTypedCode] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [showCursor, setShowCursor] = useState(true);
+const ROLES = [
+  'Full-Stack Engineer',
+  'Mobile Developer',
+  'Shipped to App Store & Play Store',
+  'React Native · Supabase · AI',
+];
 
-  const fullCode = `const developer = {
-  name: "Edward Granados",
-  skills: [
-    "React", "TailwindCSS", "Supabase",
-    "Node.js", "Unity", "SQL"
-  ],
-  experience: "9 years",
-  passion: "Building amazing UIs"}`;
+const Typewriter = () => {
+  const [index, setIndex] = useState(0);
+  const [displayed, setDisplayed] = useState('');
+  const [typing, setTyping] = useState(true);
 
   useEffect(() => {
-    if (currentIndex < fullCode.length) {
-      const timer = setTimeout(() => {
-        setTypedCode(fullCode.slice(0, currentIndex + 1));
-        setCurrentIndex(currentIndex + 1);
-      }, 50); // Typing speed
-
-      return () => clearTimeout(timer);
+    const target = ROLES[index];
+    if (typing) {
+      if (displayed.length < target.length) {
+        const t = setTimeout(() => setDisplayed(target.slice(0, displayed.length + 1)), 45);
+        return () => clearTimeout(t);
+      } else {
+        const t = setTimeout(() => setTyping(false), 2200);
+        return () => clearTimeout(t);
+      }
     } else {
-      // Blink cursor after typing is complete
-      const cursorTimer = setInterval(() => {
-        setShowCursor(prev => !prev);
-      }, 500);
-
-      return () => clearInterval(cursorTimer);
+      if (displayed.length > 0) {
+        const t = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 22);
+        return () => clearTimeout(t);
+      } else {
+        setIndex((i) => (i + 1) % ROLES.length);
+        setTyping(true);
+      }
     }
-  }, [currentIndex, fullCode]);
-
-  // Syntax highlighting function
-  const highlightSyntax = (code) => {
-    return code
-      .replace(/const/g, '<span class="text-blue-400">const</span>')
-      .replace(/developer/g, '<span class="text-yellow-400">developer</span>')
-      .replace(/"([^"]+)"/g, '<span class="text-orange-400">"$1"</span>')
-      .replace(/(name|skills|experience|passion):/g, '<span class="text-green-400">$1</span>:');
-  };
+  }, [displayed, typing, index]);
 
   return (
-    <section id="home" className="relative text-white min-h-screen flex items-center overflow-hidden">
-      <MinimalNetworkBackground />
-      {/* Subtle overlay for better text readability */}
-      <div className="absolute inset-0 bg-black bg-opacity-20 z-0"></div>
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left side - Content */}
-          <div className="text-left">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
-              Hi, I'm{' '}
-              <span className="text-emerald-600">Edward</span>
-            </h1>
-            <p className="text-xl sm:text-2xl md:text-3xl mb-8 text-gray-200">
-             A Dynamic Software Engineer!
-            </p>
-            
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-start items-start mb-10">
-            <a
-              href="#projects"
-              className="bg-white hover:bg-gray-200 text-black font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg hover:shadow-white/25"
+    <span className="text-green-400">
+      {displayed}
+      <span className="animate-pulse">|</span>
+    </span>
+  );
+};
+
+const Hero = () => {
+  return (
+    <section id="home" className="relative min-h-screen flex items-center bg-[#0f0f1a] overflow-hidden">
+      {/* Subtle gradient orbs */}
+      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-green-500/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl" />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 py-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Left — Copy */}
+          <div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-green-400 font-mono text-sm mb-4 tracking-wide"
             >
-              View My Work
-            </a>
-            <a
-              href="#contact"
-              className="border-2 border-white hover:bg-white hover:text-black text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg hover:shadow-white/25"
+              Hi, my name is
+            </motion.p>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-4 leading-tight"
             >
-              Get In Touch
-            </a>
+              Edward Granados.
+            </motion.h1>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-400 mb-8 leading-tight h-12 flex items-center"
+            >
+              <Typewriter />
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-gray-400 text-lg max-w-xl mb-10 leading-relaxed"
+            >
+              I independently designed, built, and shipped{' '}
+              <span className="text-green-400 font-semibold">Core+</span> — an AI-powered nutrition &amp; fitness app — to both the{' '}
+              <span className="text-white font-medium">Apple App Store</span> and{' '}
+              <span className="text-white font-medium">Google Play Store</span>.
+              Full-stack, production-ready, zero team.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="flex flex-wrap gap-4 items-center"
+            >
+              <a
+                href="#projects"
+                className="inline-flex items-center border border-green-400 text-green-400 hover:bg-green-400/10 font-medium py-3 px-8 rounded transition-colors duration-200 text-sm"
+              >
+                View My Work
+              </a>
+              <a
+                href="#contact"
+                className="inline-flex items-center text-gray-400 hover:text-white font-medium py-3 px-8 rounded transition-colors duration-200 text-sm"
+              >
+                Get In Touch →
+              </a>
+            </motion.div>
+
+            {/* Social row */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+              className="flex items-center space-x-5 mt-12"
+            >
+              <a
+                href="https://github.com/Edward-0528/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-green-400 transition-colors duration-200"
+              >
+                <FiGithub size={20} />
+              </a>
+              <a
+                href="https://linkedin.com/in/edward-granados-459342195/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-green-400 transition-colors duration-200"
+              >
+                <FiLinkedin size={20} />
+              </a>
+              <div className="w-16 h-px bg-gray-700" />
+              <span className="text-gray-500 text-sm font-mono">alexanders.edward@gmail.com</span>
+            </motion.div>
           </div>
 
-          {/* Social Links */}
-          <div className="flex justify-start space-x-6">
-            <a
-              href="https://linkedin.com/in/edward-granados-459342195/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-300 hover:text-white transition duration-300 transform hover:scale-110"
-            >
-              <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
-            </a>
-            <a
-              href="https://github.com/Edward-0528/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-300 hover:text-white transition duration-300 transform hover:scale-110"
-            >
-              <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-              </svg>
-            </a>
-          </div>
-          </div>
-
-          {/* Right side - Code Display Area */}
-          <div className="hidden lg:block">
-            <div className="bg-gray-900 bg-opacity-80 backdrop-blur-sm rounded-lg p-6 border border-gray-700 shadow-2xl">
-              <div className="flex items-center mb-4">
+          {/* Right — Code block */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="hidden lg:block"
+          >
+            <div className="bg-[#1a1a2e] rounded-xl border border-white/5 p-6 shadow-2xl">
+              {/* Window chrome */}
+              <div className="flex items-center mb-5">
                 <div className="flex space-x-2">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  <div className="w-3 h-3 bg-red-500/80 rounded-full" />
+                  <div className="w-3 h-3 bg-yellow-500/80 rounded-full" />
+                  <div className="w-3 h-3 bg-green-500/80 rounded-full" />
                 </div>
-                <span className="ml-4 text-gray-400 text-sm">edward-portfolio.js</span>
+                <span className="ml-4 text-gray-500 text-xs font-mono">about.ts</span>
               </div>
-              <div className="text-sm font-mono leading-relaxed min-h-[220px] relative">
-                <pre 
-                  className="text-gray-300 whitespace-pre-wrap"
-                  dangerouslySetInnerHTML={{
-                    __html: highlightSyntax(typedCode)
-                  }}
-                />
-                {showCursor && (
-                  <span className="text-white animate-pulse">|</span>
-                )}
-              </div>
+              {/* Code */}
+              <pre className="font-mono text-sm leading-relaxed">
+                <code>
+                  <span className="text-blue-400">const</span>{' '}
+                  <span className="text-yellow-300">developer</span>{' '}
+                  <span className="text-white">=</span> {'{\n'}
+                  {'  '}<span className="text-green-300">name</span>
+                  <span className="text-white">:</span>{' '}
+                  <span className="text-orange-300">"Edward Granados"</span>,{'\n'}
+                  {'  '}<span className="text-green-300">role</span>
+                  <span className="text-white">:</span>{' '}
+                  <span className="text-orange-300">"Full-Stack Engineer"</span>,{'\n'}
+                  {'  '}<span className="text-green-300">languages</span>
+                  <span className="text-white">:</span> [
+                  <span className="text-orange-300">"JS"</span>,{' '}
+                  <span className="text-orange-300">"TS"</span>,{' '}
+                  <span className="text-orange-300">"SQL"</span>,{' '}
+                  <span className="text-orange-300">"Python"</span>],{'\n'}
+                  {'  '}<span className="text-green-300">frameworks</span>
+                  <span className="text-white">:</span> [
+                  <span className="text-orange-300">"React"</span>,{' '}
+                  <span className="text-orange-300">"React Native"</span>,{' '}
+                  <span className="text-orange-300">"Node.js"</span>],{'\n'}
+                  {'  '}<span className="text-green-300">shipped</span>
+                  <span className="text-white">:</span>{' '}
+                  <span className="text-orange-300">"Core+ → App Store & Google Play"</span>,{'\n'}
+                  {'  '}<span className="text-green-300">passion</span>
+                  <span className="text-white">:</span>{' '}
+                  <span className="text-orange-300">"Building products people use"</span>{'\n'}
+                  {'}'};
+                </code>
+              </pre>
             </div>
-          </div>
+          </motion.div>
         </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.5 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        >
+          <a href="#about" className="text-gray-600 hover:text-gray-400 transition-colors">
+            <FiArrowDown size={20} className="animate-bounce" />
+          </a>
+        </motion.div>
       </div>
     </section>
   );

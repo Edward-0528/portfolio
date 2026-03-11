@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^13.5.0",
     "chart.js": "^4.5.0",
     "date-fns": "^4.1.0",
+    "framer-motion": "^12.35.2",
     "react": "^19.1.0",
     "react-chartjs-2": "^5.3.0",
     "react-dom": "^19.1.0",
@@ -23,6 +24,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "dev": "netlify dev",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -46,6 +48,8 @@
     ]
   },
   "devDependencies": {
+    "@netlify/functions": "^5.1.2",
+    "netlify-cli": "^24.0.1",
     "tailwindcss": "^3.4.17"
   }
 }

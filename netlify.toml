@@ -7,6 +7,15 @@
   # Directory that contains the deploy-ready HTML files and assets
   publish = "build"
 
+  # Netlify Functions directory
+  functions = "netlify/functions"
+
+# Proxy /api/credly-badges → Netlify Function (avoids CORS in browser)
+[[redirects]]
+  from = "/api/credly-badges"
+  to = "/.netlify/functions/credly-badges"
+  status = 200
+
 # Redirect rules for Single Page Application
 # This ensures all routes are handled by React Router
 [[redirects]]

@@ -1,107 +1,63 @@
 import React from 'react';
-import MinimalNetworkBackground from './MinimalNetworkBackground';
+import AnimatedSection from './AnimatedSection';
+
+const skillCategories = [
+  {
+    title: 'Languages',
+    items: ['JavaScript', 'TypeScript', 'SQL', 'Python'],
+  },
+  {
+    title: 'Frameworks & Libraries',
+    items: ['React', 'React Native', 'Expo', 'Node.js', 'Tailwind CSS', 'HTML/CSS'],
+  },
+  {
+    title: 'Back-End & Data',
+    items: ['Supabase', 'PostgreSQL', 'REST APIs', 'Row-Level Security', 'PKCE Auth'],
+  },
+  {
+    title: 'AI & Analytics',
+    items: ['Google Gemini API', 'Generative AI', 'Prompt Engineering', 'A/B Testing', 'Analytics'],
+  },
+  {
+    title: 'Tools & DevOps',
+    items: ['Git', 'GitHub', 'EAS Build CI/CD', 'RevenueCat', 'Apple HealthKit', 'Google Health Connect'],
+  },
+];
 
 const Skills = () => {
-  const skillCategories = [
-    {
-      title: "Frontend Technologies",
-      skills: [
-        { name: "React JS", level: 90, icon: "⚛️" },
-        { name: "JavaScript (ES6+)", level: 85, icon: "🟨" },
-        { name: "HTML", level: 100, icon: "🌐" },
-        { name: "CSS", level: 90, icon: "🎨" },
-        { name: "Tailwind CSS", level: 90, icon: "🎨" }
-      ]
-    },
-    {
-      title: "Tools",
-      skills: [
-        { name: "VS Code", level: 90, icon: "�" },
-        { name: "Android Studio", level: 90, icon: "🤖" },
-        { name: "Xcode", level: 80, icon: "�" },
-        { name: "Git & GitHub", level: 100, icon: "�" },
-        { name: "Netlify", level: 90, icon: "�" }
-      ]
-    },
-    {
-      title: "Backend & Components",
-      skills: [
-        { name: "Supabase", level: 90, icon: "�️" },
-        { name: "API Integration", level: 90, icon: "🔌" },
-        { name: "MUI Components", level: 100, icon: "🧩" }
-      ]
-    }
-  ];
-
-  const SkillBar = ({ skill }) => (
-    <div className="mb-4">
-      <div className="flex justify-between items-center mb-2">
-        <span className="text-sm font-medium text-gray-700 flex items-center">
-          <span className="mr-2">{skill.icon}</span>
-          {skill.name}
-        </span>
-        <span className="text-sm text-gray-500">{skill.level}%</span>
-      </div>
-      <div className="w-full bg-gray-200 rounded-full h-2">
-        <div
-          className="bg-gradient-to-r from-emerald-600 to-slate-700 h-2 rounded-full transition-all duration-1000 ease-out"
-          style={{ width: `${skill.level}%` }}
-        ></div>
-      </div>
-    </div>
-  );
-
   return (
-    <section id="skills" className="py-20 bg-white relative overflow-hidden">
-      <MinimalNetworkBackground />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Skills & Technologies</h2>
-          <div className="w-20 h-1 bg-slate-700 mx-auto mb-4"></div>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Here are the technologies I work with and the skills I'm continuously developing 
-            as I grow in my React development journey.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {skillCategories.map((category, index) => (
-            <div key={index} className="bg-gray-50 rounded-lg p-6 shadow-lg">
-              <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">
-                {category.title}
-              </h3>
-              <div className="space-y-4">
-                {category.skills.map((skill, skillIndex) => (
-                  <SkillBar key={skillIndex} skill={skill} />
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Additional Info */}
-        <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-slate-700 to-emerald-800 rounded-lg p-8 text-white">
-            <h3 className="text-2xl font-bold mb-4">Always Learning</h3>
-            <p className="text-lg mb-6">
-              As a passionate developer, I'm constantly expanding my skill set and staying up-to-date 
-              with the latest trends and best practices in React development.
-            </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full text-sm">
-                📚 Reading Documentation
-              </span>
-              <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full text-sm">
-                🎥 Online Courses
-              </span>
-              <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full text-sm">
-                💡 Personal Projects
-              </span>
-              <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full text-sm">
-                🤝 Community Participation
-              </span>
-            </div>
+    <section id="skills" className="py-24 bg-[#0f0f1a]">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        {/* Section header */}
+        <AnimatedSection>
+          <div className="flex items-center mb-16">
+            <h2 className="text-2xl font-bold text-white whitespace-nowrap">
+              <span className="text-green-400 font-mono text-lg mr-2">03.</span>
+              Skills & Technologies
+            </h2>
+            <div className="ml-6 h-px bg-gray-700 flex-grow max-w-xs" />
           </div>
+        </AnimatedSection>
+
+        {/* Skill grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {skillCategories.map((cat, idx) => (
+            <AnimatedSection key={cat.title} delay={idx * 0.05}>
+              <div className="bg-[#1a1a2e] border border-white/5 rounded-xl p-6 h-full hover:border-green-400/20 transition-colors duration-300">
+                <h3 className="text-sm font-mono text-green-400 mb-4 uppercase tracking-wider">{cat.title}</h3>
+                <div className="flex flex-wrap gap-2">
+                  {cat.items.map((item) => (
+                    <span
+                      key={item}
+                      className="text-sm text-gray-300 bg-white/5 px-3 py-1.5 rounded-md"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </AnimatedSection>
+          ))}
         </div>
       </div>
     </section>
