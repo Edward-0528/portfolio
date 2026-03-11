@@ -13,6 +13,7 @@ import AdminPanel from './components/AdminPanel';
 import AuthDebugger from './components/AuthDebugger';
 import CorePlusSupport from './components/CorePlusSupport';
 import CorePlusDashboard from './components/CorePlusDashboard';
+import CaseStudy from './components/CaseStudy';
 import { supabaseAuthAdmin } from './lib/supabaseAuth';
 import { authService } from './lib/supabase';
 import './lib/portfolioAnalytics'; // Initialize analytics tracking
@@ -133,6 +134,7 @@ function App() {
       <div data-section="hero"><Hero /></div>
       <div data-section="about"><About /></div>
       <div data-section="projects"><Projects /></div>
+      <div data-section="case-study"><CaseStudy /></div>
       <div data-section="skills"><Skills /></div>
       <div data-section="experience"><Education /></div>
       <div data-section="contact"><Contact /></div>

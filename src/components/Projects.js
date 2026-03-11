@@ -1,6 +1,6 @@
 import React from 'react';
 import AnimatedSection from './AnimatedSection';
-import { FiGithub, FiExternalLink, FiCamera, FiActivity, FiShield } from 'react-icons/fi';
+import { FiGithub, FiExternalLink, FiCamera, FiActivity, FiShield, FiShoppingBag } from 'react-icons/fi';
 
 const FALLBACK_PROJECTS = [
   {
@@ -204,6 +204,158 @@ const CorePlusMockup = () => (
   </div>
 );
 
+// Browser chrome mockup wrapper
+const BrowserMockup = ({ children, url }) => (
+  <div className="w-full max-w-md mx-auto bg-[#0a0a14] rounded-xl border border-white/10 shadow-2xl overflow-hidden">
+    {/* Browser chrome */}
+    <div className="flex items-center gap-2 px-4 py-3 bg-[#1a1a2e] border-b border-white/5">
+      <div className="flex gap-1.5">
+        <div className="w-3 h-3 bg-red-500/70 rounded-full" />
+        <div className="w-3 h-3 bg-yellow-500/70 rounded-full" />
+        <div className="w-3 h-3 bg-green-500/70 rounded-full" />
+      </div>
+      <div className="flex-1 mx-3 bg-white/5 rounded-md px-3 py-1">
+        <span className="text-gray-500 text-[10px] font-mono">{url}</span>
+      </div>
+    </div>
+    <div className="p-4">{children}</div>
+  </div>
+);
+
+// BudgetApp mockup
+const BudgetAppMockup = () => (
+  <BrowserMockup url="budgetappedward.netlify.app">
+    <div className="space-y-3">
+      {/* Balance card */}
+      <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/10 border border-green-400/20 rounded-xl p-4">
+        <p className="text-gray-400 text-[10px] font-mono mb-1">Total Balance</p>
+        <p className="text-white text-2xl font-bold font-mono">$4,281.50</p>
+        <div className="flex gap-4 mt-2">
+          <div>
+            <p className="text-[9px] text-gray-500">Income</p>
+            <p className="text-green-400 text-xs font-semibold font-mono">+$6,200.00</p>
+          </div>
+          <div>
+            <p className="text-[9px] text-gray-500">Expenses</p>
+            <p className="text-red-400 text-xs font-semibold font-mono">-$1,918.50</p>
+          </div>
+        </div>
+      </div>
+      {/* Mini chart bars */}
+      <div className="bg-white/5 rounded-xl p-3">
+        <p className="text-[9px] text-gray-500 font-mono mb-2">Monthly Spending</p>
+        <div className="flex items-end gap-1 h-10">
+          {[40, 65, 45, 80, 55, 70, 50, 90, 60, 75, 85, 45].map((h, i) => (
+            <div key={i} className="flex-1 rounded-sm" style={{ height: `${h}%`, background: i === 11 ? '#4ade80' : 'rgba(255,255,255,0.1)' }} />
+          ))}
+        </div>
+        <div className="flex justify-between mt-1">
+          <span className="text-[8px] text-gray-600 font-mono">Jan</span>
+          <span className="text-[8px] text-green-400 font-mono">Dec</span>
+        </div>
+      </div>
+      {/* Recent transactions */}
+      <div className="space-y-1.5">
+        {[
+          { icon: '🛒', name: 'Groceries', amount: '-$84.20', color: 'text-red-400' },
+          { icon: '💼', name: 'Salary', amount: '+$3,100', color: 'text-green-400' },
+          { icon: '☕', name: 'Coffee', amount: '-$6.50', color: 'text-red-400' },
+        ].map((tx) => (
+          <div key={tx.name} className="flex items-center justify-between bg-white/5 rounded-lg px-3 py-2">
+            <div className="flex items-center gap-2">
+              <span className="text-sm">{tx.icon}</span>
+              <span className="text-gray-300 text-[10px]">{tx.name}</span>
+            </div>
+            <span className={`text-[10px] font-mono font-semibold ${tx.color}`}>{tx.amount}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </BrowserMockup>
+);
+
+// WeatherApp mockup
+const WeatherAppMockup = () => (
+  <BrowserMockup url="weatherappedward.netlify.app">
+    <div className="space-y-3">
+      {/* Main weather card */}
+      <div className="bg-gradient-to-br from-blue-500/20 to-indigo-500/10 border border-blue-400/20 rounded-xl p-4 text-center">
+        <p className="text-gray-400 text-[10px] font-mono mb-1">San Francisco, CA</p>
+        <div className="flex items-center justify-center gap-3">
+          <span className="text-4xl">⛅</span>
+          <span className="text-white text-4xl font-bold font-mono">72°</span>
+        </div>
+        <p className="text-blue-300 text-xs mt-1">Partly Cloudy</p>
+        <div className="flex justify-center gap-4 mt-3">
+          <span className="text-[9px] text-gray-500">H: 76° · L: 58°</span>
+          <span className="text-[9px] text-gray-500">💧 62%</span>
+          <span className="text-[9px] text-gray-500">💨 12 mph</span>
+        </div>
+      </div>
+      {/* 5-day forecast */}
+      <div className="grid grid-cols-5 gap-1">
+        {[
+          { day: 'Mon', icon: '☀️', hi: '78', lo: '60' },
+          { day: 'Tue', icon: '🌤', hi: '74', lo: '57' },
+          { day: 'Wed', icon: '🌧', hi: '65', lo: '52' },
+          { day: 'Thu', icon: '⛅', hi: '70', lo: '55' },
+          { day: 'Fri', icon: '☀️', hi: '80', lo: '62' },
+        ].map((d) => (
+          <div key={d.day} className="bg-white/5 rounded-lg p-2 text-center">
+            <p className="text-[8px] text-gray-500 font-mono">{d.day}</p>
+            <span className="text-base">{d.icon}</span>
+            <p className="text-[8px] text-white font-mono">{d.hi}°</p>
+            <p className="text-[8px] text-gray-500 font-mono">{d.lo}°</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </BrowserMockup>
+);
+
+// E-Commerce mockup
+const EcommerceMockup = () => (
+  <BrowserMockup url="ecomedward.netlify.app">
+    <div className="space-y-3">
+      {/* Product grid */}
+      <div className="grid grid-cols-2 gap-2">
+        {[
+          { name: 'Wireless Headphones', price: '$89.99', badge: 'Sale', emoji: '🎧' },
+          { name: 'Smart Watch', price: '$199.99', badge: 'New', emoji: '⌚' },
+          { name: 'Laptop Stand', price: '$45.00', badge: null, emoji: '💻' },
+          { name: 'Mechanical Keyboard', price: '$129.99', badge: 'Popular', emoji: '⌨️' },
+        ].map((p) => (
+          <div key={p.name} className="bg-white/5 border border-white/5 rounded-lg p-3 relative">
+            {p.badge && (
+              <span className="absolute top-2 right-2 bg-green-400/20 text-green-400 text-[8px] font-mono px-1.5 py-0.5 rounded">{p.badge}</span>
+            )}
+            <div className="text-2xl mb-1">{p.emoji}</div>
+            <p className="text-gray-300 text-[9px] font-medium leading-tight">{p.name}</p>
+            <p className="text-green-400 text-[10px] font-mono font-bold mt-1">{p.price}</p>
+            <div className="mt-2 bg-green-400/15 border border-green-400/20 rounded px-2 py-0.5 text-center">
+              <span className="text-green-400 text-[8px] font-semibold">Add to Cart</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      {/* Cart indicator */}
+      <div className="flex items-center justify-between bg-white/5 rounded-lg px-3 py-2">
+        <div className="flex items-center gap-2">
+          <FiShoppingBag size={12} className="text-green-400" />
+          <span className="text-gray-400 text-[10px]">2 items in cart</span>
+        </div>
+        <span className="text-green-400 text-[10px] font-mono font-bold">$235.98</span>
+      </div>
+    </div>
+  </BrowserMockup>
+);
+
+const PROJECT_MOCKUPS = {
+  'BudgetApp': BudgetAppMockup,
+  'Weather App': WeatherAppMockup,
+  'E-Commerce Platform': EcommerceMockup,
+};
+
 const Projects = () => {
   const featured = FALLBACK_PROJECTS.filter((p) => p.featured);
   const other = FALLBACK_PROJECTS.filter((p) => !p.featured);
@@ -231,6 +383,8 @@ const Projects = () => {
                 <div className="bg-gradient-to-br from-green-500/10 to-emerald-500/5 border border-white/5 rounded-2xl overflow-hidden flex items-center justify-center min-h-[400px]">
                   {project.title === 'Core+' ? (
                     <CorePlusMockup />
+                  ) : PROJECT_MOCKUPS[project.title] ? (
+                    React.createElement(PROJECT_MOCKUPS[project.title])
                   ) : (
                     <span className="text-6xl font-bold text-white/5 select-none">{project.title}</span>
                   )}
@@ -285,37 +439,50 @@ const Projects = () => {
               </h3>
             </AnimatedSection>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {other.map((project) => (
+              {other.map((project) => {
+                const MockupComponent = PROJECT_MOCKUPS[project.title];
+                return (
                 <AnimatedSection key={project.id} delay={0.05}>
-                  <div className="bg-[#1a1a2e] border border-white/5 rounded-xl p-6 h-full flex flex-col hover:border-green-400/20 hover:-translate-y-1 transition-all duration-300 group">
-                    {/* Top row */}
-                    <div className="flex justify-between items-center mb-5">
-                      <svg className="w-10 h-10 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-                      </svg>
-                      <div className="flex space-x-3">
-                        {project.github && project.github !== '#' && (
-                          <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-green-400 transition-colors">
-                            <FiGithub size={18} />
-                          </a>
-                        )}
-                        {project.live && project.live !== '#' && (
-                          <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-green-400 transition-colors">
-                            <FiExternalLink size={18} />
-                          </a>
-                        )}
+                  <div className="bg-[#1a1a2e] border border-white/5 rounded-xl overflow-hidden h-full flex flex-col hover:border-green-400/20 hover:-translate-y-1 transition-all duration-300 group">
+                    {/* Visual preview */}
+                    {MockupComponent && (
+                      <div className="bg-[#0a0a14] border-b border-white/5 px-4 pt-4 pb-2 overflow-hidden max-h-52 pointer-events-none select-none opacity-90 group-hover:opacity-100 transition-opacity">
+                        <div className="transform scale-[0.72] origin-top">
+                          <MockupComponent />
+                        </div>
                       </div>
-                    </div>
-                    <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-green-400 transition-colors">{project.title}</h4>
-                    <p className="text-gray-400 text-sm leading-relaxed flex-grow mb-5">{project.description}</p>
-                    <div className="flex flex-wrap gap-x-3 gap-y-1">
-                      {project.technologies.slice(0, 4).map((tech) => (
-                        <span key={tech} className="text-xs font-mono text-gray-500">{tech}</span>
-                      ))}
+                    )}
+                    <div className="p-6 flex flex-col flex-grow">
+                      {/* Top row */}
+                      <div className="flex justify-between items-center mb-4">
+                        <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                        </svg>
+                        <div className="flex space-x-3">
+                          {project.github && project.github !== '#' && (
+                            <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-green-400 transition-colors">
+                              <FiGithub size={18} />
+                            </a>
+                          )}
+                          {project.live && project.live !== '#' && (
+                            <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-green-400 transition-colors">
+                              <FiExternalLink size={18} />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                      <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-green-400 transition-colors">{project.title}</h4>
+                      <p className="text-gray-400 text-sm leading-relaxed flex-grow mb-5">{project.description}</p>
+                      <div className="flex flex-wrap gap-x-3 gap-y-1">
+                        {project.technologies.slice(0, 4).map((tech) => (
+                          <span key={tech} className="text-xs font-mono text-gray-500">{tech}</span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </AnimatedSection>
-              ))}
+                );
+              })}
             </div>
           </>
         )}

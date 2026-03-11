@@ -23,7 +23,12 @@ module.exports = {
         neutral: {
           850: '#1a1a2e',
           950: '#0f0f1a',
-        }
+        },
+        // Design tokens — use these instead of raw hex values
+        surface: '#0f0f1a',        // page background
+        'surface-alt': '#0a0a14', // alternate section background
+        card: '#1a1a2e',           // card / panel background
+        border: 'rgba(255,255,255,0.05)', // default border
       },
       animation: {
         'fadeInUp': 'fadeInUp 0.6s ease-out',

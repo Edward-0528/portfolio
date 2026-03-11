@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import AnimatedSection from './AnimatedSection';
+import { FiDownload, FiLinkedin, FiGithub, FiMail } from 'react-icons/fi';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -44,10 +45,50 @@ const Contact = () => {
         <AnimatedSection>
           <p className="text-green-400 font-mono text-sm mb-4">05. What's Next?</p>
           <h2 className="text-4xl font-bold text-white mb-6">Get In Touch</h2>
-          <p className="text-gray-400 text-lg leading-relaxed mb-12">
-            I'm actively seeking Junior Software Engineering and Full-Stack Developer roles.
+          <p className="text-gray-400 text-lg leading-relaxed mb-8">
+            I'm actively seeking Software Engineering and Full-Stack Developer roles.
             Whether you have a question, an opportunity, or just want to connect — my inbox is always open.
           </p>
+
+          {/* Primary CTAs */}
+          <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
+            <a
+              href="/Edward_Granados_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-green-400 text-[#0f0f1a] hover:bg-green-300 font-semibold py-3 px-8 rounded transition-colors duration-200 text-sm"
+            >
+              <FiDownload size={15} />
+              Download Resume
+            </a>
+            <a
+              href="https://linkedin.com/in/edward-granados-459342195/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 border border-white/15 text-gray-300 hover:border-green-400/40 hover:text-white font-medium py-3 px-8 rounded transition-colors duration-200 text-sm"
+            >
+              <FiLinkedin size={15} />
+              LinkedIn
+            </a>
+            <a
+              href="https://github.com/Edward-0528/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 border border-white/15 text-gray-300 hover:border-green-400/40 hover:text-white font-medium py-3 px-8 rounded transition-colors duration-200 text-sm"
+            >
+              <FiGithub size={15} />
+              GitHub
+            </a>
+          </div>
+        </AnimatedSection>
+
+        {/* Divider */}
+        <AnimatedSection delay={0.05}>
+          <div className="flex items-center gap-4 mb-10">
+            <div className="flex-1 h-px bg-white/5" />
+            <span className="text-gray-600 text-xs font-mono">or send a message</span>
+            <div className="flex-1 h-px bg-white/5" />
+          </div>
         </AnimatedSection>
 
         <AnimatedSection delay={0.1}>
@@ -109,42 +150,20 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex items-center justify-center border border-green-400 text-green-400 hover:bg-green-400/10 disabled:opacity-50 font-medium py-3 px-10 rounded transition-colors duration-200 text-sm"
+                className="inline-flex items-center gap-2 justify-center border border-green-400 text-green-400 hover:bg-green-400/10 disabled:opacity-50 font-medium py-3 px-10 rounded transition-colors duration-200 text-sm"
               >
+                <FiMail size={14} />
                 {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
             </div>
           </form>
         </AnimatedSection>
 
-        {/* Direct links */}
+        {/* Direct email */}
         <AnimatedSection delay={0.2}>
-          <div className="flex items-center justify-center space-x-6 mt-10 text-sm">
-            <a
-              href="mailto:alexanders.edward@gmail.com"
-              className="text-gray-400 hover:text-green-400 transition-colors font-mono"
-            >
-              alexanders.edward@gmail.com
-            </a>
-            <span className="text-gray-700">|</span>
-            <a
-              href="https://linkedin.com/in/edward-granados-459342195/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-green-400 transition-colors"
-            >
-              LinkedIn
-            </a>
-            <span className="text-gray-700">|</span>
-            <a
-              href="https://github.com/Edward-0528/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-green-400 transition-colors"
-            >
-              GitHub
-            </a>
-          </div>
+          <p className="text-gray-600 text-sm font-mono mt-10">
+            alexanders.edward@gmail.com
+          </p>
         </AnimatedSection>
       </div>
     </section>

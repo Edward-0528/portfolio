@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FiGithub, FiLinkedin, FiArrowDown } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiArrowDown, FiDownload } from 'react-icons/fi';
 
 const ROLES = [
   'Full-Stack Engineer',
@@ -54,6 +54,17 @@ const Hero = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left — Copy */}
           <div>
+            {/* Open to Work badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.05 }}
+              className="inline-flex items-center space-x-2 bg-green-400/10 border border-green-400/25 rounded-full px-4 py-1.5 mb-6"
+            >
+              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+              <span className="text-green-400 text-xs font-mono font-medium tracking-wide">Open to Work · March 2026</span>
+            </motion.div>
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -107,10 +118,50 @@ const Hero = () => {
                 View My Work
               </a>
               <a
-                href="#contact"
-                className="inline-flex items-center text-gray-400 hover:text-white font-medium py-3 px-8 rounded transition-colors duration-200 text-sm"
+                href="/Edward_Granados_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-green-400 text-[#0f0f1a] hover:bg-green-300 font-semibold py-3 px-8 rounded transition-colors duration-200 text-sm"
               >
-                Get In Touch →
+                <FiDownload size={14} />
+                Resume
+              </a>
+            </motion.div>
+
+            {/* App Store badges */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="flex items-center gap-3 mt-8"
+            >
+              <span className="text-gray-600 text-xs font-mono">Core+ available on</span>
+              {/* Apple App Store badge */}
+              <a
+                href="https://apps.apple.com/us/app/core-ai-nutrition-tracker/id6743702718"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 bg-white/5 border border-white/10 hover:border-green-400/30 text-white rounded-lg px-3 py-1.5 transition-colors duration-200"
+              >
+                <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                </svg>
+                <span className="text-xs font-medium">App Store</span>
+              </a>
+              {/* Google Play badge */}
+              <a
+                href="https://play.google.com/store/apps/details?id=com.edwardg.coreplus"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 bg-white/5 border border-white/10 hover:border-green-400/30 text-white rounded-lg px-3 py-1.5 transition-colors duration-200"
+              >
+                <svg viewBox="0 0 24 24" className="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3.18 23.76a2 2 0 0 0 2.07-.22l11.84-6.86-2.89-2.89zM.49 1.05A2 2 0 0 0 0 2.37v19.26a2 2 0 0 0 .49 1.32L.6 23.07l10.79-10.79v-.25L.6 1.24z" fill="#4285F4"/>
+                  <path d="m18.64 13.4-3.1-3.1-10.79 10.75.07.07 2.07-.22z" fill="#34A853"/>
+                  <path d="M18.64 10.6 15.54 7.5 3.69.64 1.62.42.6 1.24l10.79 10.79z" fill="#FBBC04"/>
+                  <path d="m3.18.24 11.84 6.86 3.1-3.1-2.07-.86A2 2 0 0 0 14 3l-8.75-3A2 2 0 0 0 3.18.24z" fill="#EA4335"/>
+                </svg>
+                <span className="text-xs font-medium">Google Play</span>
               </a>
             </motion.div>
 
@@ -119,7 +170,7 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.7 }}
-              className="flex items-center space-x-5 mt-12"
+              className="flex items-center space-x-5 mt-10"
             >
               <a
                 href="https://github.com/Edward-0528/"
