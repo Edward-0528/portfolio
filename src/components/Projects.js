@@ -85,33 +85,32 @@ const FALLBACK_PROJECTS = [
 const CorePlusMockup = () => (
   <div className="relative flex items-center justify-center py-8">
     {/* Glow behind phone */}
-    <div className="absolute w-64 h-80 bg-green-500/10 rounded-full blur-3xl" />
+    <div className="absolute w-64 h-80 bg-accent-200/30 rounded-full blur-3xl" />
 
     {/* Phone frame */}
-    <div className="relative w-[220px] bg-[#0a0a14] rounded-[36px] border-2 border-white/10 shadow-2xl overflow-hidden"
-         style={{ boxShadow: '0 0 60px rgba(74,222,128,0.08), 0 25px 50px rgba(0,0,0,0.6)' }}>
+    <div className="relative w-[220px] bg-white rounded-[36px] border-2 border-gray-200 shadow-card overflow-hidden">
       {/* Notch */}
       <div className="flex justify-center pt-3 pb-1">
-        <div className="w-20 h-1.5 bg-white/10 rounded-full" />
+        <div className="w-20 h-1.5 bg-gray-200 rounded-full" />
       </div>
 
       {/* Status bar */}
       <div className="flex justify-between items-center px-5 py-1">
-        <span className="text-white/40 text-[9px] font-mono">9:41</span>
+        <span className="text-text-secondary text-[9px] font-mono">9:41</span>
         <div className="flex space-x-1">
-          <div className="w-3 h-1.5 bg-white/30 rounded-sm" />
-          <div className="w-1 h-1.5 bg-green-400/60 rounded-sm" />
+          <div className="w-3 h-1.5 bg-gray-300 rounded-sm" />
+          <div className="w-1 h-1.5 bg-accent/60 rounded-sm" />
         </div>
       </div>
 
       {/* App header */}
       <div className="px-4 pt-2 pb-3 flex items-center justify-between">
         <div>
-          <span className="text-green-400 font-bold text-sm tracking-wide">CORE</span>
-          <span className="text-white font-bold text-sm">+</span>
+          <span className="text-accent font-bold text-sm tracking-wide">CORE</span>
+          <span className="text-text-primary font-bold text-sm">+</span>
         </div>
-        <div className="w-6 h-6 rounded-full bg-green-400/10 border border-green-400/30 flex items-center justify-center">
-          <span className="text-green-400 text-[8px] font-bold">PRO</span>
+        <div className="w-6 h-6 rounded-full bg-accent-soft border border-accent-200 flex items-center justify-center">
+          <span className="text-accent-600 text-[8px] font-bold">PRO</span>
         </div>
       </div>
 
@@ -119,21 +118,21 @@ const CorePlusMockup = () => (
       <div className="flex flex-col items-center py-3">
         <div className="relative w-24 h-24">
           <svg className="w-24 h-24 -rotate-90" viewBox="0 0 96 96">
-            <circle cx="48" cy="48" r="40" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="6" />
-            <circle cx="48" cy="48" r="40" fill="none" stroke="#4ade80" strokeWidth="6"
+            <circle cx="48" cy="48" r="40" fill="none" stroke="#E2E8F0" strokeWidth="6" />
+            <circle cx="48" cy="48" r="40" fill="none" stroke="#6BA4D4" strokeWidth="6"
               strokeDasharray="251.2" strokeDashoffset="75" strokeLinecap="round" />
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-white font-bold text-lg leading-none">1,847</span>
-            <span className="text-gray-500 text-[9px]">/ 2,200 kcal</span>
+            <span className="text-text-primary font-bold text-lg leading-none">1,847</span>
+            <span className="text-text-secondary text-[9px]">/ 2,200 kcal</span>
           </div>
         </div>
         {/* Macros row */}
         <div className="flex space-x-4 mt-3">
-          {[['P', '142g', '#4ade80'], ['C', '198g', '#60a5fa'], ['F', '54g', '#f59e0b']].map(([label, val, color]) => (
+          {[['P', '142g', '#6BA4D4'], ['C', '198g', '#60a5fa'], ['F', '54g', '#f59e0b']].map(([label, val, color]) => (
             <div key={label} className="flex flex-col items-center">
               <span className="text-[8px] font-mono" style={{ color }}>{label}</span>
-              <span className="text-white text-[10px] font-semibold">{val}</span>
+              <span className="text-text-primary text-[10px] font-semibold">{val}</span>
             </div>
           ))}
         </div>
@@ -141,43 +140,43 @@ const CorePlusMockup = () => (
 
       {/* AI Scan button */}
       <div className="mx-4 mb-3">
-        <div className="bg-green-400/10 border border-green-400/20 rounded-xl p-2.5 flex items-center space-x-2">
-          <div className="w-6 h-6 bg-green-400/20 rounded-lg flex items-center justify-center flex-shrink-0">
-            <FiCamera size={11} className="text-green-400" />
+        <div className="bg-accent-soft border border-accent-200 rounded-xl p-2.5 flex items-center space-x-2">
+          <div className="w-6 h-6 bg-accent-100 rounded-lg flex items-center justify-center flex-shrink-0">
+            <FiCamera size={11} className="text-accent-600" />
           </div>
           <div>
-            <p className="text-white text-[9px] font-semibold">AI Meal Scan</p>
-            <p className="text-gray-500 text-[8px]">Snap a photo · instant macros</p>
+            <p className="text-text-primary text-[9px] font-semibold">AI Meal Scan</p>
+            <p className="text-text-secondary text-[8px]">Snap a photo · instant macros</p>
           </div>
-          <div className="ml-auto w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
+          <div className="ml-auto w-1.5 h-1.5 bg-accent rounded-full animate-pulse" />
         </div>
       </div>
 
       {/* Recent meals */}
       <div className="px-4 pb-2">
-        <p className="text-gray-600 text-[8px] font-mono uppercase tracking-wider mb-1.5">Today's Log</p>
+        <p className="text-gray-400 text-[8px] font-mono uppercase tracking-wider mb-1.5">Today's Log</p>
         {[
           { meal: 'Grilled Chicken Bowl', cal: '520 kcal', grade: 'A' },
           { meal: 'Greek Yogurt + Berries', cal: '210 kcal', grade: 'A' },
           { meal: 'Protein Shake', cal: '180 kcal', grade: 'B+' },
         ].map(({ meal, cal, grade }) => (
-          <div key={meal} className="flex items-center justify-between py-1.5 border-b border-white/5 last:border-0">
+          <div key={meal} className="flex items-center justify-between py-1.5 border-b border-gray-100 last:border-0">
             <div className="flex items-center space-x-1.5">
-              <FiActivity size={8} className="text-green-400/60 flex-shrink-0" />
-              <span className="text-gray-400 text-[8px] truncate max-w-[100px]">{meal}</span>
+              <FiActivity size={8} className="text-accent/60 flex-shrink-0" />
+              <span className="text-text-secondary text-[8px] truncate max-w-[100px]">{meal}</span>
             </div>
             <div className="flex items-center space-x-1.5">
-              <span className="text-gray-500 text-[8px] font-mono">{cal}</span>
-              <span className="text-green-400 text-[8px] font-bold font-mono">{grade}</span>
+              <span className="text-gray-400 text-[8px] font-mono">{cal}</span>
+              <span className="text-accent-600 text-[8px] font-bold font-mono">{grade}</span>
             </div>
           </div>
         ))}
       </div>
 
       {/* Bottom nav */}
-      <div className="flex justify-around items-center px-4 py-3 border-t border-white/5 mt-1">
+      <div className="flex justify-around items-center px-4 py-3 border-t border-gray-100 mt-1">
         {[FiActivity, FiCamera, FiShield].map((Icon, i) => (
-          <div key={i} className={`flex flex-col items-center ${i === 1 ? 'text-green-400' : 'text-gray-600'}`}>
+          <div key={i} className={`flex flex-col items-center ${i === 1 ? 'text-accent' : 'text-gray-300'}`}>
             <Icon size={12} />
           </div>
         ))}
@@ -185,37 +184,37 @@ const CorePlusMockup = () => (
 
       {/* Home bar */}
       <div className="flex justify-center pb-2">
-        <div className="w-16 h-1 bg-white/10 rounded-full" />
+        <div className="w-16 h-1 bg-gray-200 rounded-full" />
       </div>
     </div>
 
     {/* Floating badge — App Store */}
-    <div className="absolute -right-2 top-12 bg-[#1a1a2e] border border-white/10 rounded-xl px-3 py-2 shadow-xl">
-      <p className="text-[9px] text-gray-500 font-mono">Available on</p>
-      <p className="text-white text-[10px] font-semibold">App Store &amp;</p>
-      <p className="text-white text-[10px] font-semibold">Google Play</p>
+    <div className="absolute -right-2 top-12 bg-white border border-gray-200 rounded-xl px-3 py-2 shadow-card">
+      <p className="text-[9px] text-text-secondary font-mono">Available on</p>
+      <p className="text-text-primary text-[10px] font-semibold">App Store &amp;</p>
+      <p className="text-text-primary text-[10px] font-semibold">Google Play</p>
     </div>
 
     {/* Floating badge — AI */}
-    <div className="absolute -left-2 bottom-16 bg-[#1a1a2e] border border-green-400/20 rounded-xl px-3 py-2 shadow-xl">
-      <p className="text-green-400 text-[9px] font-mono font-semibold">Gemini AI</p>
-      <p className="text-gray-400 text-[9px]">Food recognition</p>
+    <div className="absolute -left-2 bottom-16 bg-white border border-accent-200 rounded-xl px-3 py-2 shadow-card">
+      <p className="text-accent-600 text-[9px] font-mono font-semibold">Gemini AI</p>
+      <p className="text-text-secondary text-[9px]">Food recognition</p>
     </div>
   </div>
 );
 
 // Browser chrome mockup wrapper
 const BrowserMockup = ({ children, url }) => (
-  <div className="w-full max-w-md mx-auto bg-[#0a0a14] rounded-xl border border-white/10 shadow-2xl overflow-hidden">
+  <div className="w-full max-w-md mx-auto bg-white rounded-2xl border border-gray-200 shadow-card overflow-hidden">
     {/* Browser chrome */}
-    <div className="flex items-center gap-2 px-4 py-3 bg-[#1a1a2e] border-b border-white/5">
+    <div className="flex items-center gap-2 px-4 py-3 bg-surface-alt border-b border-gray-100">
       <div className="flex gap-1.5">
-        <div className="w-3 h-3 bg-red-500/70 rounded-full" />
-        <div className="w-3 h-3 bg-yellow-500/70 rounded-full" />
-        <div className="w-3 h-3 bg-green-500/70 rounded-full" />
+        <div className="w-3 h-3 bg-red-400 rounded-full" />
+        <div className="w-3 h-3 bg-yellow-400 rounded-full" />
+        <div className="w-3 h-3 bg-green-400 rounded-full" />
       </div>
-      <div className="flex-1 mx-3 bg-white/5 rounded-md px-3 py-1">
-        <span className="text-gray-500 text-[10px] font-mono">{url}</span>
+      <div className="flex-1 mx-3 bg-white rounded-md px-3 py-1 border border-gray-200">
+        <span className="text-gray-400 text-[10px] font-mono">{url}</span>
       </div>
     </div>
     <div className="p-4">{children}</div>
@@ -227,44 +226,44 @@ const BudgetAppMockup = () => (
   <BrowserMockup url="budgetappedward.netlify.app">
     <div className="space-y-3">
       {/* Balance card */}
-      <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/10 border border-green-400/20 rounded-xl p-4">
-        <p className="text-gray-400 text-[10px] font-mono mb-1">Total Balance</p>
-        <p className="text-white text-2xl font-bold font-mono">$4,281.50</p>
+      <div className="bg-gradient-to-r from-accent-100 to-accent-50 border border-accent-200 rounded-xl p-4">
+        <p className="text-text-secondary text-[10px] font-mono mb-1">Total Balance</p>
+        <p className="text-text-primary text-2xl font-bold font-mono">$4,281.50</p>
         <div className="flex gap-4 mt-2">
           <div>
-            <p className="text-[9px] text-gray-500">Income</p>
-            <p className="text-green-400 text-xs font-semibold font-mono">+$6,200.00</p>
+            <p className="text-[9px] text-text-secondary">Income</p>
+            <p className="text-emerald-500 text-xs font-semibold font-mono">+$6,200.00</p>
           </div>
           <div>
-            <p className="text-[9px] text-gray-500">Expenses</p>
+            <p className="text-[9px] text-text-secondary">Expenses</p>
             <p className="text-red-400 text-xs font-semibold font-mono">-$1,918.50</p>
           </div>
         </div>
       </div>
       {/* Mini chart bars */}
-      <div className="bg-white/5 rounded-xl p-3">
-        <p className="text-[9px] text-gray-500 font-mono mb-2">Monthly Spending</p>
+      <div className="bg-surface-alt rounded-xl p-3">
+        <p className="text-[9px] text-text-secondary font-mono mb-2">Monthly Spending</p>
         <div className="flex items-end gap-1 h-10">
           {[40, 65, 45, 80, 55, 70, 50, 90, 60, 75, 85, 45].map((h, i) => (
-            <div key={i} className="flex-1 rounded-sm" style={{ height: `${h}%`, background: i === 11 ? '#4ade80' : 'rgba(255,255,255,0.1)' }} />
+            <div key={i} className="flex-1 rounded-sm" style={{ height: `${h}%`, background: i === 11 ? '#6BA4D4' : '#E2E8F0' }} />
           ))}
         </div>
         <div className="flex justify-between mt-1">
-          <span className="text-[8px] text-gray-600 font-mono">Jan</span>
-          <span className="text-[8px] text-green-400 font-mono">Dec</span>
+          <span className="text-[8px] text-gray-400 font-mono">Jan</span>
+          <span className="text-[8px] text-accent font-mono">Dec</span>
         </div>
       </div>
       {/* Recent transactions */}
       <div className="space-y-1.5">
         {[
           { icon: '🛒', name: 'Groceries', amount: '-$84.20', color: 'text-red-400' },
-          { icon: '💼', name: 'Salary', amount: '+$3,100', color: 'text-green-400' },
+          { icon: '💼', name: 'Salary', amount: '+$3,100', color: 'text-emerald-500' },
           { icon: '☕', name: 'Coffee', amount: '-$6.50', color: 'text-red-400' },
         ].map((tx) => (
-          <div key={tx.name} className="flex items-center justify-between bg-white/5 rounded-lg px-3 py-2">
+          <div key={tx.name} className="flex items-center justify-between bg-surface-alt rounded-lg px-3 py-2">
             <div className="flex items-center gap-2">
               <span className="text-sm">{tx.icon}</span>
-              <span className="text-gray-300 text-[10px]">{tx.name}</span>
+              <span className="text-text-secondary text-[10px]">{tx.name}</span>
             </div>
             <span className={`text-[10px] font-mono font-semibold ${tx.color}`}>{tx.amount}</span>
           </div>
@@ -279,17 +278,17 @@ const WeatherAppMockup = () => (
   <BrowserMockup url="weatherappedward.netlify.app">
     <div className="space-y-3">
       {/* Main weather card */}
-      <div className="bg-gradient-to-br from-blue-500/20 to-indigo-500/10 border border-blue-400/20 rounded-xl p-4 text-center">
-        <p className="text-gray-400 text-[10px] font-mono mb-1">San Francisco, CA</p>
+      <div className="bg-gradient-to-br from-accent-100 to-accent-50 border border-accent-200 rounded-xl p-4 text-center">
+        <p className="text-text-secondary text-[10px] font-mono mb-1">San Francisco, CA</p>
         <div className="flex items-center justify-center gap-3">
           <span className="text-4xl">⛅</span>
-          <span className="text-white text-4xl font-bold font-mono">72°</span>
+          <span className="text-text-primary text-4xl font-bold font-mono">72°</span>
         </div>
-        <p className="text-blue-300 text-xs mt-1">Partly Cloudy</p>
+        <p className="text-accent-600 text-xs mt-1">Partly Cloudy</p>
         <div className="flex justify-center gap-4 mt-3">
-          <span className="text-[9px] text-gray-500">H: 76° · L: 58°</span>
-          <span className="text-[9px] text-gray-500">💧 62%</span>
-          <span className="text-[9px] text-gray-500">💨 12 mph</span>
+          <span className="text-[9px] text-text-secondary">H: 76° · L: 58°</span>
+          <span className="text-[9px] text-text-secondary">💧 62%</span>
+          <span className="text-[9px] text-text-secondary">💨 12 mph</span>
         </div>
       </div>
       {/* 5-day forecast */}
@@ -301,11 +300,11 @@ const WeatherAppMockup = () => (
           { day: 'Thu', icon: '⛅', hi: '70', lo: '55' },
           { day: 'Fri', icon: '☀️', hi: '80', lo: '62' },
         ].map((d) => (
-          <div key={d.day} className="bg-white/5 rounded-lg p-2 text-center">
-            <p className="text-[8px] text-gray-500 font-mono">{d.day}</p>
+          <div key={d.day} className="bg-surface-alt rounded-lg p-2 text-center">
+            <p className="text-[8px] text-text-secondary font-mono">{d.day}</p>
             <span className="text-base">{d.icon}</span>
-            <p className="text-[8px] text-white font-mono">{d.hi}°</p>
-            <p className="text-[8px] text-gray-500 font-mono">{d.lo}°</p>
+            <p className="text-[8px] text-text-primary font-mono">{d.hi}°</p>
+            <p className="text-[8px] text-gray-400 font-mono">{d.lo}°</p>
           </div>
         ))}
       </div>
@@ -325,26 +324,26 @@ const EcommerceMockup = () => (
           { name: 'Laptop Stand', price: '$45.00', badge: null, emoji: '💻' },
           { name: 'Mechanical Keyboard', price: '$129.99', badge: 'Popular', emoji: '⌨️' },
         ].map((p) => (
-          <div key={p.name} className="bg-white/5 border border-white/5 rounded-lg p-3 relative">
+          <div key={p.name} className="bg-surface-alt border border-gray-100 rounded-lg p-3 relative">
             {p.badge && (
-              <span className="absolute top-2 right-2 bg-green-400/20 text-green-400 text-[8px] font-mono px-1.5 py-0.5 rounded">{p.badge}</span>
+              <span className="absolute top-2 right-2 bg-accent-soft text-accent-600 text-[8px] font-mono px-1.5 py-0.5 rounded">{p.badge}</span>
             )}
             <div className="text-2xl mb-1">{p.emoji}</div>
-            <p className="text-gray-300 text-[9px] font-medium leading-tight">{p.name}</p>
-            <p className="text-green-400 text-[10px] font-mono font-bold mt-1">{p.price}</p>
-            <div className="mt-2 bg-green-400/15 border border-green-400/20 rounded px-2 py-0.5 text-center">
-              <span className="text-green-400 text-[8px] font-semibold">Add to Cart</span>
+            <p className="text-text-primary text-[9px] font-medium leading-tight">{p.name}</p>
+            <p className="text-accent text-[10px] font-mono font-bold mt-1">{p.price}</p>
+            <div className="mt-2 bg-accent-soft border border-accent-200 rounded px-2 py-0.5 text-center">
+              <span className="text-accent-600 text-[8px] font-semibold">Add to Cart</span>
             </div>
           </div>
         ))}
       </div>
       {/* Cart indicator */}
-      <div className="flex items-center justify-between bg-white/5 rounded-lg px-3 py-2">
+      <div className="flex items-center justify-between bg-surface-alt rounded-lg px-3 py-2">
         <div className="flex items-center gap-2">
-          <FiShoppingBag size={12} className="text-green-400" />
-          <span className="text-gray-400 text-[10px]">2 items in cart</span>
+          <FiShoppingBag size={12} className="text-accent" />
+          <span className="text-text-secondary text-[10px]">2 items in cart</span>
         </div>
-        <span className="text-green-400 text-[10px] font-mono font-bold">$235.98</span>
+        <span className="text-accent text-[10px] font-mono font-bold">$235.98</span>
       </div>
     </div>
   </BrowserMockup>
@@ -361,16 +360,16 @@ const Projects = () => {
   const other = FALLBACK_PROJECTS.filter((p) => !p.featured);
 
   return (
-    <section id="projects" className="py-24 bg-[#0f0f1a]">
+    <section id="projects" className="py-24 bg-white">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         {/* Section header */}
         <AnimatedSection>
           <div className="flex items-center mb-16">
-            <h2 className="text-2xl font-bold text-white whitespace-nowrap">
-              <span className="text-green-400 font-mono text-lg mr-2">02.</span>
+            <h2 className="text-2xl font-bold text-text-primary whitespace-nowrap">
+              <span className="text-accent font-mono text-lg mr-2">02.</span>
               Things I've Built
             </h2>
-            <div className="ml-6 h-px bg-gray-700 flex-grow max-w-xs" />
+            <div className="ml-6 h-px bg-gray-200 flex-grow max-w-xs" />
           </div>
         </AnimatedSection>
 
@@ -380,27 +379,27 @@ const Projects = () => {
             <AnimatedSection key={project.id} delay={0.1}>
               <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 items-center ${idx % 2 === 1 ? 'lg:[&>*:first-child]:order-2' : ''}`}>
                 {/* Mockup / image side */}
-                <div className="bg-gradient-to-br from-green-500/10 to-emerald-500/5 border border-white/5 rounded-2xl overflow-hidden flex items-center justify-center min-h-[400px]">
+                <div className="bg-gradient-to-br from-accent-50 to-accent-100/50 border border-gray-200 rounded-2xl overflow-hidden flex items-center justify-center min-h-[400px] shadow-soft">
                   {project.title === 'Core+' ? (
                     <CorePlusMockup />
                   ) : PROJECT_MOCKUPS[project.title] ? (
                     React.createElement(PROJECT_MOCKUPS[project.title])
                   ) : (
-                    <span className="text-6xl font-bold text-white/5 select-none">{project.title}</span>
+                    <span className="text-6xl font-bold text-gray-100 select-none">{project.title}</span>
                   )}
                 </div>
 
                 {/* Text side */}
                 <div>
-                  <p className="text-green-400 font-mono text-sm mb-2">{project.subtitle || 'Featured Project'}</p>
-                  <h3 className="text-3xl font-bold text-white mb-5">{project.title}</h3>
-                  <div className="bg-[#1a1a2e] border border-white/5 rounded-xl p-6 mb-5 shadow-xl">
-                    <p className="text-gray-400 text-sm leading-relaxed">{project.description}</p>
+                  <p className="text-accent font-mono text-sm mb-2">{project.subtitle || 'Featured Project'}</p>
+                  <h3 className="text-3xl font-bold text-text-primary mb-5">{project.title}</h3>
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-5 shadow-card">
+                    <p className="text-text-secondary text-sm leading-relaxed">{project.description}</p>
                     {project.highlights && project.highlights.length > 0 && (
                       <ul className="mt-4 space-y-2">
                         {project.highlights.map((h, i) => (
-                          <li key={i} className="flex items-start text-sm text-gray-300">
-                            <span className="text-green-400 mr-2 mt-0.5 text-xs">▹</span>
+                          <li key={i} className="flex items-start text-sm text-text-secondary">
+                            <span className="text-accent mr-2 mt-0.5 text-xs">▹</span>
                             {h}
                           </li>
                         ))}
@@ -409,17 +408,17 @@ const Projects = () => {
                   </div>
                   <div className="flex flex-wrap gap-2 mb-5">
                     {project.technologies.map((tech) => (
-                      <span key={tech} className="text-xs font-mono text-gray-400 bg-white/5 px-2 py-1 rounded">{tech}</span>
+                      <span key={tech} className="text-xs font-mono text-text-secondary bg-surface-alt px-2 py-1 rounded">{tech}</span>
                     ))}
                   </div>
                   <div className="flex space-x-4">
                     {project.github && project.github !== '#' && (
-                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400 transition-colors">
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent transition-colors">
                         <FiGithub size={20} />
                       </a>
                     )}
                     {project.live && project.live !== '#' && (
-                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400 transition-colors">
+                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent transition-colors">
                         <FiExternalLink size={20} />
                       </a>
                     )}
@@ -434,7 +433,7 @@ const Projects = () => {
         {other.length > 0 && (
           <>
             <AnimatedSection>
-              <h3 className="text-xl font-semibold text-white text-center mb-10">
+              <h3 className="text-xl font-semibold text-text-primary text-center mb-10">
                 Other Noteworthy Projects
               </h3>
             </AnimatedSection>
@@ -443,10 +442,10 @@ const Projects = () => {
                 const MockupComponent = PROJECT_MOCKUPS[project.title];
                 return (
                 <AnimatedSection key={project.id} delay={0.05}>
-                  <div className="bg-[#1a1a2e] border border-white/5 rounded-xl overflow-hidden h-full flex flex-col hover:border-green-400/20 hover:-translate-y-1 transition-all duration-300 group">
+                  <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden h-full flex flex-col hover:border-accent-300 hover:-translate-y-1 transition-all duration-300 group shadow-soft hover:shadow-card">
                     {/* Visual preview */}
                     {MockupComponent && (
-                      <div className="bg-[#0a0a14] border-b border-white/5 px-4 pt-4 pb-2 overflow-hidden max-h-52 pointer-events-none select-none opacity-90 group-hover:opacity-100 transition-opacity">
+                      <div className="bg-surface-alt border-b border-gray-100 px-4 pt-4 pb-2 overflow-hidden max-h-52 pointer-events-none select-none opacity-90 group-hover:opacity-100 transition-opacity">
                         <div className="transform scale-[0.72] origin-top">
                           <MockupComponent />
                         </div>
@@ -455,27 +454,27 @@ const Projects = () => {
                     <div className="p-6 flex flex-col flex-grow">
                       {/* Top row */}
                       <div className="flex justify-between items-center mb-4">
-                        <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1}>
+                        <svg className="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                         </svg>
                         <div className="flex space-x-3">
                           {project.github && project.github !== '#' && (
-                            <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-green-400 transition-colors">
+                            <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-accent transition-colors">
                               <FiGithub size={18} />
                             </a>
                           )}
                           {project.live && project.live !== '#' && (
-                            <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-green-400 transition-colors">
+                            <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-accent transition-colors">
                               <FiExternalLink size={18} />
                             </a>
                           )}
                         </div>
                       </div>
-                      <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-green-400 transition-colors">{project.title}</h4>
-                      <p className="text-gray-400 text-sm leading-relaxed flex-grow mb-5">{project.description}</p>
+                      <h4 className="text-lg font-semibold text-text-primary mb-2 group-hover:text-accent transition-colors">{project.title}</h4>
+                      <p className="text-text-secondary text-sm leading-relaxed flex-grow mb-5">{project.description}</p>
                       <div className="flex flex-wrap gap-x-3 gap-y-1">
                         {project.technologies.slice(0, 4).map((tech) => (
-                          <span key={tech} className="text-xs font-mono text-gray-500">{tech}</span>
+                          <span key={tech} className="text-xs font-mono text-gray-400">{tech}</span>
                         ))}
                       </div>
                     </div>
@@ -494,7 +493,7 @@ const Projects = () => {
               href="https://github.com/Edward-0528/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center border border-green-400 text-green-400 hover:bg-green-400/10 font-medium py-3 px-8 rounded transition-colors duration-200 text-sm"
+              className="inline-flex items-center border border-accent text-accent hover:bg-accent-50 font-medium py-3 px-8 rounded-full transition-colors duration-200 text-sm"
             >
               <FiGithub className="mr-2" size={16} />
               See more on GitHub

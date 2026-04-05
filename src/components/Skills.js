@@ -60,9 +60,9 @@ const skillCategories = [
 ];
 
 const LEVELS = {
-  3: { label: 'Expert', color: 'bg-green-400', textColor: 'text-green-400', bars: 3 },
-  2: { label: 'Proficient', color: 'bg-blue-400', textColor: 'text-blue-400', bars: 2 },
-  1: { label: 'Familiar', color: 'bg-gray-500', textColor: 'text-gray-400', bars: 1 },
+  3: { label: 'Expert', color: 'bg-accent', textColor: 'text-accent-600', bars: 3 },
+  2: { label: 'Proficient', color: 'bg-accent-300', textColor: 'text-accent-400', bars: 2 },
+  1: { label: 'Familiar', color: 'bg-gray-300', textColor: 'text-gray-400', bars: 1 },
 };
 
 const ProficiencyBars = ({ level }) => (
@@ -71,7 +71,7 @@ const ProficiencyBars = ({ level }) => (
       <div
         key={bar}
         className={`h-1.5 w-4 rounded-full transition-all duration-300 ${
-          bar <= level ? LEVELS[level].color : 'bg-white/10'
+          bar <= level ? LEVELS[level].color : 'bg-gray-200'
         }`}
       />
     ))}
@@ -82,11 +82,11 @@ const SkillPill = ({ skill }) => {
   const levelInfo = LEVELS[skill.level];
   const content = (
     <div
-      className={`group flex items-center justify-between gap-3 text-sm bg-white/5 hover:bg-white/8 border border-white/5 px-3 py-2 rounded-lg transition-all duration-200 ${
-        skill.project ? 'cursor-pointer hover:border-green-400/25' : ''
+      className={`group flex items-center justify-between gap-3 text-sm bg-white hover:bg-accent-50/50 border border-gray-200 px-3 py-2 rounded-lg transition-all duration-200 shadow-soft ${
+        skill.project ? 'cursor-pointer hover:border-accent-300' : ''
       }`}
     >
-      <span className="text-gray-300 group-hover:text-white transition-colors font-medium text-sm">
+      <span className="text-text-primary group-hover:text-accent-600 transition-colors font-medium text-sm">
         {skill.name}
       </span>
       <div className="flex items-center gap-2 flex-shrink-0">
@@ -115,16 +115,16 @@ const Skills = () => {
       : skillCategories.filter((c) => c.title === activeFilter);
 
   return (
-    <section id="skills" className="py-24 bg-[#0a0a14]">
+    <section id="skills" className="py-24 bg-surface-alt">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         {/* Section header */}
         <AnimatedSection>
           <div className="flex items-center mb-6">
-            <h2 className="text-2xl font-bold text-white whitespace-nowrap">
-              <span className="text-green-400 font-mono text-lg mr-2">03.</span>
+            <h2 className="text-2xl font-bold text-text-primary whitespace-nowrap">
+              <span className="text-accent font-mono text-lg mr-2">03.</span>
               Skills & Technologies
             </h2>
-            <div className="ml-6 h-px bg-gray-700 flex-grow max-w-xs" />
+            <div className="ml-6 h-px bg-gray-200 flex-grow max-w-xs" />
           </div>
         </AnimatedSection>
 
@@ -148,8 +148,8 @@ const Skills = () => {
                   onClick={() => setActiveFilter(f)}
                   className={`text-xs font-mono px-3 py-1 rounded-full border transition-all duration-200 ${
                     activeFilter === f
-                      ? 'border-green-400 text-green-400 bg-green-400/10'
-                      : 'border-white/10 text-gray-500 hover:border-white/20 hover:text-gray-400'
+                      ? 'border-accent text-white bg-accent'
+                      : 'border-gray-200 text-text-secondary hover:border-accent-300 hover:text-accent bg-white'
                   }`}
                 >
                   {f}
@@ -163,10 +163,10 @@ const Skills = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {visibleCategories.map((cat, idx) => (
             <AnimatedSection key={cat.title} delay={idx * 0.05}>
-              <div className="bg-[#1a1a2e] border border-white/5 rounded-xl p-6 h-full hover:border-green-400/15 transition-colors duration-300">
+              <div className="bg-white border border-gray-200 rounded-2xl p-6 h-full hover:border-accent-300 hover:shadow-card transition-all duration-300 shadow-soft">
                 <div className="flex items-center gap-3 mb-5">
-                  <span className="text-green-400 text-lg font-mono leading-none">{cat.icon}</span>
-                  <h3 className="text-sm font-mono text-green-400 uppercase tracking-wider">{cat.title}</h3>
+                  <span className="text-accent text-lg font-mono leading-none">{cat.icon}</span>
+                  <h3 className="text-sm font-mono text-accent uppercase tracking-wider">{cat.title}</h3>
                 </div>
                 <div className="flex flex-col gap-2">
                   {cat.skills.map((skill) => (
@@ -180,7 +180,7 @@ const Skills = () => {
 
         {/* Footnote */}
         <AnimatedSection delay={0.2}>
-          <p className="text-center text-gray-600 text-xs font-mono mt-8">
+          <p className="text-center text-gray-400 text-xs font-mono mt-8">
             Skills marked with a project link are demonstrated in my work above ↑
           </p>
         </AnimatedSection>

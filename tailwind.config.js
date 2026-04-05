@@ -7,32 +7,44 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
-        'mono': ['JetBrains Mono', 'Fira Code', 'monospace'],
+        'sans': ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        'mono': ['SF Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
       colors: {
         accent: {
-          50: '#f0fdf4',
-          100: '#dcfce7',
-          200: '#bbf7d0',
-          300: '#86efac',
-          400: '#4ade80',
-          500: '#22c55e',
-          600: '#16a34a',
+          DEFAULT: '#6BA4D4',
+          50: '#F0F7FC',
+          100: '#E1EFF9',
+          200: '#C3DFF3',
+          300: '#A5CFED',
+          400: '#87BFE7',
+          500: '#6BA4D4',
+          600: '#4A89BF',
+          soft: '#E8F2FA',
         },
         neutral: {
-          850: '#1a1a2e',
-          950: '#0f0f1a',
+          850: '#F0F4F8',
+          950: '#F8FAFB',
         },
-        // Design tokens — use these instead of raw hex values
-        surface: '#0f0f1a',        // page background
-        'surface-alt': '#0a0a14', // alternate section background
-        card: '#1a1a2e',           // card / panel background
-        border: 'rgba(255,255,255,0.05)', // default border
+        // Design tokens — Apple 2026 light theme
+        surface: '#F8FAFB',           // page background
+        'surface-alt': '#F0F4F8',     // alternate section background
+        card: '#FFFFFF',               // card / panel background
+        border: '#E2E8F0',            // default border
+        'text-primary': '#1A1A2E',    // headings
+        'text-secondary': '#5B6B7D',  // body text
+      },
+      boxShadow: {
+        'soft': '0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03)',
+        'card': '0 2px 8px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06)',
+        'card-hover': '0 4px 12px rgba(0,0,0,0.06), 0 12px 36px rgba(0,0,0,0.08)',
+        'glow': '0 0 60px rgba(107,164,212,0.10)',
       },
       animation: {
         'fadeInUp': 'fadeInUp 0.6s ease-out',
         'fadeIn': 'fadeIn 0.6s ease-out',
+        'float': 'float 20s ease-in-out infinite',
+        'float-delayed': 'float 25s ease-in-out 5s infinite',
       },
       keyframes: {
         fadeInUp: {
@@ -48,7 +60,12 @@ module.exports = {
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' }
-        }
+        },
+        float: {
+          '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+          '33%': { transform: 'translate(30px, -30px) scale(1.05)' },
+          '66%': { transform: 'translate(-20px, 20px) scale(0.95)' },
+        },
       }
     },
   },

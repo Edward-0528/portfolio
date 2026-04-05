@@ -40,12 +40,12 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-[#0f0f1a]">
+    <section id="contact" className="py-24 bg-surface-alt">
       <div className="max-w-2xl mx-auto px-6 lg:px-8 text-center">
         <AnimatedSection>
-          <p className="text-green-400 font-mono text-sm mb-4">05. What's Next?</p>
-          <h2 className="text-4xl font-bold text-white mb-6">Get In Touch</h2>
-          <p className="text-gray-400 text-lg leading-relaxed mb-8">
+          <p className="text-accent font-mono text-sm mb-4">05. What's Next?</p>
+          <h2 className="text-4xl font-bold text-text-primary mb-6">Get In Touch</h2>
+          <p className="text-text-secondary text-lg leading-relaxed mb-8">
             I'm actively seeking Software Engineering and Full-Stack Developer roles.
             Whether you have a question, an opportunity, or just want to connect — my inbox is always open.
           </p>
@@ -56,7 +56,7 @@ const Contact = () => {
               href="/Edward_Granados_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-green-400 text-[#0f0f1a] hover:bg-green-300 font-semibold py-3 px-8 rounded transition-colors duration-200 text-sm"
+              className="inline-flex items-center gap-2 bg-accent text-white hover:bg-accent-600 font-semibold py-3 px-8 rounded-full transition-colors duration-200 text-sm shadow-soft"
             >
               <FiDownload size={15} />
               Download Resume
@@ -65,7 +65,7 @@ const Contact = () => {
               href="https://linkedin.com/in/edward-granados-459342195/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-white/15 text-gray-300 hover:border-green-400/40 hover:text-white font-medium py-3 px-8 rounded transition-colors duration-200 text-sm"
+              className="inline-flex items-center gap-2 border border-gray-200 text-text-secondary hover:border-accent-300 hover:text-accent font-medium py-3 px-8 rounded-full transition-colors duration-200 text-sm bg-white shadow-soft"
             >
               <FiLinkedin size={15} />
               LinkedIn
@@ -74,7 +74,7 @@ const Contact = () => {
               href="https://github.com/Edward-0528/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-white/15 text-gray-300 hover:border-green-400/40 hover:text-white font-medium py-3 px-8 rounded transition-colors duration-200 text-sm"
+              className="inline-flex items-center gap-2 border border-gray-200 text-text-secondary hover:border-accent-300 hover:text-accent font-medium py-3 px-8 rounded-full transition-colors duration-200 text-sm bg-white shadow-soft"
             >
               <FiGithub size={15} />
               GitHub
@@ -85,27 +85,27 @@ const Contact = () => {
         {/* Divider */}
         <AnimatedSection delay={0.05}>
           <div className="flex items-center gap-4 mb-10">
-            <div className="flex-1 h-px bg-white/5" />
-            <span className="text-gray-600 text-xs font-mono">or send a message</span>
-            <div className="flex-1 h-px bg-white/5" />
+            <div className="flex-1 h-px bg-gray-200" />
+            <span className="text-gray-400 text-xs font-mono">or send a message</span>
+            <div className="flex-1 h-px bg-gray-200" />
           </div>
         </AnimatedSection>
 
         <AnimatedSection delay={0.1}>
           <form onSubmit={handleSubmit} className="space-y-5 text-left">
             {submitStatus === 'success' && (
-              <div className="bg-green-400/10 border border-green-400/30 text-green-400 px-4 py-3 rounded-lg text-sm">
+              <div className="bg-accent-soft border border-accent-200 text-accent-600 px-4 py-3 rounded-lg text-sm">
                 Thanks for reaching out! I'll get back to you soon.
               </div>
             )}
             {submitStatus === 'error' && (
-              <div className="bg-red-400/10 border border-red-400/30 text-red-400 px-4 py-3 rounded-lg text-sm">
+              <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg text-sm">
                 Something went wrong. Please email me directly at alexanders.edward@gmail.com
               </div>
             )}
 
             <div>
-              <label htmlFor="name" className="block text-sm text-gray-400 mb-1.5">Name</label>
+              <label htmlFor="name" className="block text-sm text-text-secondary mb-1.5">Name</label>
               <input
                 type="text"
                 id="name"
@@ -113,13 +113,13 @@ const Contact = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-[#1a1a2e] border border-white/10 text-white rounded-lg focus:ring-2 focus:ring-green-400/30 focus:border-green-400 transition-all duration-200 placeholder-gray-600 text-sm"
+                className="w-full px-4 py-3 bg-white border border-gray-200 text-text-primary rounded-xl focus:ring-2 focus:ring-accent/20 focus:border-accent transition-all duration-200 placeholder-gray-400 text-sm shadow-soft"
                 placeholder="Your name"
               />
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm text-gray-400 mb-1.5">Email</label>
+              <label htmlFor="email" className="block text-sm text-text-secondary mb-1.5">Email</label>
               <input
                 type="email"
                 id="email"
@@ -127,13 +127,13 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-[#1a1a2e] border border-white/10 text-white rounded-lg focus:ring-2 focus:ring-green-400/30 focus:border-green-400 transition-all duration-200 placeholder-gray-600 text-sm"
+                className="w-full px-4 py-3 bg-white border border-gray-200 text-text-primary rounded-xl focus:ring-2 focus:ring-accent/20 focus:border-accent transition-all duration-200 placeholder-gray-400 text-sm shadow-soft"
                 placeholder="your@email.com"
               />
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-sm text-gray-400 mb-1.5">Message</label>
+              <label htmlFor="message" className="block text-sm text-text-secondary mb-1.5">Message</label>
               <textarea
                 id="message"
                 name="message"
@@ -141,7 +141,7 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 rows={5}
-                className="w-full px-4 py-3 bg-[#1a1a2e] border border-white/10 text-white rounded-lg focus:ring-2 focus:ring-green-400/30 focus:border-green-400 transition-all duration-200 placeholder-gray-600 text-sm resize-none"
+                className="w-full px-4 py-3 bg-white border border-gray-200 text-text-primary rounded-xl focus:ring-2 focus:ring-accent/20 focus:border-accent transition-all duration-200 placeholder-gray-400 text-sm resize-none shadow-soft"
                 placeholder="Your message..."
               />
             </div>
@@ -150,7 +150,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex items-center gap-2 justify-center border border-green-400 text-green-400 hover:bg-green-400/10 disabled:opacity-50 font-medium py-3 px-10 rounded transition-colors duration-200 text-sm"
+                className="inline-flex items-center gap-2 justify-center bg-accent text-white hover:bg-accent-600 disabled:opacity-50 font-medium py-3 px-10 rounded-full transition-colors duration-200 text-sm shadow-soft"
               >
                 <FiMail size={14} />
                 {isSubmitting ? 'Sending...' : 'Send Message'}
@@ -161,7 +161,7 @@ const Contact = () => {
 
         {/* Direct email */}
         <AnimatedSection delay={0.2}>
-          <p className="text-gray-600 text-sm font-mono mt-10">
+          <p className="text-gray-400 text-sm font-mono mt-10">
             alexanders.edward@gmail.com
           </p>
         </AnimatedSection>

@@ -51,7 +51,7 @@ const Header = ({ isAdmin = false, onAdminLogin = null, onLogout = null }) => {
     <header
       className={`fixed w-full top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#0f0f1a]/90 backdrop-blur-md border-b border-white/5 shadow-lg shadow-black/10'
+          ? 'bg-white/80 backdrop-blur-xl border-b border-gray-200/60 shadow-sm'
           : 'bg-transparent'
       }`}
     >
@@ -66,7 +66,7 @@ const Header = ({ isAdmin = false, onAdminLogin = null, onLogout = null }) => {
             onMouseLeave={handleLogoMouseLeave}
             onTouchStart={handleLogoMouseDown}
             onTouchEnd={handleLogoMouseUp}
-            className="text-white font-semibold text-lg tracking-tight select-none cursor-pointer hover:text-green-400 transition-colors duration-200"
+            className="text-text-primary font-semibold text-lg tracking-tight select-none cursor-pointer hover:text-accent transition-colors duration-200"
           >
             {isAdmin ? '⚙ Admin' : 'EG.'}
           </a>
@@ -79,17 +79,17 @@ const Header = ({ isAdmin = false, onAdminLogin = null, onLogout = null }) => {
                   <a
                     key={item.name}
                     href={item.href}
-                    className="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium transition-colors duration-200"
+                    className="text-text-secondary hover:text-text-primary px-3 py-2 text-sm font-medium transition-colors duration-200"
                   >
                     {item.name}
                   </a>
                 ))}
-                <div className="w-px h-5 bg-gray-700 mx-2" />
+                <div className="w-px h-5 bg-gray-200 mx-2" />
                 <a
                   href="https://github.com/Edward-0528/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white p-2 transition-colors duration-200"
+                  className="text-text-secondary hover:text-text-primary p-2 transition-colors duration-200"
                   aria-label="GitHub"
                 >
                   <FiGithub size={18} />
@@ -98,7 +98,7 @@ const Header = ({ isAdmin = false, onAdminLogin = null, onLogout = null }) => {
                   href="https://linkedin.com/in/edward-granados-459342195/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white p-2 transition-colors duration-200"
+                  className="text-text-secondary hover:text-text-primary p-2 transition-colors duration-200"
                   aria-label="LinkedIn"
                 >
                   <FiLinkedin size={18} />
@@ -107,13 +107,13 @@ const Header = ({ isAdmin = false, onAdminLogin = null, onLogout = null }) => {
                   href="/Edward_Granados_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="ml-2 text-sm font-medium text-[#0f0f1a] bg-green-400 hover:bg-green-300 px-4 py-1.5 rounded-full transition-colors duration-200"
+                  className="ml-2 text-sm font-medium text-white bg-accent hover:bg-accent-600 px-5 py-2 rounded-full transition-colors duration-200 shadow-soft"
                 >
                   Resume
                 </a>
               </>
             ) : (
-              <span className="text-green-400 text-sm font-medium">Admin Mode</span>
+              <span className="text-accent text-sm font-medium">Admin Mode</span>
             )}
           </div>
 
@@ -121,7 +121,7 @@ const Header = ({ isAdmin = false, onAdminLogin = null, onLogout = null }) => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-400 hover:text-white p-2 transition-colors duration-200"
+              className="text-text-secondary hover:text-text-primary p-2 transition-colors duration-200"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
@@ -137,30 +137,30 @@ const Header = ({ isAdmin = false, onAdminLogin = null, onLogout = null }) => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && !isAdmin && (
-          <div className="md:hidden pb-4 border-t border-white/5 mt-2">
+          <div className="md:hidden pb-4 border-t border-gray-200 mt-2 bg-white/90 backdrop-blur-xl rounded-b-2xl">
             <div className="pt-4 space-y-1">
               {navItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className="block text-gray-400 hover:text-white px-3 py-2 text-sm font-medium transition-colors duration-200"
+                  className="block text-text-secondary hover:text-text-primary px-3 py-2 text-sm font-medium transition-colors duration-200"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
                 </a>
               ))}
               <div className="flex items-center space-x-4 px-3 pt-4">
-                <a href="https://github.com/Edward-0528/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                <a href="https://github.com/Edward-0528/" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-text-primary transition-colors">
                   <FiGithub size={18} />
                 </a>
-                <a href="https://linkedin.com/in/edward-granados-459342195/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                <a href="https://linkedin.com/in/edward-granados-459342195/" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-text-primary transition-colors">
                   <FiLinkedin size={18} />
                 </a>
                 <a
                   href="/Edward_Granados_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm font-medium text-[#0f0f1a] bg-green-400 hover:bg-green-300 px-4 py-1.5 rounded-full transition-colors duration-200"
+                  className="text-sm font-medium text-white bg-accent hover:bg-accent-600 px-5 py-2 rounded-full transition-colors duration-200"
                 >
                   Resume
                 </a>

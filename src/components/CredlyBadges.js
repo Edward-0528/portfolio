@@ -84,14 +84,14 @@ const CredlyBadges = () => {
     <div>
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-sm font-mono text-green-400 uppercase tracking-wider">
+        <h3 className="text-sm font-mono text-accent uppercase tracking-wider">
           Credly Badges
         </h3>
         <a
           href={`https://www.credly.com/users/${CREDLY_USERNAME}/badges`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center text-xs text-gray-500 hover:text-green-400 transition-colors duration-200"
+          className="flex items-center text-xs text-text-secondary hover:text-accent transition-colors duration-200"
         >
           View all ({badges.length})
           <FiExternalLink className="ml-1" size={11} />
@@ -108,8 +108,8 @@ const CredlyBadges = () => {
             whileTap={{ scale: 0.98 }}
             className={`flex items-center space-x-3 rounded-xl p-3 text-left cursor-pointer transition-all duration-200 ${
               selected?.id === badge.id
-                ? 'bg-green-400/10 border border-green-400/30'
-                : 'bg-[#0f0f1a] border border-white/5 hover:border-green-400/20'
+                ? 'bg-accent-50 border border-accent-200'
+                : 'bg-white border border-gray-200 hover:border-accent-200'
             }`}
           >
             <img
@@ -118,7 +118,7 @@ const CredlyBadges = () => {
               className="w-10 h-10 object-contain flex-shrink-0"
               loading="lazy"
             />
-            <span className="text-gray-300 text-xs leading-snug line-clamp-2">
+            <span className="text-text-secondary text-xs leading-snug line-clamp-2">
               {badge.name}
             </span>
           </motion.button>
@@ -133,7 +133,7 @@ const CredlyBadges = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 8 }}
             transition={{ duration: 0.2 }}
-            className="mt-4 bg-[#0f0f1a] border border-green-400/20 rounded-xl p-4"
+            className="mt-4 bg-white border border-accent-200 rounded-xl p-4 shadow-soft"
           >
             <div className="flex items-start space-x-4">
               <img
@@ -142,12 +142,12 @@ const CredlyBadges = () => {
                 className="w-16 h-16 object-contain flex-shrink-0"
               />
               <div className="flex-1 min-w-0">
-                <h4 className="text-white font-semibold text-sm leading-tight mb-1">
+                <h4 className="text-text-primary font-semibold text-sm leading-tight mb-1">
                   {selected.name}
                 </h4>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-gray-500 text-xs">{selected.issuer}</span>
-                  <span className="text-gray-500 text-xs font-mono">
+                  <span className="text-text-secondary text-xs">{selected.issuer}</span>
+                  <span className="text-text-secondary text-xs font-mono">
                     {formatDate(selected.issuedAt)}
                   </span>
                 </div>
@@ -156,7 +156,7 @@ const CredlyBadges = () => {
                     {selected.skills.map((s) => (
                       <span
                         key={s}
-                        className="text-xs text-gray-400 bg-white/5 px-2 py-0.5 rounded"
+                        className="text-xs text-text-secondary bg-surface-alt px-2 py-0.5 rounded"
                       >
                         {s}
                       </span>
@@ -167,7 +167,7 @@ const CredlyBadges = () => {
                   href={selected.badgeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center text-xs text-green-400 hover:text-green-300 transition-colors"
+                  className="inline-flex items-center text-xs text-accent hover:text-accent-600 transition-colors"
                 >
                   Verify on Credly
                   <FiExternalLink className="ml-1" size={11} />
