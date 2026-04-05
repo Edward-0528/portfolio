@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import AnimatedSection from './AnimatedSection';
 
 // Proficiency levels: 3 = Expert, 2 = Proficient, 1 = Familiar
@@ -60,9 +60,35 @@ const skillCategories = [
 ];
 
 const LEVELS = {
-  3: { label: 'Expert', color: 'bg-accent', textColor: 'text-accent-600', bars: 3 },
-  2: { label: 'Proficient', color: 'bg-accent-300', textColor: 'text-accent-400', bars: 2 },
-  1: { label: 'Familiar', color: 'bg-gray-300', textColor: 'text-gray-400', bars: 1 },
+  3: { label: 'Expert', color: 'bg-accent', barWidth: 'w-full', textColor: 'text-accent-600', bars: 3 },
+  2: { label: 'Proficient', color: 'bg-accent-300', barWidth: 'w-2/3', textColor: 'text-accent-400', bars: 2 },
+  1: { label: 'Familiar', color: 'bg-gray-300', barWidth: 'w-1/3', textColor: 'text-gray-400', bars: 1 },
+};
+
+const AnimatedBar = ({ level }) => {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.3 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const levelInfo = LEVELS[level];
+  const widths = { 3: '100%', 2: '66%', 1: '33%' };
+
+  return (
+    <div ref={ref} className="h-1.5 bg-gray-100 rounded-full overflow-hidden flex-shrink-0 w-16">
+      <div
+        className={`h-full rounded-full ${levelInfo.color} transition-all duration-700 ease-out`}
+        style={{ width: visible ? widths[level] : '0%' }}
+      />
+    </div>
+  );
 };
 
 const ProficiencyBars = ({ level }) => (
@@ -93,7 +119,7 @@ const SkillPill = ({ skill }) => {
         <span className={`text-[10px] font-mono ${levelInfo.textColor} hidden sm:block`}>
           {levelInfo.label}
         </span>
-        <ProficiencyBars level={skill.level} />
+        <AnimatedBar level={skill.level} />
       </div>
     </div>
   );
@@ -163,7 +189,7 @@ const Skills = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {visibleCategories.map((cat, idx) => (
             <AnimatedSection key={cat.title} delay={idx * 0.05}>
-              <div className="bg-white border border-gray-200 rounded-2xl p-6 h-full hover:border-accent-300 hover:shadow-card transition-all duration-300 shadow-soft">
+              <div className="bg-white border border-gray-200 rounded-2xl p-6 h-full hover:border-accent-300 transition-all duration-300 shadow-soft hover:shadow-card tilt-card">
                 <div className="flex items-center gap-3 mb-5">
                   <span className="text-accent text-lg font-mono leading-none">{cat.icon}</span>
                   <h3 className="text-sm font-mono text-accent uppercase tracking-wider">{cat.title}</h3>

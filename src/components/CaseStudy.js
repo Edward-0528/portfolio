@@ -95,15 +95,18 @@ const CaseStudy = () => {
   const size = useCountUp(69);
 
   return (
-    <section id="case-study" className="py-24 bg-surface-alt">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+    <section id="case-study" className="relative py-24 bg-surface-alt overflow-hidden">
+      {/* Section-specific warm orb for visual variety */}
+      <div className="absolute top-1/3 right-0 w-[450px] h-[450px] bg-warm-100/20 rounded-full blur-[120px] translate-x-1/3" />
+      <div className="absolute bottom-0 left-0 w-[350px] h-[350px] bg-accent-100/20 rounded-full blur-[100px] -translate-x-1/4 translate-y-1/4" />
+      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
 
         {/* ── Hero Banner ── */}
         <AnimatedSection>
           <div className="text-center mb-16">
-            <span className="text-accent font-mono text-sm tracking-wide">Case Study</span>
+            <span className="text-warm font-mono text-sm tracking-wide">Case Study</span>
             <h2 className="text-4xl sm:text-5xl font-bold text-text-primary mt-3 mb-4">
-              How I Built Core+
+              How I Built <span className="gradient-text">Core+</span>
             </h2>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto leading-relaxed">
               A behind-the-scenes look at the engineering decisions, architecture, iteration process,
@@ -223,10 +226,10 @@ const CaseStudy = () => {
             <h3 className="text-xl font-bold text-text-primary mb-6 text-center">App Store Presence</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Rating card */}
-              <div className="bg-accent-50 border border-accent-200 rounded-xl p-5 text-center">
+              <div className="bg-warm-50 border border-warm-200 rounded-xl p-5 text-center">
                 <div className="flex items-center justify-center gap-1 mb-2">
                   {[1, 2, 3, 4, 5].map((star) => (
-                    <FiStar key={star} size={18} className="text-amber-400 fill-amber-400" />
+                    <FiStar key={star} size={18} className="text-warm fill-warm" />
                   ))}
                 </div>
                 <p className="text-2xl font-bold text-text-primary font-mono">5.0</p>

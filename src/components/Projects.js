@@ -189,14 +189,14 @@ const CorePlusMockup = () => (
     </div>
 
     {/* Floating badge — App Store */}
-    <div className="absolute -right-2 top-12 bg-white border border-gray-200 rounded-xl px-3 py-2 shadow-card">
-      <p className="text-[9px] text-text-secondary font-mono">Available on</p>
+    <div className="absolute -right-2 top-12 bg-white border border-warm-200 rounded-xl px-3 py-2 shadow-card animate-pulse-glow">
+      <p className="text-[9px] text-warm-500 font-mono">Available on</p>
       <p className="text-text-primary text-[10px] font-semibold">App Store &amp;</p>
       <p className="text-text-primary text-[10px] font-semibold">Google Play</p>
     </div>
 
     {/* Floating badge — AI */}
-    <div className="absolute -left-2 bottom-16 bg-white border border-accent-200 rounded-xl px-3 py-2 shadow-card">
+    <div className="absolute -left-2 bottom-16 bg-white border border-accent-200 rounded-xl px-3 py-2 shadow-card animate-pulse-glow">
       <p className="text-accent-600 text-[9px] font-mono font-semibold">Gemini AI</p>
       <p className="text-text-secondary text-[9px]">Food recognition</p>
     </div>
@@ -379,7 +379,7 @@ const Projects = () => {
             <AnimatedSection key={project.id} delay={0.1}>
               <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 items-center ${idx % 2 === 1 ? 'lg:[&>*:first-child]:order-2' : ''}`}>
                 {/* Mockup / image side */}
-                <div className="bg-gradient-to-br from-accent-50 to-accent-100/50 border border-gray-200 rounded-2xl overflow-hidden flex items-center justify-center min-h-[400px] shadow-soft">
+                <div className="bg-gradient-to-br from-accent-50 to-accent-100/50 border border-gray-200 rounded-2xl overflow-hidden flex items-center justify-center min-h-[400px] shadow-soft group-hover:shadow-glow-blue transition-all duration-500">
                   {project.title === 'Core+' ? (
                     <CorePlusMockup />
                   ) : PROJECT_MOCKUPS[project.title] ? (
@@ -393,7 +393,7 @@ const Projects = () => {
                 <div>
                   <p className="text-accent font-mono text-sm mb-2">{project.subtitle || 'Featured Project'}</p>
                   <h3 className="text-3xl font-bold text-text-primary mb-5">{project.title}</h3>
-                  <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-5 shadow-card">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-5 shadow-card hover:shadow-card-hover transition-shadow duration-300">
                     <p className="text-text-secondary text-sm leading-relaxed">{project.description}</p>
                     {project.highlights && project.highlights.length > 0 && (
                       <ul className="mt-4 space-y-2">
@@ -442,7 +442,7 @@ const Projects = () => {
                 const MockupComponent = PROJECT_MOCKUPS[project.title];
                 return (
                 <AnimatedSection key={project.id} delay={0.05}>
-                  <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden h-full flex flex-col hover:border-accent-300 hover:-translate-y-1 transition-all duration-300 group shadow-soft hover:shadow-card">
+                  <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden h-full flex flex-col hover:border-accent-300 transition-all duration-300 group shadow-soft hover:shadow-card tilt-card">
                     {/* Visual preview */}
                     {MockupComponent && (
                       <div className="bg-surface-alt border-b border-gray-100 px-4 pt-4 pb-2 overflow-hidden max-h-52 pointer-events-none select-none opacity-90 group-hover:opacity-100 transition-opacity">

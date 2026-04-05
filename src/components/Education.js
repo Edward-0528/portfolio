@@ -28,8 +28,10 @@ const Education = () => {
   ];
 
   return (
-    <section id="experience" className="py-24 bg-white">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+    <section id="experience" className="relative py-24 bg-white overflow-hidden">
+      {/* Section-specific accent orb */}
+      <div className="absolute bottom-0 left-0 w-[350px] h-[350px] bg-accent-100/25 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4" />
+      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
         {/* Section header */}
         <AnimatedSection>
           <div className="flex items-center mb-16">

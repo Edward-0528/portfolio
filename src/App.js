@@ -163,6 +163,7 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <div className="grain-overlay" />
         <Routes>
           <Route path="/coreplus" element={<CorePlusSupport />} />
           <Route path="/dashboard" element={<CorePlusDashboard />} />

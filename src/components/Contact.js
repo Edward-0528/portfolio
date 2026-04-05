@@ -40,10 +40,12 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-surface-alt">
-      <div className="max-w-2xl mx-auto px-6 lg:px-8 text-center">
+    <section id="contact" className="relative py-24 bg-surface-alt overflow-hidden">
+      {/* Section-specific warm accent orb */}
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-warm-100/30 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3" />
+      <div className="relative z-10 max-w-2xl mx-auto px-6 lg:px-8 text-center">
         <AnimatedSection>
-          <p className="text-accent font-mono text-sm mb-4">05. What's Next?</p>
+          <p className="text-warm font-mono text-sm mb-4">05. What's Next?</p>
           <h2 className="text-4xl font-bold text-text-primary mb-6">Get In Touch</h2>
           <p className="text-text-secondary text-lg leading-relaxed mb-8">
             I'm actively seeking Software Engineering and Full-Stack Developer roles.
@@ -56,7 +58,7 @@ const Contact = () => {
               href="/Edward_Granados_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-accent text-white hover:bg-accent-600 font-semibold py-3 px-8 rounded-full transition-colors duration-200 text-sm shadow-soft"
+              className="inline-flex items-center gap-2 bg-accent text-white hover:bg-accent-600 font-semibold py-3 px-8 rounded-full transition-all duration-300 text-sm shadow-soft hover:shadow-glow-blue"
             >
               <FiDownload size={15} />
               Download Resume

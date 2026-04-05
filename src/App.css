@@ -77,25 +77,24 @@ textarea:focus {
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
-  filter: blur(100px);
-  opacity: 0.35;
+  filter: blur(90px);
 }
 
 .App::before {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(107, 164, 212, 0.18) 0%, transparent 70%);
-  top: -10%;
-  right: -8%;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(107, 164, 212, 0.22) 0%, rgba(107, 164, 212, 0.05) 50%, transparent 70%);
+  top: -15%;
+  right: -10%;
   animation: float 20s ease-in-out infinite;
 }
 
 .App::after {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(107, 164, 212, 0.12) 0%, transparent 70%);
-  bottom: 10%;
-  left: -5%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(232, 149, 106, 0.14) 0%, rgba(232, 149, 106, 0.03) 50%, transparent 70%);
+  bottom: 5%;
+  left: -8%;
   animation: float 25s ease-in-out 5s infinite;
 }
 
@@ -109,6 +108,51 @@ textarea:focus {
 .App > * {
   position: relative;
   z-index: 1;
+}
+
+/* ── Noise grain overlay for premium depth ── */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ── Tilt card hover effect ── */
+.tilt-card {
+  transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.35s ease;
+  will-change: transform;
+}
+
+.tilt-card:hover {
+  transform: perspective(800px) rotateY(-2deg) rotateX(1deg) translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 8px 16px rgba(0, 0, 0, 0.04);
+}
+
+/* ── Animated skill bar fill ── */
+.skill-bar-fill {
+  transform-origin: left;
+  animation: barFill 1s ease-out forwards;
+  transform: scaleX(0);
+}
+
+@keyframes barFill {
+  to { transform: scaleX(1); }
+}
+
+/* ── Gradient text utility ── */
+.gradient-text {
+  background: linear-gradient(135deg, #6BA4D4 0%, #4A89BF 50%, #E8956A 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* ── Utility: line clamp ── */
