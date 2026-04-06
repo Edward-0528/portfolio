@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { FiGithub, FiLinkedin, FiArrowDown, FiDownload, FiStar, FiCamera, FiActivity, FiShield } from 'react-icons/fi';
+
+const Scene3D = lazy(() => import('./Scene3D'));
 
 const ROLES = [
   'Full-Stack Engineer',
@@ -107,10 +109,19 @@ const MiniPhoneMockup = () => (
 const Hero = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center bg-surface overflow-hidden">
-      {/* Ambient gradient orbs — stronger, with warm accent */}
-      <div className="absolute top-1/4 -left-32 w-[600px] h-[600px] bg-accent-200/40 rounded-full blur-[120px] animate-float" />
-      <div className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] bg-warm-100/30 rounded-full blur-[100px] animate-float-delayed" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent-50/60 rounded-full blur-[160px]" />
+      {/* ── 3D Scene — full-bleed behind hero ── */}
+      <Suspense fallback={null}>
+        <Scene3D
+          className="absolute inset-0 z-0"
+          style={{ width: '100%', height: '100%' }}
+        />
+      </Suspense>
+
+      {/* Soft gradient fallback (visible while 3D loads) */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-1/4 -left-32 w-[600px] h-[600px] bg-accent-200/20 rounded-full blur-[140px] animate-float" />
+        <div className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] bg-warm-100/15 rounded-full blur-[120px] animate-float-delayed" />
+      </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 py-32">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -221,7 +232,7 @@ const Hero = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
-                className="row-span-3 flex items-center justify-center bg-gradient-to-br from-accent-50 to-accent-100/60 border border-accent-200/60 rounded-2xl p-4 shadow-soft hover:shadow-card transition-all duration-300"
+                className="row-span-3 flex items-center justify-center bg-white/60 backdrop-blur-xl border border-white/40 rounded-2xl p-4 shadow-card hover:shadow-card-hover transition-all duration-300"
               >
                 <MiniPhoneMockup />
               </motion.div>
@@ -231,7 +242,7 @@ const Hero = () => {
                 initial={{ opacity: 0, y: -15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.6 }}
-                className="col-span-2 bg-white border border-gray-200 rounded-2xl p-5 shadow-soft hover:shadow-card tilt-card"
+                className="col-span-2 bg-white/70 backdrop-blur-xl border border-white/40 rounded-2xl p-5 shadow-card hover:shadow-card-hover tilt-card"
               >
                 <div className="flex items-center justify-between">
                   <div>
@@ -257,7 +268,7 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.7 }}
-                className="bg-white border border-gray-200 rounded-2xl p-5 shadow-soft hover:shadow-card tilt-card"
+                className="bg-white/70 backdrop-blur-xl border border-white/40 rounded-2xl p-5 shadow-card hover:shadow-card-hover tilt-card"
               >
                 <p className="text-text-secondary text-xs font-mono mb-1">Shipped</p>
                 <p className="text-3xl font-bold text-accent font-mono">80+</p>
@@ -269,7 +280,7 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.8 }}
-                className="bg-gradient-to-br from-warm-50 to-warm-100/50 border border-warm-200/60 rounded-2xl p-5 shadow-soft hover:shadow-card tilt-card"
+                className="bg-white/60 backdrop-blur-xl border border-warm-200/40 rounded-2xl p-5 shadow-card hover:shadow-card-hover tilt-card"
               >
                 <p className="text-text-secondary text-xs font-mono mb-2">Stack</p>
                 <div className="flex flex-wrap gap-1.5">
@@ -284,7 +295,7 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.9 }}
-                className="col-span-2 bg-white border border-gray-200 rounded-2xl p-4 shadow-soft hover:shadow-card tilt-card"
+                className="col-span-2 bg-white/70 backdrop-blur-xl border border-white/40 rounded-2xl p-4 shadow-card hover:shadow-card-hover tilt-card"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
