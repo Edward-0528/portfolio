@@ -1,6 +1,6 @@
 import React from 'react';
 import AnimatedSection from './AnimatedSection';
-import { FiGithub, FiExternalLink, FiCamera, FiActivity, FiShield, FiShoppingBag } from 'react-icons/fi';
+import { FiGithub, FiExternalLink, FiCamera, FiActivity, FiShield, FiShoppingBag, FiUsers, FiPlay, FiCheck, FiAward } from 'react-icons/fi';
 
 const FALLBACK_PROJECTS = [
   {
@@ -23,19 +23,20 @@ const FALLBACK_PROJECTS = [
   },
   {
     id: 2,
-    title: 'BudgetApp',
-    subtitle: 'Personal Finance Web Application',
-    category: 'React',
+    title: 'Ladle',
+    subtitle: 'Real-Time Interactive Quiz Platform',
+    category: 'Full-Stack Web',
     description:
-      'A responsive personal finance web application built with React and Tailwind CSS. Features dynamic UI components, state management, and interactive MUI data visualization for tracking income and expenses.',
-    technologies: ['React', 'Tailwind CSS', 'MUI', 'Chart.js'],
+      'A full-stack, real-time multiplayer quiz platform — like Kahoot! — built for teachers, managers, and team leads. Players join via game code or QR link and answer simultaneously with live scoring and leaderboards. Features a step-by-step quiz builder, Firebase Auth (email + Google), persistent Firestore storage, and Socket.IO-powered real-time gameplay with Zod-validated events.',
+    technologies: ['React 19', 'TypeScript', 'Vite', 'Socket.IO', 'Express 5', 'Firebase', 'Firestore', 'Zod'],
     image: null,
-    github: 'https://github.com/Edward-0528/budget-app',
-    live: 'https://budgetappedward.netlify.app',
+    github: 'https://github.com/Edward-0528/Laddle',
+    live: 'https://ladle.netlify.app',
     featured: true,
     highlights: [
-      'Interactive charts for visualizing transactions',
-      'Mobile-first responsive design',
+      'Real-time multiplayer via Socket.IO with server-side Zod validation',
+      'Firebase Auth + Firestore for persistent quiz storage',
+      'Code-split lazy routes for fast initial loads',
     ],
   },
   {
@@ -221,53 +222,79 @@ const BrowserMockup = ({ children, url }) => (
   </div>
 );
 
-// BudgetApp mockup
-const BudgetAppMockup = () => (
-  <BrowserMockup url="budgetappedward.netlify.app">
+// Ladle quiz platform mockup
+const LadleMockup = () => (
+  <BrowserMockup url="ladle.netlify.app">
     <div className="space-y-3">
-      {/* Balance card */}
-      <div className="bg-gradient-to-r from-accent-100 to-accent-50 border border-accent-200 rounded-xl p-4">
-        <p className="text-text-secondary text-[10px] font-mono mb-1">Total Balance</p>
-        <p className="text-text-primary text-2xl font-bold font-mono">$4,281.50</p>
-        <div className="flex gap-4 mt-2">
-          <div>
-            <p className="text-[9px] text-text-secondary">Income</p>
-            <p className="text-emerald-500 text-xs font-semibold font-mono">+$6,200.00</p>
-          </div>
-          <div>
-            <p className="text-[9px] text-text-secondary">Expenses</p>
-            <p className="text-red-400 text-xs font-semibold font-mono">-$1,918.50</p>
-          </div>
+      {/* Game header */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <span className="text-accent font-bold text-sm tracking-wide">L</span>
+          <span className="text-text-primary font-bold text-xs">Ladle</span>
+        </div>
+        <div className="flex items-center gap-1.5 bg-emerald-50 border border-emerald-200 rounded-full px-2.5 py-0.5">
+          <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
+          <span className="text-emerald-600 text-[8px] font-mono font-semibold">LIVE</span>
         </div>
       </div>
-      {/* Mini chart bars */}
-      <div className="bg-surface-alt rounded-xl p-3">
-        <p className="text-[9px] text-text-secondary font-mono mb-2">Monthly Spending</p>
-        <div className="flex items-end gap-1 h-10">
-          {[40, 65, 45, 80, 55, 70, 50, 90, 60, 75, 85, 45].map((h, i) => (
-            <div key={i} className="flex-1 rounded-sm" style={{ height: `${h}%`, background: i === 11 ? '#6BA4D4' : '#E2E8F0' }} />
-          ))}
+
+      {/* Question card */}
+      <div className="bg-gradient-to-br from-accent-100 to-accent-50 border border-accent-200 rounded-xl p-4">
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-[9px] text-accent-600 font-mono">Question 3 of 10</span>
+          <span className="text-[9px] text-warm-500 font-mono font-bold">0:12</span>
         </div>
-        <div className="flex justify-between mt-1">
-          <span className="text-[8px] text-gray-400 font-mono">Jan</span>
-          <span className="text-[8px] text-accent font-mono">Dec</span>
-        </div>
+        <p className="text-text-primary text-xs font-semibold leading-snug">
+          Which protocol enables real-time bidirectional communication between client and server?
+        </p>
       </div>
-      {/* Recent transactions */}
-      <div className="space-y-1.5">
+
+      {/* Answer options grid */}
+      <div className="grid grid-cols-2 gap-1.5">
         {[
-          { icon: '🛒', name: 'Groceries', amount: '-$84.20', color: 'text-red-400' },
-          { icon: '💼', name: 'Salary', amount: '+$3,100', color: 'text-emerald-500' },
-          { icon: '☕', name: 'Coffee', amount: '-$6.50', color: 'text-red-400' },
-        ].map((tx) => (
-          <div key={tx.name} className="flex items-center justify-between bg-surface-alt rounded-lg px-3 py-2">
-            <div className="flex items-center gap-2">
-              <span className="text-sm">{tx.icon}</span>
-              <span className="text-text-secondary text-[10px]">{tx.name}</span>
-            </div>
-            <span className={`text-[10px] font-mono font-semibold ${tx.color}`}>{tx.amount}</span>
+          { label: 'HTTP', color: 'bg-red-50 border-red-200', text: 'text-red-600' },
+          { label: 'WebSocket', color: 'bg-emerald-50 border-emerald-200', text: 'text-emerald-600', correct: true },
+          { label: 'FTP', color: 'bg-blue-50 border-blue-200', text: 'text-blue-600' },
+          { label: 'SMTP', color: 'bg-yellow-50 border-yellow-200', text: 'text-yellow-600' },
+        ].map((opt) => (
+          <div key={opt.label} className={`${opt.color} border rounded-lg p-2 text-center relative ${opt.correct ? 'ring-2 ring-emerald-400' : ''}`}>
+            <span className={`text-[10px] font-semibold ${opt.text}`}>{opt.label}</span>
+            {opt.correct && <FiCheck size={8} className="absolute top-1 right-1 text-emerald-500" />}
           </div>
         ))}
+      </div>
+
+      {/* Live leaderboard */}
+      <div className="bg-surface-alt rounded-xl p-3">
+        <div className="flex items-center gap-1.5 mb-2">
+          <FiAward size={9} className="text-warm-500" />
+          <p className="text-[9px] text-text-secondary font-mono uppercase tracking-wider">Leaderboard</p>
+        </div>
+        {[
+          { name: 'Player 1', score: 2400, rank: '🥇' },
+          { name: 'Player 2', score: 2100, rank: '🥈' },
+          { name: 'Player 3', score: 1800, rank: '🥉' },
+        ].map((p) => (
+          <div key={p.name} className="flex items-center justify-between py-1 border-b border-gray-100 last:border-0">
+            <div className="flex items-center gap-1.5">
+              <span className="text-[10px]">{p.rank}</span>
+              <span className="text-text-secondary text-[9px]">{p.name}</span>
+            </div>
+            <span className="text-accent text-[9px] font-mono font-bold">{p.score.toLocaleString()}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Players connected */}
+      <div className="flex items-center justify-between px-1">
+        <div className="flex items-center gap-1">
+          <FiUsers size={9} className="text-accent" />
+          <span className="text-[9px] text-text-secondary font-mono">12 players</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <FiPlay size={9} className="text-accent" />
+          <span className="text-[9px] text-text-secondary font-mono">Game #4F82</span>
+        </div>
       </div>
     </div>
   </BrowserMockup>
@@ -350,7 +377,7 @@ const EcommerceMockup = () => (
 );
 
 const PROJECT_MOCKUPS = {
-  'BudgetApp': BudgetAppMockup,
+  'Ladle': LadleMockup,
   'Weather App': WeatherAppMockup,
   'E-Commerce Platform': EcommerceMockup,
 };
