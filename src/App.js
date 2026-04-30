@@ -14,6 +14,7 @@ import AuthDebugger from './components/AuthDebugger';
 import CorePlusSupport from './components/CorePlusSupport';
 import CorePlusDashboard from './components/CorePlusDashboard';
 import CaseStudy from './components/CaseStudy';
+import WordTracePolicy from './components/WordTracePolicy';
 import { supabaseAuthAdmin } from './lib/supabaseAuth';
 import { authService } from './lib/supabase';
 import './lib/portfolioAnalytics'; // Initialize analytics tracking
@@ -152,6 +153,7 @@ function App() {
         <div className="App">
           <Routes>
             <Route path="/coreplus" element={<CorePlusSupport />} />
+            <Route path="/wordtrace/policy" element={<WordTracePolicy />} />
             <Route path="/*" element={<AdminPanel onLogout={handleLogout} currentAdmin={currentAdmin} />} />
           </Routes>
         </div>
@@ -166,6 +168,7 @@ function App() {
         <div className="grain-overlay" />
         <Routes>
           <Route path="/coreplus" element={<CorePlusSupport />} />
+          <Route path="/wordtrace/policy" element={<WordTracePolicy />} />
           <Route path="/dashboard" element={<CorePlusDashboard />} />
           <Route path="/" element={<Portfolio />} />
         </Routes>
