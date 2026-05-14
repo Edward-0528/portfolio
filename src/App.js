@@ -15,6 +15,10 @@ import CorePlusSupport from './components/CorePlusSupport';
 import CorePlusDashboard from './components/CorePlusDashboard';
 import CaseStudy from './components/CaseStudy';
 import WordTracePolicy from './components/WordTracePolicy';
+import WordTraceDeleteAccount from './components/WordTraceDeleteAccount';
+import CrossMyWordsPolicy from './components/CrossMyWordsPolicy';
+import CrossMyWordsSupport from './components/CrossMyWordsSupport';
+import CrossMyWordsCopyright from './components/CrossMyWordsCopyright';
 import { supabaseAuthAdmin } from './lib/supabaseAuth';
 import { authService } from './lib/supabase';
 import './lib/portfolioAnalytics'; // Initialize analytics tracking
@@ -154,6 +158,10 @@ function App() {
           <Routes>
             <Route path="/coreplus" element={<CorePlusSupport />} />
             <Route path="/wordtrace/policy" element={<WordTracePolicy />} />
+            <Route path="/wordtrace/deleteme" element={<WordTraceDeleteAccount />} />
+            <Route path="/crossmywords/policy" element={<CrossMyWordsPolicy />} />
+            <Route path="/crossmywords/support" element={<CrossMyWordsSupport />} />
+            <Route path="/crossmywords/copyright" element={<CrossMyWordsCopyright />} />
             <Route path="/*" element={<AdminPanel onLogout={handleLogout} currentAdmin={currentAdmin} />} />
           </Routes>
         </div>
@@ -169,6 +177,10 @@ function App() {
         <Routes>
           <Route path="/coreplus" element={<CorePlusSupport />} />
           <Route path="/wordtrace/policy" element={<WordTracePolicy />} />
+          <Route path="/wordtrace/deleteme" element={<WordTraceDeleteAccount />} />
+          <Route path="/crossmywords/policy" element={<CrossMyWordsPolicy />} />
+          <Route path="/crossmywords/support" element={<CrossMyWordsSupport />} />
+          <Route path="/crossmywords/copyright" element={<CrossMyWordsCopyright />} />
           <Route path="/dashboard" element={<CorePlusDashboard />} />
           <Route path="/" element={<Portfolio />} />
         </Routes>
