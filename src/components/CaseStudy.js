@@ -33,66 +33,86 @@ const useCountUp = (target, duration = 1600) => {
   return { count, ref };
 };
 
-/* ── Version timeline milestones ── */
+/* ── Version timeline milestones ──
+   Dates are the real shipping dates; the pivot in Sept 2026 is the one that
+   mattered most and is described as what it was. */
 const MILESTONES = [
-  { version: 'v1.0', title: 'MVP Launch', desc: 'Manual food entry, basic calorie tracking, user authentication with Supabase.', date: 'Sept 2025' },
-  { version: 'v1.5', title: 'AI Camera Scan', desc: 'Integrated Google Gemini 2.5 Flash for real-time camera-based food recognition.', date: 'Oct 2025' },
-  { version: 'v1.10', title: 'Health Profiles', desc: 'Specialized profiles for diabetes, heart health, kidney health with tailored nutrition grades.', date: 'Nov 2025' },
-  { version: 'v1.15', title: 'Monetization', desc: 'RevenueCat integration, A/B tested subscription tiers and paywalls for conversion optimization.', date: 'Dec 2025' },
-  { version: 'v1.20', title: 'Health Sync', desc: 'Apple HealthKit & Google Health Connect integration for workout calorie import.', date: 'Jan 2026' },
-  { version: 'v1.30', title: 'Polish & Scale', desc: 'Barcode scanner, water tracking, weekly reports, streaks & achievements, bug fixes.', date: 'Feb 2026' },
+  { version: 'v1.0', title: 'First App Store release', desc: 'Core+ shipped as a calorie and macro tracker — manual entry, Supabase auth, per-user data isolation with Row-Level Security.', date: 'Nov 2025' },
+  { version: 'v1.2', title: 'AI meal scan', desc: 'Camera-based food recognition via Gemini, returning structured macros, micros and allergens as JSON rather than free text.', date: 'Jan 2026' },
+  { version: 'v1.3', title: 'Subscriptions & health sync', desc: 'RevenueCat for cross-platform subscription state; Apple HealthKit and Google Health Connect for workout calorie import.', date: 'Apr 2026' },
+  { version: 'v1.5', title: 'Workout engine', desc: 'Built the plan generator, exercise library and hands-free session player — the first version where training was a first-class feature, not an add-on.', date: 'Aug 2026' },
+  { version: 'v1.6', title: 'The pivot', desc: 'Usage said 67% of users scanned food but only 7% ever started a workout — and the workout users retained. Rebuilt onboarding, store listing and the whole first run around training.', date: 'Sept 2026' },
+  { version: 'v1.64', title: 'Live on both stores', desc: 'Listed as “Core+: Pilates & Home Workout” on iOS and Android, with injury-aware programming, weekly recaps and streaks.', date: 'Sept 2026' },
 ];
 
 /* ── Architecture nodes ── */
 const ARCH_NODES = [
-  { label: 'React Native', sublabel: 'Expo + TypeScript', icon: FiSmartphone, color: 'bg-blue-50 border-blue-200 text-blue-600' },
-  { label: 'Gemini 2.5 Flash', sublabel: 'AI Food Analysis', icon: FiCpu, color: 'bg-purple-50 border-purple-200 text-purple-600' },
-  { label: 'Supabase', sublabel: 'Auth + PostgreSQL', icon: FiDatabase, color: 'bg-emerald-50 border-emerald-200 text-emerald-600' },
+  { label: 'React Native', sublabel: 'Expo · iOS + Android', icon: FiSmartphone, color: 'bg-blue-50 border-blue-200 text-blue-600' },
+  { label: 'Plan engine', sublabel: 'Levels · injuries · progression', icon: FiCpu, color: 'bg-purple-50 border-purple-200 text-purple-600' },
+  { label: 'Supabase', sublabel: 'Postgres · RLS · Edge Functions', icon: FiDatabase, color: 'bg-emerald-50 border-emerald-200 text-emerald-600' },
   { label: 'RevenueCat', sublabel: 'Subscriptions', icon: FiLayers, color: 'bg-amber-50 border-amber-200 text-amber-600' },
-  { label: 'EAS Build', sublabel: 'CI/CD Pipeline', icon: FiTrendingUp, color: 'bg-rose-50 border-rose-200 text-rose-600' },
+  { label: 'EAS', sublabel: 'Build + Submit CI/CD', icon: FiTrendingUp, color: 'bg-rose-50 border-rose-200 text-rose-600' },
 ];
 
 /* ── Accordion step data ── */
 const STEPS = [
   {
     phase: '01',
-    title: 'The Problem',
-    icon: '�',
+    title: 'The problem',
+    icon: '\u{1F3AF}',
     color: 'border-rose-200 bg-rose-50',
     accentColor: 'text-rose-500',
     content:
-      'Existing nutrition apps were either too complex (MyFitnessPal with its overwhelming UI) or too basic with no intelligence. None offered AI-powered meal recognition with real-time camera scanning, specialized health profiles (diabetes, kidney, heart health), and a letter-grade nutrition scoring system — all in a single, polished mobile app. I set out to build the app I wanted but couldn\'t find.',
+      'Home workout apps hand you a fixed programme and hope it fits. They ask one question — beginner, intermediate or advanced — then ignore that most people are strong in one pattern and weak in another, that half of them are working around a knee or a lower back, and that the week they planned for rarely survives contact with real life. I wanted a plan that was actually built from your body and your calendar, and that quietly changed when either one did.',
   },
   {
     phase: '02',
-    title: 'Architecture & Tech Stack',
-    icon: '⚙️',
+    title: 'Architecture & stack',
+    icon: '\u2699\uFE0F',
     color: 'border-accent-200 bg-accent-50',
     accentColor: 'text-accent-600',
     content:
-      'Built a full React Native + Expo app with TypeScript for type safety. The backend uses Supabase + PostgreSQL with Row-Level Security for per-user data isolation. The AI pipeline streams images to Google Gemini 2.5 Flash via REST, which returns structured JSON (macros, micros, allergens, grade). RevenueCat handles subscription state across iOS and Android with a single API. EAS Build automates CI/CD for both platforms.',
+      'React Native on Expo for one codebase across iOS and Android. Supabase provides auth and Postgres, with Row-Level Security enforcing per-user isolation at the database rather than in app code, and Edge Functions handling scheduled push reminders. The plan engine is pure JavaScript with no React Native imports, so the exercise library and progression rules can be unit-tested in plain Node and reused outside the app. RevenueCat normalises subscription state across both stores behind one API, and EAS Build plus EAS Submit take a commit to TestFlight and Play without a local Xcode step.',
     showArch: true,
   },
   {
     phase: '03',
-    title: 'Shipped & Iterated',
-    icon: '🚀',
+    title: 'The pivot',
+    icon: '\u{1F501}',
+    color: 'border-warm-200 bg-warm-50',
+    accentColor: 'text-warm-500',
+    content:
+      'For most of a year Core+ was a nutrition app with workouts bolted on, and the marketing said so. Then the usage data landed: 67% of users had scanned a meal, 7% had ever started a workout — but the few who trained were the ones who came back. The honest read was that I had built the retention feature second and buried it. I rewrote the store listing, the landing page and the entire first-run experience around training, and moved nutrition to a supporting role. Deciding that the thing most people used was not the thing worth selling was the hardest call in the project.',
+  },
+  {
+    phase: '04',
+    title: 'Programming around real bodies',
+    icon: '\u{1FA7A}',
+    color: 'border-purple-200 bg-purple-50',
+    accentColor: 'text-purple-500',
+    content:
+      'A five-minute baseline scores each user 1\u20135 per movement pattern, so squat strength and pressing strength are tracked separately. Intake asks once about knees, lower back, shoulders and wrists; 69 of the 85 exercises in the library carry a contraindication tag, and anything loading a flagged joint is filtered out before a session is assembled rather than being swapped at runtime. Sessions are then fitted to the days, minutes, space and equipment the user actually has. Rating a workout too easy or too hard feeds progression directly, and a missed week deloads about 10% instead of resetting.',
+  },
+  {
+    phase: '05',
+    title: 'Shipping & iterating',
+    icon: '\u{1F680}',
     color: 'border-emerald-200 bg-emerald-50',
     accentColor: 'text-emerald-500',
     content:
-      'Shipped to both the Apple App Store and Google Play Store as a solo developer. Implemented automated EAS Build + EAS Submit CI/CD pipelines, enabling rapid iteration across 80+ versions. A/B tested subscription tiers and paywalls to optimize conversion. Achieved a 5.0 App Store rating from day one.',
+      'Shipped solo to both stores and iterated continuously \u2014 past 380 builds through automated EAS pipelines. Every release decision is checked against first-party analytics written to Postgres: onboarding step completion, workout starts and finishes, paywall views. That instrumentation is what surfaced the pivot, and it is what flagged a dead App Store ID compiled into an old build\u2019s update button \u2014 now guarded by a test that fails if any store link disagrees with the build config.',
   },
 ];
 
 const CaseStudy = () => {
-  const [expanded, setExpanded] = useState(null);
+  const [expanded, setExpanded] = useState(0);
   const toggle = (idx) => setExpanded(expanded === idx ? null : idx);
 
   // Count-up hooks for at-a-glance metrics
-  const versions = useCountUp(80);
+  const builds = useCountUp(382);
   const stores = useCountUp(2);
-  const rating = useCountUp(5);
-  const size = useCountUp(69);
+  const exercises = useCountUp(85);
+  const injuryAware = useCountUp(69);
 
   return (
     <section id="case-study" className="relative py-24 bg-surface-alt overflow-hidden">
@@ -109,8 +129,8 @@ const CaseStudy = () => {
               How I Built <span className="gradient-text">Core+</span>
             </h2>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto leading-relaxed">
-              A behind-the-scenes look at the engineering decisions, architecture, iteration process,
-              and real-world metrics for my flagship product.
+              The engineering decisions, the architecture, and the usage data that made me rebuild
+              the product around a feature only 7% of users had tried.
             </p>
           </div>
         </AnimatedSection>
@@ -119,10 +139,10 @@ const CaseStudy = () => {
         <AnimatedSection delay={0.05}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
             {[
-              { ref: versions.ref, value: versions.count, suffix: '+', label: 'Versions Shipped', sublabel: 'via EAS CI/CD' },
-              { ref: stores.ref, value: stores.count, suffix: '', label: 'App Stores', sublabel: 'iOS & Android' },
-              { ref: rating.ref, value: rating.count, suffix: '.0 ★', label: 'App Store Rating', sublabel: '5.0 out of 5' },
-              { ref: size.ref, value: size.count, suffix: ' MB', label: 'App Size', sublabel: 'Optimized bundle' },
+              { ref: builds.ref, value: builds.count, suffix: '', label: 'Builds shipped', sublabel: 'via EAS CI/CD' },
+              { ref: stores.ref, value: stores.count, suffix: '', label: 'App stores', sublabel: 'iOS & Android' },
+              { ref: exercises.ref, value: exercises.count, suffix: '', label: 'Exercises', sublabel: 'with demos & cues' },
+              { ref: injuryAware.ref, value: injuryAware.count, suffix: '', label: 'Injury-tagged', sublabel: 'filtered per user' },
             ].map((stat, i) => (
               <div key={i} ref={stat.ref} className="bg-white border border-gray-200 rounded-2xl p-5 text-center shadow-soft hover:shadow-card transition-shadow">
                 <p className="text-3xl font-bold text-accent font-mono">{stat.value}{stat.suffix}</p>

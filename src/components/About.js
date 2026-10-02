@@ -33,7 +33,7 @@ const useCountUp = (target, duration = 1800) => {
 };
 
 const About = () => {
-  const versions = useCountUp(80);
+  const versions = useCountUp(382);
   const stores = useCountUp(2);
   const certs = useCountUp(4);
   const leadership = useCountUp(7);
@@ -60,14 +60,16 @@ const About = () => {
             <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-soft hover:shadow-card transition-all duration-300 h-full">
               <h3 className="text-xl font-bold text-text-primary mb-4">I build products, not just projects.</h3>
               <p className="text-text-secondary leading-relaxed text-[15px]">
-                I'm a full-stack software engineer who independently designed, built, and shipped{' '}
-                <span className="text-accent-600 font-medium">Core+</span> — an AI-powered nutrition & fitness app —
-                to both the Apple App Store and Google Play Store. I own the entire stack: from database schema to
-                App Store screenshot design.
+                I'm a full-stack software engineer who independently designed, built and shipped{' '}
+                <span className="text-accent-600 font-medium">Core+</span> — a home and gym workout app — to both the
+                Apple App Store and Google Play. I own the whole stack: the Postgres schema and its row-level security,
+                the plan engine, the React Native app, the release pipeline, and the store screenshots.
               </p>
               <p className="text-text-secondary leading-relaxed text-[15px] mt-4">
-                Before engineering, I spent 7+ years leading retail teams at T-Mobile, where I developed a data-driven
-                mindset around KPIs and conversion metrics — skills I now bring directly to product development.
+                That ownership includes the uncomfortable parts. Nine months in, my own analytics said the feature I
+                was selling was not the feature that kept people — so I rebuilt the product around the one that did.
+                Before engineering I spent 7+ years leading retail teams at T-Mobile, which is where reading a funnel
+                and acting on it stopped being theory.
               </p>
             </div>
           </AnimatedSection>
@@ -79,7 +81,7 @@ const About = () => {
               <div ref={versions.ref}>
                 <p className="text-5xl font-bold text-accent font-mono">{versions.count}+</p>
               </div>
-              <p className="text-text-secondary text-sm mt-2">App versions via EAS CI/CD</p>
+              <p className="text-text-secondary text-sm mt-2">Builds shipped via EAS CI/CD</p>
             </div>
           </AnimatedSection>
 

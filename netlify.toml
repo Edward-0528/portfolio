@@ -16,6 +16,12 @@
   to = "/.netlify/functions/credly-badges"
   status = 200
 
+# Proxy /api/coreplus-live → Netlify Function (App Store rating + testimonials)
+[[redirects]]
+  from = "/api/coreplus-live"
+  to = "/.netlify/functions/coreplus-live"
+  status = 200
+
 # Redirect rules for Single Page Application
 # This ensures all routes are handled by React Router
 [[redirects]]
@@ -31,3 +37,15 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Core+ screenshots are content-stable — cache them hard so the showcase
+# section never re-downloads on repeat visits.
+[[headers]]
+  for = "/coreplus/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

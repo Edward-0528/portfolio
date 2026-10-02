@@ -14,6 +14,10 @@ import AuthDebugger from './components/AuthDebugger';
 import CorePlusSupport from './components/CorePlusSupport';
 import CorePlusDashboard from './components/CorePlusDashboard';
 import CaseStudy from './components/CaseStudy';
+import CorePlusShowcase from './components/CorePlusShowcase';
+import SmoothScroll from './components/SmoothScroll';
+import ScrollProgress from './components/ScrollProgress';
+import PageIntro from './components/PageIntro';
 import WordTracePolicy from './components/WordTracePolicy';
 import WordTraceDeleteAccount from './components/WordTraceDeleteAccount';
 import CrossMyWordsPolicy from './components/CrossMyWordsPolicy';
@@ -138,8 +142,9 @@ function App() {
       />
       <div data-section="hero"><Hero /></div>
       <div data-section="about"><About /></div>
-      <div data-section="projects"><Projects /></div>
+      <div data-section="coreplus"><CorePlusShowcase /></div>
       <div data-section="case-study"><CaseStudy /></div>
+      <div data-section="projects"><Projects /></div>
       <div data-section="skills"><Skills /></div>
       <div data-section="experience"><Education /></div>
       <div data-section="contact"><Contact /></div>
@@ -173,6 +178,9 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <PageIntro />
+        <SmoothScroll />
+        <ScrollProgress />
         <div className="grain-overlay" />
         <Routes>
           <Route path="/coreplus" element={<CorePlusSupport />} />
