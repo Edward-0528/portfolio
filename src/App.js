@@ -19,6 +19,7 @@ import WordTraceDeleteAccount from './components/WordTraceDeleteAccount';
 import CrossMyWordsPolicy from './components/CrossMyWordsPolicy';
 import CrossMyWordsSupport from './components/CrossMyWordsSupport';
 import CrossMyWordsCopyright from './components/CrossMyWordsCopyright';
+import CrossMyWordsDeleteAccount from './components/CrossMyWordsDeleteAccount';
 import { supabaseAuthAdmin } from './lib/supabaseAuth';
 import { authService } from './lib/supabase';
 import './lib/portfolioAnalytics'; // Initialize analytics tracking
@@ -162,6 +163,12 @@ function App() {
             <Route path="/crossmywords/policy" element={<CrossMyWordsPolicy />} />
             <Route path="/crossmywords/support" element={<CrossMyWordsSupport />} />
             <Route path="/crossmywords/copyright" element={<CrossMyWordsCopyright />} />
+            {/* Canonical /cmw paths used by the shipping app; the /crossmywords/*
+                routes above are kept as aliases so older store links keep working. */}
+            <Route path="/cmw/policy" element={<CrossMyWordsPolicy />} />
+            <Route path="/cmw/delete-account" element={<CrossMyWordsDeleteAccount />} />
+            <Route path="/cmw/support" element={<CrossMyWordsSupport />} />
+            <Route path="/cmw/copyright" element={<CrossMyWordsCopyright />} />
             <Route path="/*" element={<AdminPanel onLogout={handleLogout} currentAdmin={currentAdmin} />} />
           </Routes>
         </div>
@@ -181,8 +188,17 @@ function App() {
           <Route path="/crossmywords/policy" element={<CrossMyWordsPolicy />} />
           <Route path="/crossmywords/support" element={<CrossMyWordsSupport />} />
           <Route path="/crossmywords/copyright" element={<CrossMyWordsCopyright />} />
+          {/* Canonical /cmw paths used by the shipping app; the /crossmywords/*
+              routes above are kept as aliases so older store links keep working. */}
+          <Route path="/cmw/policy" element={<CrossMyWordsPolicy />} />
+          <Route path="/cmw/delete-account" element={<CrossMyWordsDeleteAccount />} />
+          <Route path="/cmw/support" element={<CrossMyWordsSupport />} />
+          <Route path="/cmw/copyright" element={<CrossMyWordsCopyright />} />
           <Route path="/dashboard" element={<CorePlusDashboard />} />
           <Route path="/" element={<Portfolio />} />
+          {/* Netlify rewrites every path to index.html, so without a catch-all an
+              unknown URL rendered a blank page instead of falling back here. */}
+          <Route path="*" element={<Portfolio />} />
         </Routes>
       </div>
     </Router>
