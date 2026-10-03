@@ -17,6 +17,7 @@ const Header = ({ isAdmin = false, onAdminLogin = null, onLogout = null }) => {
 
   const navItems = [
     { name: 'About', href: '#about' },
+    { name: 'Core+', href: '#coreplus' },
     { name: 'Projects', href: '#projects' },
     { name: 'Skills', href: '#skills' },
     { name: 'Experience', href: '#experience' },

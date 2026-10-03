@@ -11,6 +11,36 @@ module.exports = {
         'mono': ['SF Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
       colors: {
+        /* ── Clay & sage, dark register ──────────────────────────────
+           Derived from the Core+ app's own approved palette so the
+           portfolio and the product read as one body of work. These are
+           additive: the light `surface` / `card` / `accent` tokens below
+           still back the support and policy pages. */
+        night: {
+          DEFAULT: '#14110E',   // page base — warm near-black, never neutral
+          900: '#0F0D0B',
+          800: '#1A1612',       // raised band
+          700: '#221D17',       // card
+          600: '#2B251E',       // hover / inset
+          line: '#322B23',      // hairline on dark
+        },
+        bone: {
+          DEFAULT: '#F4EFE7',   // primary text on night
+          sub: '#A8A096',       // body copy
+          faint: '#8A827A',     // quiet third tier — ~5:1 on night, clears AA
+        },
+        sage: {
+          DEFAULT: '#7E9C7F',
+          light: '#A3C4A4',     // lifted for legibility on night
+          deep: '#4D6B4F',
+          glow: '#B8D9B9',
+        },
+        apricot: {
+          DEFAULT: '#E8763A',
+          light: '#F09A68',
+          deep: '#9C4A1C',
+        },
+        honey: '#E3A93F',
         accent: {
           DEFAULT: '#6BA4D4',
           50: '#F0F7FC',
@@ -52,7 +82,17 @@ module.exports = {
         'glow-blue': '0 0 60px rgba(107,164,212,0.15)',
         'glow-warm': '0 0 60px rgba(232,149,106,0.12)',
       },
+      fontFamily: {
+        display: ['"Instrument Serif"', 'Georgia', 'serif'],
+      },
+      transitionTimingFunction: {
+        'out-expo': 'cubic-bezier(0.16, 1, 0.3, 1)',
+        'in-out-quint': 'cubic-bezier(0.83, 0, 0.17, 1)',
+      },
       animation: {
+        'marquee': 'marquee 38s linear infinite',
+        'grain-shift': 'grainShift 8s steps(10) infinite',
+        'glow-pulse': 'glowPulse 6s ease-in-out infinite',
         'fadeInUp': 'fadeInUp 0.6s ease-out',
         'fadeIn': 'fadeIn 0.6s ease-out',
         'float': 'float 20s ease-in-out infinite',
@@ -62,6 +102,21 @@ module.exports = {
         'tilt-in': 'tiltIn 0.4s ease-out',
       },
       keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        grainShift: {
+          '0%, 100%': { transform: 'translate(0, 0)' },
+          '20%': { transform: 'translate(-2%, 3%)' },
+          '40%': { transform: 'translate(3%, -2%)' },
+          '60%': { transform: 'translate(-3%, -3%)' },
+          '80%': { transform: 'translate(2%, 2%)' },
+        },
+        glowPulse: {
+          '0%, 100%': { opacity: '0.45' },
+          '50%': { opacity: '0.8' },
+        },
         fadeInUp: {
           '0%': {
             opacity: '0',
