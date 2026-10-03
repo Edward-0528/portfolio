@@ -1,23 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Education from './components/Education';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
 import AdminPanel from './components/AdminPanel';
 import AuthDebugger from './components/AuthDebugger';
 import CorePlusSupport from './components/CorePlusSupport';
 import CorePlusDashboard from './components/CorePlusDashboard';
-import CaseStudy from './components/CaseStudy';
-import CorePlusShowcase from './components/CorePlusShowcase';
-import SmoothScroll from './components/SmoothScroll';
-import ScrollProgress from './components/ScrollProgress';
-import PageIntro from './components/PageIntro';
+import PortfolioV2 from './components/v2/Portfolio';
 import WordTracePolicy from './components/WordTracePolicy';
 import WordTraceDeleteAccount from './components/WordTraceDeleteAccount';
 import CrossMyWordsPolicy from './components/CrossMyWordsPolicy';
@@ -132,25 +120,10 @@ function App() {
     );
   }
 
-  // Portfolio component — section order optimized for recruiter flow
+  // The 2026 redesign. Nav, motion layer and sections all live in components/v2.
   const Portfolio = () => (
     <>
-      <Header 
-        isAdmin={isAdmin} 
-        onAdminLogin={handleAdminLogin}
-        onLogout={handleLogout} 
-      />
-      <div data-section="hero"><Hero /></div>
-      <div data-section="about"><About /></div>
-      <div data-section="coreplus"><CorePlusShowcase /></div>
-      <div data-section="case-study"><CaseStudy /></div>
-      <div data-section="projects"><Projects /></div>
-      <div data-section="skills"><Skills /></div>
-      <div data-section="experience"><Education /></div>
-      <div data-section="contact"><Contact /></div>
-      <Footer />
-      
-      {/* Auth Debugger - only shows when ?debug=auth is in URL */}
+      <PortfolioV2 isAdmin={isAdmin} onAdminLogin={handleAdminLogin} onLogout={handleLogout} />
       <AuthDebugger />
     </>
   );
@@ -178,10 +151,6 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <PageIntro />
-        <SmoothScroll />
-        <ScrollProgress />
-        <div className="grain-overlay" />
         <Routes>
           <Route path="/coreplus" element={<CorePlusSupport />} />
           <Route path="/wordtrace/policy" element={<WordTracePolicy />} />

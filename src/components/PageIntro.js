@@ -59,17 +59,17 @@ const PageIntro = () => {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, y: '-100%' }}
           transition={{ duration: 0.75, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-surface"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-night"
         >
           <motion.span
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="text-lg font-semibold tracking-tight text-text-primary"
+            className="font-display text-2xl tracking-tight text-bone"
           >
             Edward Granados
             <motion.span
-              className="ml-0.5 inline-block text-accent"
+              className="ml-0.5 inline-block text-sage-light"
               animate={{ opacity: [1, 0.25, 1] }}
               transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
             >
