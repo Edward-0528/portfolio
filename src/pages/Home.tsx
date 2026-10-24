@@ -115,7 +115,7 @@ function Work() {
           icon="/img/cp-icon.webp"
           name="Core+"
           kicker="React Native · iOS and Android · Live on both stores"
-          summary="Adaptive workout plans, real exercise demos, streaks and AI meal scanning. I'm the only engineer: design, code, data, releases and marketing."
+          summary="Pilates and home workout plans that adapt every week, with real exercise demos, streaks and photo meal tracking. I'm the only engineer: design, code, data, releases and marketing."
           points={[
             'Found that a "churn" problem was really missing analytics, then fixed the tracking before touching the product',
             'Used real usage data (67% logged a meal, 7% started a workout) to change what new users see first',

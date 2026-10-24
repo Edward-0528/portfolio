@@ -15,7 +15,7 @@ const TIMELINE = [
   },
   { when: 'Aug 2026', what: 'Found the analytics gap and instrumented the core loop. Cut bundled art from 41 MB to 7 MB.' },
   { when: 'Sep 2026', what: 'Data-driven first-run change. Test suite grows from zero. iOS home-screen widget.' },
-  { when: 'Oct 2026', what: 'Version 2.17: iOS build 404, Android build 379, and counting.' },
+  { when: 'Oct 2026', what: 'Still shipping: over 400 iOS and nearly 380 Android builds to date, with a fresh App Store listing.' },
 ]
 
 const PRACTICES = [
@@ -52,11 +52,12 @@ export function CorePlus() {
                 <p className="eyebrow !text-core-mint">Case study · Live on iOS and Android</p>
               </div>
               <h1 className="display mt-6 text-5xl leading-[1.05] sm:text-7xl">
-                Core+: a fitness app I built, shipped, and <em className="text-core-mint">kept fixing</em>
+                Core+: a workout app I built, shipped, and <em className="text-core-mint">kept fixing</em>
               </h1>
               <p className="mt-6 max-w-xl text-lg text-white/75">
-                Personalized workout plans that adapt every week, real exercise demos, streaks, and AI meal scanning. I'm
-                the only engineer, so every decision on this page was mine, including the wrong ones I later corrected.
+                Weekly workout plans built around the days you can train, starting from a five-minute baseline and
+                adapting every week, plus photo-based meal tracking. I'm the only engineer, so every decision on this page
+                was mine, including the wrong ones I later corrected.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a href={CORE_PLUS.appStore} className="btn bg-core-mint text-core-950 hover:bg-white">
@@ -78,12 +79,11 @@ export function CorePlus() {
 
         <div className="rail flex gap-5 overflow-x-auto px-5 pb-14 sm:px-8 lg:justify-center" aria-label="Core+ App Store screenshots">
           {[
-            ['cp-store-1', 'Workouts that fit your day: 15 to 45 minutes, home or gym'],
-            ['cp-store-2', 'Every move shown with real demos and hands-free cues'],
-            ['cp-store-3', 'Streaks that change color as they grow'],
-            ['cp-store-4', 'Harder moves unlock every week'],
-            ['cp-store-5', 'Weigh-ins, levels and a progress timeline'],
-            ['cp-store-6', 'A plan that adapts to Pilates, strength, HIIT or cardio'],
+            ['cp-store-1', 'Workouts that fit your day: 15 to 45 minute plans for home or gym, no equipment needed'],
+            ['cp-store-2', 'Every move shown, with real video demos and hands-free cues'],
+            ['cp-store-3', 'Keep your streak alive: the flame turns blue at 30 days and gold at 100'],
+            ['cp-store-4', 'Level up every week, with harder moves unlocked as you progress'],
+            ['cp-store-5', 'A plan that adapts: rate a session too easy or too hard and the next one adjusts'],
           ].map(([file, alt]) => (
             <Phone key={file} src={`/img/${file}.webp`} alt={alt} framed={false} className="w-[200px] sm:w-[220px]" />
           ))}
