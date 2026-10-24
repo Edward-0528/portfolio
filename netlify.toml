@@ -2,6 +2,9 @@
   command = "npm run build"
   publish = "dist"
 
+[build.environment]
+  NODE_VERSION = "22"
+
 # Single-page app: every route (including the app policy and support pages) is served by index.html.
 [[redirects]]
   from = "/*"
