@@ -1,33 +1,21 @@
-# Netlify configuration for Core Plus Support page and SPA routing
-
 [build]
-  # Build command
   command = "npm run build"
-  
-  # Directory that contains the deploy-ready HTML files and assets
-  publish = "build"
+  publish = "dist"
 
-  # Netlify Functions directory
-  functions = "netlify/functions"
-
-# Proxy /api/credly-badges → Netlify Function (avoids CORS in browser)
-[[redirects]]
-  from = "/api/credly-badges"
-  to = "/.netlify/functions/credly-badges"
-  status = 200
-
-# Redirect rules for Single Page Application
-# This ensures all routes are handled by React Router
+# Single-page app: every route (including the app policy and support pages) is served by index.html.
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-  
-# Optional: Set custom headers for security
+
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

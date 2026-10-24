@@ -1,13 +1,79 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Instrument Serif', ui-serif, Georgia, serif;
+
+  --color-paper: #f6f4ef;
+  --color-ink: #15171c;
+  --color-muted: #5c5f68;
+  --color-line: #e2ded4;
+  --color-accent: #1f6f50;
+
+  /* Core+ brand: deep green with a mint highlight */
+  --color-core-950: #0b1a14;
+  --color-core-900: #10241b;
+  --color-core-mint: #7fe0b0;
+
+  /* Cosmic Cuties brand: night purple with a star gold */
+  --color-cosmic-950: #241640;
+  --color-cosmic-800: #3d2a6b;
+  --color-cosmic-gold: #ffd166;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+  }
+  ::selection {
+    @apply bg-core-mint text-core-950;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent;
+  }
+}
+
+/* Shared building blocks. @utility (not @layer components) so they can @apply each other in Tailwind v4. */
+@utility wrap {
+  @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+}
+@utility eyebrow {
+  @apply text-xs font-semibold tracking-[0.14em] uppercase text-muted;
+}
+@utility display {
+  @apply font-display font-normal tracking-tight;
+}
+@utility btn {
+  @apply inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition;
+}
+@utility btn-primary {
+  @apply btn bg-ink text-paper hover:bg-accent;
+}
+@utility btn-ghost {
+  @apply btn border border-ink/15 hover:border-ink/40 hover:bg-white;
+}
+
+/* The screenshot rail scrolls sideways on small screens instead of shrinking phones to stamps. */
+.rail {
+  scrollbar-width: thin;
+  scroll-snap-type: x mandatory;
+}
+.rail > * {
+  scroll-snap-align: start;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
 }
