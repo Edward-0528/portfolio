@@ -48,7 +48,7 @@ export function CorePlus() {
           <div className="mt-8 grid gap-12 lg:grid-cols-[1.3fr_1fr]">
             <div>
               <div className="flex items-center gap-4">
-                <img src="/img/cp-icon.webp" alt="" className="size-16 rounded-2xl" />
+                <img src="/img/cp-icon-2026.webp" alt="" className="size-16 rounded-2xl" />
                 <p className="eyebrow !text-core-mint">Case study · Live on iOS and Android</p>
               </div>
               <h1 className="display mt-6 text-5xl leading-[1.05] sm:text-7xl">
@@ -79,11 +79,11 @@ export function CorePlus() {
 
         <div className="rail flex gap-5 overflow-x-auto px-5 pb-14 sm:px-8 lg:justify-center" aria-label="Core+ App Store screenshots">
           {[
-            ['cp-store-1', 'Workouts that fit your day: 15 to 45 minute plans for home or gym, no equipment needed'],
-            ['cp-store-2', 'Every move shown, with real video demos and hands-free cues'],
-            ['cp-store-3', 'Keep your streak alive: the flame turns blue at 30 days and gold at 100'],
-            ['cp-store-4', 'Level up every week, with harder moves unlocked as you progress'],
-            ['cp-store-5', 'A plan that adapts: rate a session too easy or too hard and the next one adjusts'],
+            ['cp-listing-1', 'Workouts that fit your day: 15 to 45 minute plans for home or gym, no equipment needed'],
+            ['cp-listing-2', 'Every move shown, with real video demos and hands-free cues'],
+            ['cp-listing-3', 'Keep your streak alive: the flame turns blue at 30 days and gold at 100'],
+            ['cp-listing-4', 'Level up every week, with harder moves unlocked as you progress'],
+            ['cp-listing-5', 'A plan that adapts: rate a session too easy or too hard and the next one adjusts'],
           ].map(([file, alt]) => (
             <Phone key={file} src={`/img/${file}.webp`} alt={alt} framed={false} className="w-[200px] sm:w-[220px]" />
           ))}

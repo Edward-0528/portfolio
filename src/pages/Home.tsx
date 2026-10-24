@@ -112,7 +112,7 @@ function Work() {
         <ProjectCard
           to="/work/core-plus"
           theme="bg-core-950 text-white"
-          icon="/img/cp-icon.webp"
+          icon="/img/cp-icon-2026.webp"
           name="Core+"
           kicker="React Native · iOS and Android · Live on both stores"
           summary="Pilates and home workout plans that adapt every week, with real exercise demos, streaks and photo meal tracking. I'm the only engineer: design, code, data, releases and marketing."
