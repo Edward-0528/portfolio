@@ -11,11 +11,11 @@ const faqs = [
   },
   {
     q: 'I purchased hints but they have not appeared. What should I do?',
-    a: `First make sure you are connected to the internet and try restarting the app. If the hints still have not appeared, tap the Restore Purchases button on the hints screen to recover your purchase.\n\nIf the issue persists please contact us using the details below.`,
+    a: `First make sure you are connected to the internet and try restarting the app. Your hint count is shown at the top of the Store (open Settings, then Store). If the hints still have not appeared, tap Restore Purchases at the bottom of the Store to recover your purchase.\n\nIf the issue persists please contact us using the details below and include the email on your App Store or Google Play receipt.`,
   },
   {
     q: 'How do I restore my purchases on a new device?',
-    a: `Open the hints screen and tap Restore Purchases. You must be signed in to the App Store or Google Play with the same account you used when you originally made the purchase.`,
+    a: `Open Settings, then Store, and tap Restore Purchases. You must be signed in to the App Store or Google Play with the same account you used when you originally made the purchase. Remove Ads is restored this way. Hints, coins and streak freezes are stored on your device and are not restored on a new device.`,
   },
   {
     q: 'The app is crashing or not loading correctly. What can I do?',
@@ -23,11 +23,15 @@ const faqs = [
   },
   {
     q: 'Can I play without creating an account?',
-    a: `Yes. Guest play is fully supported — you can play every level without signing in. Creating an account simply lets you sync your progress across multiple devices and appear on global leaderboards.`,
+    a: `Yes. Guest play is fully supported, and you can play every level without signing in. Creating an account lets you sync your level progress across devices and use the leaderboards.`,
   },
   {
     q: 'How do I delete my account and data?',
-    a: `Send us an email at coreplushelp@gmail.com with the subject line "Delete My Account" and we will remove your account and all associated data within 30 days.`,
+    a: `In the app, open Settings and tap Delete Account. You can also request deletion from the Delete Account page linked below, or by emailing coreplushelp@gmail.com with the subject line "Delete My Account". We will remove your account and all associated data within 30 days.`,
+  },
+  {
+    q: 'What do coins and hints do?',
+    a: `You earn coins for every level you finish and can spend them on hints, which light up one letter of a word. You can also watch an optional ad in the Store for bonus coins. Ads never play while you are in the middle of a level.`,
   },
 ];
 
@@ -115,14 +119,14 @@ const CrossMyWordsSupport = () => {
         <div className="bg-white rounded-2xl shadow-sm border border-gray-200 px-8 py-5">
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
             <a
-              href="/crossmywords/policy"
+              href="/cmw/policy"
               className="text-blue-600 hover:underline font-medium"
             >
               Privacy Policy
             </a>
             <span className="text-slate-300">·</span>
             <a
-              href="mailto:coreplushelp@gmail.com?subject=Delete%20My%20Account"
+              href="/cmw/delete-account"
               className="text-blue-600 hover:underline font-medium"
             >
               Delete My Account
