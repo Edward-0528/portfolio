@@ -92,15 +92,15 @@ const SHELF = [
     href: '#cosmic',
     bg: 'bg-lilac',
     tilt: 'rotate-[1.5deg] sm:mt-6',
-    icon: <img src="/img/cc-icon.webp" alt="" className="brut size-14 rounded-2xl" />,
+    icon: <img src="/img/cc-icon-2026.webp" alt="" className="brut size-14 rounded-2xl" />,
     name: 'Cosmic Cuties',
-    kind: 'Puzzle game · Beta',
+    kind: COSMIC.appStore ? 'Puzzle game · iOS + Android' : 'Puzzle game · Android, iOS soon',
     tags: ['Flutter', 'Dart', '500 levels'],
-    shot: <img src="/img/cc-gameplay.webp" alt="" className="brut absolute -bottom-28 left-1/2 w-[190px] -translate-x-1/2 rounded-[1.6rem]" />,
+    shot: <img src="/img/cc-store-match.webp" alt="" className="brut absolute -bottom-28 left-1/2 w-[190px] -translate-x-1/2 rounded-[1.6rem]" />,
   },
   {
     href: '#crossmywords',
-    bg: 'bg-peach',
+    bg: 'bg-sky',
     tilt: '-rotate-1',
     icon: <img src="/img/cmw-icon.webp" alt="" className="brut size-14 rounded-2xl" />,
     name: 'Cross My Words',
@@ -207,21 +207,18 @@ function CorePlusCard() {
 }
 
 function CosmicCard() {
-  const beta = COSMIC.testflight
-    ? { href: COSMIC.testflight, label: 'Join the TestFlight beta ↗' }
-    : { href: `mailto:${PERSON.email}?subject=Cosmic%20Cuties%20beta`, label: 'Ask for a beta invite ✉' }
   return (
     <section id="cosmic" aria-labelledby="cosmic-title" className="wrap pt-20">
       <div className="brut shadow-hard-lg relative flex flex-wrap-reverse gap-11 rounded-[2rem] bg-lilac p-6 sm:p-11">
-        <Badge className="right-8 rotate-3">APP #2 · BETA</Badge>
+        <Badge className="right-8 rotate-3">{COSMIC.appStore ? 'APP #2 · LIVE' : 'APP #2 · LIVE ON ANDROID'}</Badge>
         <div className="flex min-w-0 flex-[1_1_440px] items-start justify-center gap-4" aria-hidden="true">
-          <img src="/img/cc-map.webp" alt="" className="brut shadow-hard mt-8 w-[31%] -rotate-[4deg] rounded-[1.4rem]" />
-          <img src="/img/cc-gameplay.webp" alt="" className="brut shadow-hard w-[33%] rounded-[1.4rem]" />
-          <img src="/img/cc-shop.webp" alt="" className="brut shadow-hard mt-12 w-[31%] rotate-[4deg] rounded-[1.4rem]" />
+          <img src="/img/cc-store-match.webp" alt="" className="brut shadow-hard mt-8 w-[31%] -rotate-[4deg] rounded-[1.4rem]" />
+          <img src="/img/cc-store-explore.webp" alt="" className="brut shadow-hard w-[33%] rounded-[1.4rem]" />
+          <img src="/img/cc-store-cuties.webp" alt="" className="brut shadow-hard mt-12 w-[31%] rotate-[4deg] rounded-[1.4rem]" />
         </div>
         <div className="min-w-0 flex-[1_1_380px]">
           <div className="flex items-center gap-4">
-            <img src="/img/cc-icon.webp" alt="" className="brut size-[76px] rounded-[1.25rem]" />
+            <img src="/img/cc-icon-2026.webp" alt="" className="brut size-[76px] rounded-[1.25rem]" />
             <div>
               <h2 id="cosmic-title" className="display text-5xl leading-[0.95] sm:text-6xl">
                 Cosmic Cuties
@@ -238,8 +235,15 @@ function CosmicCard() {
             <Feature what="Live events without an app update" tech="Server config" tone="text-lilac" />
             <Feature what="Built from 15 written specs" tech="Claude Code" tone="text-lilac" />
           </ul>
-          <div className="mt-7 flex flex-wrap gap-3.5">
-            <a href={beta.href} className="btn-primary">{beta.label}</a>
+          <div className="mt-7 flex flex-wrap items-center gap-3.5">
+            <a href={COSMIC.googlePlay} className="btn-primary">Google Play ↗</a>
+            {COSMIC.appStore ? (
+              <a href={COSMIC.appStore} className="btn-ghost">App Store ↗</a>
+            ) : (
+              <span className="brut inline-flex rotate-2 items-center rounded-xl bg-white px-4 py-2.5 text-[15px] font-bold">
+                iOS · in App Store review
+              </span>
+            )}
             <Link to="/work/cosmic-cuties" className="btn-ghost">How I built it →</Link>
           </div>
         </div>
@@ -251,7 +255,7 @@ function CosmicCard() {
 function CrossMyWordsCard() {
   return (
     <section id="crossmywords" aria-labelledby="crossmywords-title" className="wrap pt-20">
-      <div className="brut shadow-hard-lg relative flex flex-wrap gap-11 rounded-[2rem] bg-peach p-6 sm:p-11">
+      <div className="brut shadow-hard-lg relative flex flex-wrap gap-11 rounded-[2rem] bg-sky p-6 sm:p-11">
         <Badge className="left-8 -rotate-2">APP #3 · JUST LAUNCHED</Badge>
         <div className="min-w-0 flex-[1_1_380px]">
           <div className="flex items-center gap-4">
@@ -268,11 +272,11 @@ function CrossMyWordsCard() {
             on the App Store now, with Android arriving in {CROSS_MY_WORDS.androidLaunch}.
           </p>
           <ul className="mt-6 flex flex-col gap-3">
-            <Feature what="Trace hidden words in any direction" tech="Flame engine" tone="text-peach" />
-            <Feature what="A definition for all 574 words in the game" tech="Flutter + Riverpod" tone="text-peach" />
-            <Feature what="Daily challenge and streak reminders" tech="Local notifications" tone="text-peach" />
-            <Feature what="Cloud save, Game Center, Sign in with Apple" tech="Firebase" tone="text-peach" />
-            <Feature what="Rebuilt the lost source from the shipped app" tech="Decompiled Dart" tone="text-peach" />
+            <Feature what="Trace hidden words in any direction" tech="Flame engine" tone="text-sky" />
+            <Feature what="A definition for all 574 words in the game" tech="Flutter + Riverpod" tone="text-sky" />
+            <Feature what="Daily challenge and streak reminders" tech="Local notifications" tone="text-sky" />
+            <Feature what="Cloud save, Game Center, Sign in with Apple" tech="Firebase" tone="text-sky" />
+            <Feature what="Rebuilt the lost source from the shipped app" tech="Decompiled Dart" tone="text-sky" />
           </ul>
           <div className="mt-7 flex flex-wrap items-center gap-3.5">
             <a href={CROSS_MY_WORDS.appStore} className="btn-primary">App Store ↗</a>

@@ -28,8 +28,9 @@ export const COSMIC = {
   commits: '79',
   tests: '840+',
   levels: '500',
-  /** Public TestFlight link. Leave empty until there is one; the site then offers an invite by email. */
-  testflight: '',
+  googlePlay: 'https://play.google.com/store/apps/details?id=com.cosmiccuties.cosmic_cuties',
+  /** Leave empty until the App Store listing is live; the site then shows an "in review" note instead of a link. */
+  appStore: '',
 }
 
 export const CROSS_MY_WORDS = {
