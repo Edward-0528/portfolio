@@ -41,8 +41,10 @@ export function CosmicCuties() {
           <div className="mt-8 grid gap-12 lg:grid-cols-[1.3fr_1fr]">
             <div>
               <div className="flex items-center gap-4">
-                <img src="/img/cc-icon.webp" alt="" className="size-16 rounded-2xl" />
-                <p className="eyebrow !text-cosmic-gold">Case study · Beta on TestFlight</p>
+                <img src="/img/cc-icon-2026.webp" alt="" className="size-16 rounded-2xl" />
+                <p className="eyebrow !text-cosmic-gold">
+                  Case study · {COSMIC.appStore ? 'Live on iOS and Android' : 'Live on Google Play, iOS in review'}
+                </p>
               </div>
               <h1 className="display mt-6 text-5xl leading-[1.05] sm:text-7xl">
                 Cosmic Cuties: a full game in <em className="text-cosmic-gold">three weeks</em>
@@ -52,6 +54,16 @@ export function CosmicCuties() {
                 Flutter. I built it to prove a process: write a spec, pair with AI, verify everything, and get
                 every merged change into testers' hands automatically.
               </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href={COSMIC.googlePlay} className="btn bg-cosmic-gold text-cosmic-950 hover:bg-white">
+                  Google Play ↗
+                </a>
+                {COSMIC.appStore && (
+                  <a href={COSMIC.appStore} className="btn border-white/40 text-white hover:bg-white/10">
+                    App Store ↗
+                  </a>
+                )}
+              </div>
             </div>
             <dl className="grid grid-cols-2 gap-x-6 gap-y-8 self-end">
               <Stat dark value="3 weeks" label="first commit to TestFlight beta" />
@@ -69,11 +81,13 @@ export function CosmicCuties() {
           />
         </div>
         <div className="rail flex gap-5 overflow-x-auto px-5 py-14 sm:px-8 lg:justify-center" aria-label="Cosmic Cuties screenshots">
-          <Phone src="/img/cc-title.webp" alt="Title screen with a Play button" className="w-[190px] sm:w-[210px]" />
-          <Phone src="/img/cc-map.webp" alt="Level map winding through space" className="w-[190px] sm:w-[210px]" />
-          <Phone src="/img/cc-level.webp" alt="Pre-level screen with goal, star targets and boosters" className="w-[190px] sm:w-[210px]" />
-          <Phone src="/img/cc-gameplay.webp" alt="Match-3 board of planets, stars and rockets" className="w-[190px] sm:w-[210px]" />
-          <Phone src="/img/cc-shop.webp" alt="Shop with coin packs and the Cosmic Pass" className="w-[190px] sm:w-[210px]" />
+          <Phone src="/img/cc-store-match.webp" alt="Match the stars: the match-3 board of stars, moons and rockets" framed={false} className="w-[190px] sm:w-[210px]" />
+          <Phone src="/img/cc-store-diagonals.webp" alt="Diagonals count: matches can run diagonally" framed={false} className="w-[190px] sm:w-[210px]" />
+          <Phone src="/img/cc-store-combos.webp" alt="Blast combos: special pieces chain together" framed={false} className="w-[190px] sm:w-[210px]" />
+          <Phone src="/img/cc-store-explore.webp" alt="Explore the galaxy: the level map" framed={false} className="w-[190px] sm:w-[210px]" />
+          <Phone src="/img/cc-store-cuties.webp" alt="Meet the cuties: the collectible characters" framed={false} className="w-[190px] sm:w-[210px]" />
+          <Phone src="/img/cc-store-daily.webp" alt="Spin, play, win big: the daily reward wheel" framed={false} className="w-[190px] sm:w-[210px]" />
+          <Phone src="/img/cc-store-cozy.webp" alt="No timer, no stress: relaxed play" framed={false} className="w-[190px] sm:w-[210px]" />
         </div>
       </header>
 
@@ -117,7 +131,7 @@ export function CosmicCuties() {
           problem="Match-3 games usually use a large square board. I needed to know whether my smaller board with diagonal matches felt as satisfying, without guessing."
           approach="I wrote a bot that plays like a person, not a perfect solver, and had it play both shapes many times, measuring how often cascades happened. I made board width, height and diagonals compile-time options so the experiment was one flag."
           result="The 6×9 board with diagonals produced more cascades than a 9×9 board, so it stayed. A design argument settled with data."
-          media={<Phone src="/img/cc-gameplay.webp" alt="The 6 by 9 game board" caption="The 6×9 board that won" />}
+          media={<Phone src="/img/cc-store-match.webp" alt="The game board" framed={false} caption="The 6×9 board that won" />}
           tags={['Simulation', 'Experiment design', 'Dart']}
         />
 
@@ -139,7 +153,7 @@ export function CosmicCuties() {
               if a change makes any level unwinnable or a walkover.
             </>
           }
-          media={<Phone src="/img/cc-map.webp" alt="Level map" caption="Every level on the map has a target win rate" />}
+          media={<Phone src="/img/cc-store-explore.webp" alt="Level map" framed={false} caption="Every level on the map has a target win rate" />}
           tags={['Automated tuning', 'Testing', 'Game design']}
         />
 
