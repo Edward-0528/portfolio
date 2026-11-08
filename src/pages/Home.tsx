@@ -106,7 +106,7 @@ const SHELF = [
     name: 'Cross My Words',
     kind: 'Word game · iOS, Android soon',
     tags: ['Flutter', 'Flame', 'Firebase'],
-    shot: <img src="/img/cmw-trace.webp" alt="" className="brut absolute -bottom-28 left-1/2 w-[190px] -translate-x-1/2 rounded-[1.6rem]" />,
+    shot: <img src="/img/cmw-define.webp" alt="" className="brut absolute -bottom-28 left-1/2 w-[190px] -translate-x-1/2 rounded-[1.6rem]" />,
   },
 ]
 
@@ -269,7 +269,7 @@ function CrossMyWordsCard() {
           </p>
           <ul className="mt-6 flex flex-col gap-3">
             <Feature what="Trace hidden words in any direction" tech="Flame engine" tone="text-peach" />
-            <Feature what="A short definition for every word you find" tech="Flutter + Riverpod" tone="text-peach" />
+            <Feature what="A definition for all 574 words in the game" tech="Flutter + Riverpod" tone="text-peach" />
             <Feature what="Daily challenge and streak reminders" tech="Local notifications" tone="text-peach" />
             <Feature what="Cloud save, Game Center, Sign in with Apple" tech="Firebase" tone="text-peach" />
             <Feature what="Rebuilt the lost source from the shipped app" tech="Decompiled Dart" tone="text-peach" />
@@ -282,9 +282,9 @@ function CrossMyWordsCard() {
           </div>
         </div>
         <div className="flex min-w-0 flex-[1_1_440px] items-start justify-center gap-4 self-center" aria-hidden="true">
-          <img src="/img/cmw-find.webp" alt="" loading="lazy" className="brut shadow-hard mt-10 w-[31%] -rotate-[4deg] rounded-[1.4rem]" />
-          <img src="/img/cmw-trace.webp" alt="" loading="lazy" className="brut shadow-hard w-[33%] rounded-[1.4rem]" />
-          <img src="/img/cmw-champion.webp" alt="" loading="lazy" className="brut shadow-hard mt-14 w-[31%] rotate-[4deg] rounded-[1.4rem]" />
+          <img src="/img/cmw-home.webp" alt="" loading="lazy" className="brut shadow-hard mt-10 w-[31%] -rotate-[4deg] rounded-[1.4rem]" />
+          <img src="/img/cmw-define.webp" alt="" loading="lazy" className="brut shadow-hard w-[33%] rounded-[1.4rem]" />
+          <img src="/img/cmw-board.webp" alt="" loading="lazy" className="brut shadow-hard mt-14 w-[31%] rotate-[4deg] rounded-[1.4rem]" />
         </div>
       </div>
     </section>
