@@ -7,7 +7,7 @@ type Props = {
   framed?: boolean
 }
 
-/** A phone screenshot, framed so raw captures read as a device. */
+/** A phone screenshot with a thick sticker outline and hard shadow. */
 export function Phone({ src, alt, caption, className = '', framed = true }: Props) {
   return (
     <figure className={`shrink-0 ${className}`}>
@@ -16,13 +16,9 @@ export function Phone({ src, alt, caption, className = '', framed = true }: Prop
         alt={alt}
         loading="lazy"
         decoding="async"
-        className={
-          framed
-            ? 'w-full rounded-[2rem] border-[6px] border-ink bg-ink shadow-[0_24px_60px_-24px_rgb(0_0_0/0.45)]'
-            : 'w-full rounded-2xl shadow-[0_24px_60px_-24px_rgb(0_0_0/0.45)]'
-        }
+        className={`brut shadow-hard w-full bg-ink ${framed ? 'rounded-[1.75rem]' : 'rounded-2xl'}`}
       />
-      {caption && <figcaption className="mt-3 text-center text-sm text-muted">{caption}</figcaption>}
+      {caption && <figcaption className="mt-3 text-center text-sm font-semibold">{caption}</figcaption>}
     </figure>
   )
 }

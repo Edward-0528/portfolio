@@ -33,9 +33,9 @@ const SPEC_SECTIONS = [
 export function CosmicCuties() {
   return (
     <>
-      <header className="bg-cosmic-950 text-white">
+      <header className="border-b-[3px] border-ink bg-cosmic-950 text-white">
         <div className="wrap pt-12 pb-16 sm:pt-16">
-          <Link to="/#work" className="text-sm text-white/60 hover:text-white">
+          <Link to="/#shelf" className="text-sm font-semibold text-white/70 hover:text-white">
             ← All work
           </Link>
           <div className="mt-8 grid gap-12 lg:grid-cols-[1.3fr_1fr]">
@@ -96,7 +96,7 @@ export function CosmicCuties() {
           </p>
           <ul className="mt-6 flex flex-wrap gap-2" aria-label="Feature specs">
             {SPECS.map((s, i) => (
-              <li key={s} className="rounded-full border border-line bg-white px-3 py-1 text-xs">
+              <li key={s} className="chip">
                 <span className="font-mono text-muted">S{i + 1}</span> {s}
               </li>
             ))}
@@ -203,21 +203,21 @@ export function CosmicCuties() {
 
       <section className="wrap py-16">
         <div className="grid gap-6 sm:grid-cols-3">
-          <div className="rounded-2xl border border-line bg-white p-6">
+          <div className="brut shadow-hard rounded-2xl bg-white p-6">
             <h3 className="font-semibold">Monetization</h3>
             <p className="mt-2 text-[15px] text-muted">
               Real store purchases through RevenueCat, a Cosmic Pass subscription, and rewarded ads that tell the player
               when a video isn't ready instead of failing silently.
             </p>
           </div>
-          <div className="rounded-2xl border border-line bg-white p-6">
+          <div className="brut shadow-hard rounded-2xl bg-white p-6">
             <h3 className="font-semibold">Art pipeline</h3>
             <p className="mt-2 text-[15px] text-muted">
               About 950 lines of Python that generate art, audio and icons with the Gemini image API, passing reference
               images so every new sheet matches the first one's style.
             </p>
           </div>
-          <div className="rounded-2xl border border-line bg-white p-6">
+          <div className="brut shadow-hard rounded-2xl bg-white p-6">
             <h3 className="font-semibold">Delivery</h3>
             <p className="mt-2 text-[15px] text-muted">
               GitHub Actions runs analysis and 840+ tests on every push and pull request. Codemagic signs and ships main

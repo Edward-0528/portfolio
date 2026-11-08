@@ -40,9 +40,9 @@ const PRACTICES = [
 export function CorePlus() {
   return (
     <>
-      <header className="bg-core-950 text-white">
+      <header className="border-b-[3px] border-ink bg-core-950 text-white">
         <div className="wrap pt-12 pb-16 sm:pt-16">
-          <Link to="/#work" className="text-sm text-white/60 hover:text-white">
+          <Link to="/#shelf" className="text-sm font-semibold text-white/70 hover:text-white">
             ← All work
           </Link>
           <div className="mt-8 grid gap-12 lg:grid-cols-[1.3fr_1fr]">
@@ -102,7 +102,7 @@ export function CorePlus() {
         </div>
         <div>
           <p className="eyebrow">How it came to life</p>
-          <ol className="mt-5 border-l border-line">
+          <ol className="mt-5 border-l-[3px] border-ink">
             {TIMELINE.map((t) => (
               <li key={t.when} className="relative pb-6 pl-6 last:pb-0">
                 <span className="absolute top-1.5 -left-[5px] size-2.5 rounded-full bg-accent" aria-hidden="true" />
@@ -248,7 +248,7 @@ export function CorePlus() {
         />
       </section>
 
-      <section className="border-y border-line bg-white/70">
+      <section className="border-y-[3px] border-ink bg-white">
         <div className="wrap py-16">
           <p className="eyebrow">Inside the product</p>
           <h2 className="display mt-3 text-4xl">Plans that respond to the user</h2>
@@ -269,14 +269,14 @@ export function CorePlus() {
         <p className="eyebrow">Engineering practices</p>
         <div className="mt-6 grid gap-6 sm:grid-cols-2">
           {PRACTICES.map((p) => (
-            <div key={p.title} className="rounded-2xl border border-line bg-white p-6">
+            <div key={p.title} className="brut shadow-hard rounded-2xl bg-white p-6">
               <h3 className="text-lg font-semibold">{p.title}</h3>
               <p className="mt-2 text-[15px] leading-relaxed text-muted">{p.body}</p>
             </div>
           ))}
         </div>
 
-        <div className="mt-14 grid gap-8 rounded-3xl bg-core-950 p-8 text-white sm:p-10 lg:grid-cols-[1fr_1.4fr]">
+        <div className="mt-14 grid gap-8 brut shadow-hard-lg rounded-3xl bg-core-950 p-8 text-white sm:p-10 lg:grid-cols-[1fr_1.4fr]">
           <h2 className="display text-3xl sm:text-4xl">What I'd do differently</h2>
           <ul className="space-y-4 text-white/80">
             <li>
@@ -298,7 +298,7 @@ export function CorePlus() {
           <Link to="/work/cosmic-cuties" className="btn-primary">
             Next: Cosmic Cuties →
           </Link>
-          <Link to="/#ai" className="text-sm underline underline-offset-4">
+          <Link to="/#process" className="text-sm underline underline-offset-4">
             How I use AI to ship faster
           </Link>
         </div>

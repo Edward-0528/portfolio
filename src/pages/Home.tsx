@@ -1,322 +1,408 @@
+import type { ReactNode } from 'react'
 import { Link } from 'react-router'
-import { Phone } from '../components/Phone'
-import { Stat } from '../components/Stat'
-import { CAREBRIDGE, CORE_PLUS, COSMIC, PERSON } from '../site'
+import { CORE_PLUS, COSMIC, CROSS_MY_WORDS, PERSON, REVIEWS, STACK, TOTAL_TESTS } from '../site'
 
 export function Home() {
   return (
     <>
       <Hero />
-      <AtAGlance />
-      <Work />
-      <HowIWork />
-      <About />
+      <Shelf />
+      <Marquee />
+      <CorePlusCard />
+      <CosmicCard />
+      <CrossMyWordsCard />
+      <Reviews />
+      <StickerSheet />
+      <HowIBuild />
+      <SayHi />
     </>
   )
 }
 
+/* ---------- small pieces ---------- */
+
+const FILLS = ['bg-mint', 'bg-lilac', 'bg-peach', 'bg-sun', 'bg-white', 'bg-pop']
+const TILTS = ['-rotate-3', 'rotate-2', '-rotate-1', 'rotate-3', '-rotate-2', 'rotate-1']
+
+function Badge({ children, className = '' }: { children: ReactNode; className?: string }) {
+  return (
+    <span className={`brut display absolute -top-5 rounded-xl bg-pop px-3.5 py-1.5 text-sm sm:text-base ${className}`}>
+      {children}
+    </span>
+  )
+}
+
+function Feature({ what, tech, tone }: { what: string; tech: string; tone: string }) {
+  return (
+    <li className="brut flex flex-wrap items-center gap-x-3 gap-y-2 rounded-2xl bg-white px-4 py-3">
+      <span className="mr-auto text-[15px] font-bold">{what}</span>
+      <span className={`rounded-full bg-ink px-2.5 py-1 text-xs font-bold ${tone}`}>{tech}</span>
+    </li>
+  )
+}
+
+function SectionTitle({ id, children, aside }: { id: string; children: ReactNode; aside?: ReactNode }) {
+  return (
+    <h2 id={id} className="display text-5xl leading-[0.95] tracking-tight sm:text-7xl">
+      {children} {aside && <span className="font-hand inline-block -rotate-3 text-[0.6em] font-bold">{aside}</span>}
+    </h2>
+  )
+}
+
+/* ---------- sections ---------- */
+
 function Hero() {
   return (
-    <section className="wrap grid items-center gap-12 pt-14 pb-16 sm:pt-20 lg:grid-cols-[1.25fr_1fr]">
-      <div>
-        <p className="eyebrow">
-          {PERSON.role} · {PERSON.location} · Open to remote
-        </p>
-        <h1 className="display mt-5 text-5xl leading-[1.02] sm:text-7xl">
-          I build software people use, <em className="text-accent">and I ship it.</em>
-        </h1>
-        <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-          I'm Edward. I designed, built and released <strong className="text-ink">Core+</strong>, a React Native health
-          app on the App Store and Google Play, and took <strong className="text-ink">Cosmic Cuties</strong>, a Flutter
-          game, from first commit to TestFlight in three weeks. I make decisions from data, write the tests, and use AI
-          tools to ship faster without lowering the bar.
-        </p>
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link to="/work/core-plus" className="btn-primary">
-            Read the Core+ story →
-          </Link>
-          <a href={PERSON.resume} className="btn-ghost" download>
-            Download résumé
-          </a>
+    <section className="wrap flex flex-wrap items-end gap-x-10 gap-y-8 pt-8 sm:pt-12">
+      <h1 className="display min-w-0 flex-[2_1_560px] text-[clamp(3.5rem,8.6vw,7.75rem)] leading-[0.92] tracking-[-0.03em]">
+        I make apps.
+        <br />
+        <span className="inline-block -rotate-[1.5deg] bg-ink px-3.5 text-sun">Go play with them.</span>
+      </h1>
+      <div className="flex flex-[1_1_260px] flex-wrap gap-3.5" aria-label="Highlights">
+        <div className="brut shadow-hard wiggle rotate-3 rounded-2xl bg-white px-4 py-3">
+          <p className="display text-4xl leading-none">{CORE_PLUS.rating}★</p>
+          <p className="text-[13px] font-bold">on the App Store</p>
         </div>
-        <p className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm">
-          <a href={PERSON.github} className="underline decoration-line underline-offset-4 hover:decoration-ink">
-            GitHub
-          </a>
-          <a href={PERSON.linkedin} className="underline decoration-line underline-offset-4 hover:decoration-ink">
-            LinkedIn
-          </a>
-          <a href={`mailto:${PERSON.email}`} className="underline decoration-line underline-offset-4 hover:decoration-ink">
-            {PERSON.email}
-          </a>
-        </p>
-      </div>
-
-      <div className="relative mx-auto flex w-full max-w-md items-end justify-center gap-4" aria-hidden="true">
-        <Phone src="/img/cp-preview.webp" alt="" className="w-[46%] translate-y-6" />
-        <Phone src="/img/cc-gameplay.webp" alt="" className="w-[46%] -translate-y-2" />
+        <div className="brut shadow-hard wiggle -rotate-[4deg] rounded-2xl bg-pop px-4 py-3">
+          <p className="display text-4xl leading-none">{TOTAL_TESTS}</p>
+          <p className="text-[13px] font-bold">automated tests</p>
+        </div>
+        <div className="brut shadow-hard wiggle -rotate-1 rounded-2xl bg-mint px-4 py-3">
+          <p className="display text-4xl leading-none">{CORE_PLUS.releases}</p>
+          <p className="text-[13px] font-bold">store releases</p>
+        </div>
       </div>
     </section>
   )
 }
 
-function AtAGlance() {
+const SHELF = [
+  {
+    href: '#coreplus',
+    bg: 'bg-mint',
+    tilt: '-rotate-2',
+    icon: <img src="/img/cp-icon-2026.webp" alt="" className="brut size-14 rounded-2xl" />,
+    name: 'Core+',
+    kind: 'Fitness · iOS + Android',
+    tags: ['React Native', 'Swift', 'Kotlin', 'Supabase'],
+    shot: <img src="/img/cp-preview.webp" alt="" className="brut absolute -bottom-28 left-1/2 w-[190px] -translate-x-1/2 rounded-[1.6rem]" />,
+  },
+  {
+    href: '#cosmic',
+    bg: 'bg-lilac',
+    tilt: 'rotate-[1.5deg] sm:mt-6',
+    icon: <img src="/img/cc-icon.webp" alt="" className="brut size-14 rounded-2xl" />,
+    name: 'Cosmic Cuties',
+    kind: 'Puzzle game · Beta',
+    tags: ['Flutter', 'Dart', '500 levels'],
+    shot: <img src="/img/cc-gameplay.webp" alt="" className="brut absolute -bottom-28 left-1/2 w-[190px] -translate-x-1/2 rounded-[1.6rem]" />,
+  },
+  {
+    href: '#crossmywords',
+    bg: 'bg-peach',
+    tilt: '-rotate-1',
+    icon: <img src="/img/cmw-icon.webp" alt="" className="brut size-14 rounded-2xl" />,
+    name: 'Cross My Words',
+    kind: 'Word game · iOS, Android soon',
+    tags: ['Flutter', 'Flame', 'Firebase'],
+    shot: <img src="/img/cmw-trace.webp" alt="" className="brut absolute -bottom-28 left-1/2 w-[190px] -translate-x-1/2 rounded-[1.6rem]" />,
+  },
+]
+
+function Shelf() {
   return (
-    <section aria-labelledby="glance" className="border-y border-line bg-white/70">
-      <div className="wrap grid gap-10 py-12 lg:grid-cols-[1fr_1.6fr]">
-        <div>
-          <h2 id="glance" className="eyebrow">
-            For recruiters, at a glance
-          </h2>
-          <ul className="mt-5 space-y-3 text-[15px]">
-            <li>
-              <span className="text-muted">Looking for:</span> Junior / Associate Software Engineer: React, React Native,
-              full-stack
-            </li>
-            <li>
-              <span className="text-muted">Where:</span> Orange County on-site or hybrid, or US remote
-            </li>
-            <li>
-              <span className="text-muted">Ships with:</span> React, React Native, TypeScript, PostgreSQL, Node and
-              serverless, Swift and Kotlin, C# / ASP.NET Core, Flutter
-            </li>
-            <li>
-              <span className="text-muted">Before software:</span> 8 years leading teams at T-Mobile
-            </li>
-          </ul>
-        </div>
-        <dl className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4">
-          <Stat value={CORE_PLUS.commits} label="commits on Core+" />
-          <Stat value={CORE_PLUS.tests} label="automated tests on Core+" />
-          <Stat value={CORE_PLUS.releases} label="App Store and Play releases" />
-          <Stat value={COSMIC.tests} label="tests on Cosmic Cuties" />
-        </dl>
-      </div>
+    <section id="shelf" aria-label="The apps" className="wrap flex flex-wrap items-start gap-7 pt-12">
+      {SHELF.map((app) => (
+        <a
+          key={app.name}
+          href={app.href}
+          className={`brut shadow-hard-lg wiggle relative h-[440px] min-w-0 flex-[1_1_320px] overflow-hidden rounded-[1.6rem] p-5 ${app.bg} ${app.tilt}`}
+        >
+          <div className="flex items-center gap-3">
+            {app.icon}
+            <div>
+              <p className="display text-3xl leading-none">{app.name}</p>
+              <p className="text-[13px] font-semibold">{app.kind}</p>
+            </div>
+          </div>
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {app.tags.map((t) => (
+              <span key={t} className="chip">
+                {t}
+              </span>
+            ))}
+          </div>
+          {app.shot}
+          <span className="absolute right-4 bottom-5 rotate-6 rounded-lg bg-ink px-3 py-2 text-[13px] font-bold text-white">
+            See it ↓
+          </span>
+        </a>
+      ))}
     </section>
   )
 }
 
-function Work() {
+const MARQUEE = ['React Native', 'Flutter', 'Flame', 'Swift', 'Kotlin', 'TypeScript', 'Supabase', 'Firebase', 'Claude Code']
+
+function Marquee() {
+  const row = MARQUEE.map((t) => `${t.toUpperCase()} ✦ `).join('')
   return (
-    <section id="work" aria-labelledby="work-title" className="wrap py-20">
-      <p className="eyebrow">Selected work</p>
-      <h2 id="work-title" className="display mt-3 text-4xl sm:text-5xl">
-        Two apps, built end to end
-      </h2>
-      <p className="mt-4 max-w-2xl text-muted">
-        Each case study walks through how the project came together: the decisions, what broke, how I found out, and
-        what I changed. Every number comes from the real repos.
-      </p>
-
-      <div className="mt-12 grid gap-8 lg:grid-cols-2">
-        <ProjectCard
-          to="/work/core-plus"
-          theme="bg-core-950 text-white"
-          icon="/img/cp-icon-2026.webp"
-          name="Core+"
-          kicker="React Native · iOS and Android · Live on both stores"
-          summary="Pilates and home workout plans that adapt every week, with real exercise demos, streaks and photo meal tracking. I'm the only engineer: design, code, data, releases and marketing."
-          points={[
-            'Found that a "churn" problem was really missing analytics, then fixed the tracking before touching the product',
-            'Used real usage data (67% logged a meal, 7% started a workout) to change what new users see first',
-            'Native Swift and Kotlin modules, HealthKit and Health Connect, 525 tests',
-          ]}
-          shots={['/img/cp-week4.webp', '/img/cp-streak.webp', '/img/cp-complete.webp']}
-          accent="text-core-mint"
-        />
-        <ProjectCard
-          to="/work/cosmic-cuties"
-          theme="bg-cosmic-950 text-white"
-          icon="/img/cc-icon.webp"
-          name="Cosmic Cuties"
-          kicker="Flutter · Match-3 game · Beta on TestFlight"
-          summary="A relaxing match-3 puzzle game with 500 levels, live events and in-app purchases. First commit to TestFlight in three weeks."
-          points={[
-            'Wrote a bot that plays like a person to test board designs and tune 500 levels',
-            'Regression tests that replay moves and fail if a single tile teleports',
-            'Live events changed from a server config, no app update needed',
-          ]}
-          shots={['/img/cc-map.webp', '/img/cc-gameplay.webp', '/img/cc-level.webp']}
-          accent="text-cosmic-gold"
-        />
+    <div aria-hidden="true" className="mt-20 -rotate-[1.5deg] overflow-hidden border-y-[3px] border-ink bg-ink py-4 text-sun">
+      <div className="marquee display flex w-max text-2xl whitespace-nowrap sm:text-3xl">
+        <span className="pr-2">{row}</span>
+        <span className="pr-2">{row}</span>
       </div>
+    </div>
+  )
+}
 
-      <a
-        href={CAREBRIDGE.repo}
-        className="group mt-8 grid items-center gap-6 rounded-3xl border border-line bg-white p-6 transition hover:border-ink/30 sm:grid-cols-[1fr_320px] sm:p-8"
-      >
-        <div>
-          <p className="eyebrow">Also built · Open source</p>
-          <h3 className="display mt-2 text-3xl">CareBridge</h3>
-          <p className="mt-3 text-muted">
-            A healthcare care-coordination app: React and TypeScript on an ASP.NET Core Web API in C#, with SQL Server.
-            Designed around protected health information: masked IDs in lists, an audit entry on every record view,
-            and IDs-only logging. 43 automated tests.
+function CorePlusCard() {
+  return (
+    <section id="coreplus" aria-labelledby="coreplus-title" className="wrap pt-24">
+      <div className="brut shadow-hard-lg relative flex flex-wrap gap-11 rounded-[2rem] bg-mint p-6 sm:p-11">
+        <Badge className="left-8 -rotate-3">APP #1 · LIVE</Badge>
+        <div className="min-w-0 flex-[1_1_380px]">
+          <div className="flex items-center gap-4">
+            <img src="/img/cp-icon-2026.webp" alt="" className="brut size-[76px] rounded-[1.25rem]" />
+            <div>
+              <h2 id="coreplus-title" className="display text-5xl leading-[0.95] sm:text-6xl">
+                Core+
+              </h2>
+              <p className="mt-1 text-[15px] font-bold">Pilates &amp; home workouts</p>
+            </div>
+          </div>
+          <p className="mt-5 text-lg leading-relaxed font-medium">
+            Workout plans that adapt every week, real exercise demos, streaks, and meals logged from a photo. I'm the only
+            engineer, so I own the design, code, data, releases and growth.
           </p>
-          <p className="mt-4 text-sm font-semibold group-hover:underline">View the code on GitHub →</p>
-        </div>
-        <img
-          src="/img/cb-record.webp"
-          alt="CareBridge client record page with visit history and scheduling form"
-          loading="lazy"
-          className="rounded-xl border border-line"
-        />
-      </a>
-    </section>
-  )
-}
-
-type CardProps = {
-  to: string
-  theme: string
-  icon: string
-  name: string
-  kicker: string
-  summary: string
-  points: string[]
-  shots: string[]
-  accent: string
-}
-
-function ProjectCard({ to, theme, icon, name, kicker, summary, points, shots, accent }: CardProps) {
-  return (
-    <Link to={to} className={`group flex flex-col overflow-hidden rounded-3xl ${theme} transition hover:-translate-y-1`}>
-      <div className="p-7 sm:p-9">
-        <div className="flex items-center gap-4">
-          <img src={icon} alt="" className="size-14 rounded-2xl" />
-          <div>
-            <h3 className="display text-4xl">{name}</h3>
-            <p className="text-sm text-white/70">{kicker}</p>
+          <ul className="mt-6 flex flex-col gap-3">
+            <Feature what="Plans that adapt every week" tech="TypeScript engine" tone="text-mint" />
+            <Feature what="Snap a photo, log a meal" tech="Gemini API + proxy" tone="text-mint" />
+            <Feature what="Home-screen widget" tech="SwiftUI" tone="text-mint" />
+            <Feature what="Syncs with Apple Health + Health Connect" tech="Swift + Kotlin" tone="text-mint" />
+            <Feature what="Private by default" tech="Postgres RLS" tone="text-mint" />
+          </ul>
+          <div className="mt-7 flex flex-wrap gap-3.5">
+            <a href={CORE_PLUS.appStore} className="btn-primary">App Store ↗</a>
+            <a href={CORE_PLUS.googlePlay} className="btn-ghost">Google Play ↗</a>
+            <Link to="/work/core-plus" className="btn-ghost">How I built it →</Link>
           </div>
         </div>
-        <p className="mt-6 text-white/85">{summary}</p>
-        <ul className="mt-5 space-y-2 text-[15px] text-white/85">
-          {points.map((p) => (
-            <li key={p} className="flex gap-3">
-              <span className={accent} aria-hidden="true">
-                ✦
-              </span>
-              {p}
-            </li>
-          ))}
-        </ul>
-        <p className={`mt-6 text-sm font-semibold ${accent} group-hover:underline`}>Read the case study →</p>
+        <div className="relative aspect-[1/1.02] min-w-0 flex-[1_1_440px] self-center" aria-hidden="true">
+          <img src="/img/cp-listing-1.webp" alt="" className="brut shadow-hard absolute top-8 left-0 w-[39%] -rotate-[5deg] rounded-3xl" />
+          <img src="/img/cp-listing-2.webp" alt="" className="brut shadow-hard absolute top-0 left-[31%] z-10 w-[39%] rotate-2 rounded-3xl" />
+          <img src="/img/cp-listing-4.webp" alt="" className="brut shadow-hard absolute top-12 right-0 w-[39%] rotate-6 rounded-3xl" />
+          <span className="brut shadow-hard absolute bottom-2 left-[4%] z-20 flex size-[120px] -rotate-[10deg] flex-col items-center justify-center rounded-full bg-white">
+            <span className="display text-[34px] leading-none">{CORE_PLUS.rating}★</span>
+            <span className="text-[11px] font-bold">{CORE_PLUS.ratings} ratings</span>
+          </span>
+          <span className="brut shadow-hard display absolute right-[6%] bottom-8 z-20 rotate-[7deg] rounded-2xl bg-sun px-3.5 py-2.5 text-xl">
+            {CORE_PLUS.tests} tests
+          </span>
+        </div>
       </div>
-      <div className="mt-auto flex justify-center gap-3 px-6" aria-hidden="true">
-        {shots.map((s, i) => (
-          <img
-            key={s}
-            src={s}
-            alt=""
-            loading="lazy"
-            className={`w-[30%] rounded-t-2xl border-x-4 border-t-4 border-black/60 ${i === 1 ? '' : 'translate-y-6'}`}
-          />
+    </section>
+  )
+}
+
+function CosmicCard() {
+  const beta = COSMIC.testflight
+    ? { href: COSMIC.testflight, label: 'Join the TestFlight beta ↗' }
+    : { href: `mailto:${PERSON.email}?subject=Cosmic%20Cuties%20beta`, label: 'Ask for a beta invite ✉' }
+  return (
+    <section id="cosmic" aria-labelledby="cosmic-title" className="wrap pt-20">
+      <div className="brut shadow-hard-lg relative flex flex-wrap-reverse gap-11 rounded-[2rem] bg-lilac p-6 sm:p-11">
+        <Badge className="right-8 rotate-3">APP #2 · BETA</Badge>
+        <div className="flex min-w-0 flex-[1_1_440px] items-start justify-center gap-4" aria-hidden="true">
+          <img src="/img/cc-map.webp" alt="" className="brut shadow-hard mt-8 w-[31%] -rotate-[4deg] rounded-[1.4rem]" />
+          <img src="/img/cc-gameplay.webp" alt="" className="brut shadow-hard w-[33%] rounded-[1.4rem]" />
+          <img src="/img/cc-shop.webp" alt="" className="brut shadow-hard mt-12 w-[31%] rotate-[4deg] rounded-[1.4rem]" />
+        </div>
+        <div className="min-w-0 flex-[1_1_380px]">
+          <div className="flex items-center gap-4">
+            <img src="/img/cc-icon.webp" alt="" className="brut size-[76px] rounded-[1.25rem]" />
+            <div>
+              <h2 id="cosmic-title" className="display text-5xl leading-[0.95] sm:text-6xl">
+                Cosmic Cuties
+              </h2>
+              <p className="mt-1 text-[15px] font-bold">Relaxing match-3 puzzles</p>
+            </div>
+          </div>
+          <p className="mt-5 text-lg leading-relaxed font-medium">
+            {COSMIC.levels} levels, live events and in-app purchases. From first commit to TestFlight in three weeks.
+          </p>
+          <ul className="mt-6 flex flex-col gap-3">
+            <Feature what="A bot that plays like a person to tune levels" tech="Dart" tone="text-lilac" />
+            <Feature what="Tests that fail if one tile teleports" tech={`${COSMIC.tests} tests`} tone="text-lilac" />
+            <Feature what="Live events without an app update" tech="Server config" tone="text-lilac" />
+            <Feature what="Built from 15 written specs" tech="Claude Code" tone="text-lilac" />
+          </ul>
+          <div className="mt-7 flex flex-wrap gap-3.5">
+            <a href={beta.href} className="btn-primary">{beta.label}</a>
+            <Link to="/work/cosmic-cuties" className="btn-ghost">How I built it →</Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function CrossMyWordsCard() {
+  return (
+    <section id="crossmywords" aria-labelledby="crossmywords-title" className="wrap pt-20">
+      <div className="brut shadow-hard-lg relative flex flex-wrap gap-11 rounded-[2rem] bg-peach p-6 sm:p-11">
+        <Badge className="left-8 -rotate-2">APP #3 · JUST LAUNCHED</Badge>
+        <div className="min-w-0 flex-[1_1_380px]">
+          <div className="flex items-center gap-4">
+            <img src="/img/cmw-icon.webp" alt="" className="brut size-[76px] rounded-[1.25rem]" />
+            <div>
+              <h2 id="crossmywords-title" className="display text-5xl leading-[0.95] sm:text-6xl">
+                Cross My Words
+              </h2>
+              <p className="mt-1 text-[15px] font-bold">Word search that teaches you words</p>
+            </div>
+          </div>
+          <p className="mt-5 text-lg leading-relaxed font-medium">
+            Swipe across the grid to trace hidden words, learn what each one means, and keep your daily streak alive. Live
+            on the App Store now, with Android arriving in {CROSS_MY_WORDS.androidLaunch}.
+          </p>
+          <ul className="mt-6 flex flex-col gap-3">
+            <Feature what="Trace hidden words in any direction" tech="Flame engine" tone="text-peach" />
+            <Feature what="A short definition for every word you find" tech="Flutter + Riverpod" tone="text-peach" />
+            <Feature what="Daily challenge and streak reminders" tech="Local notifications" tone="text-peach" />
+            <Feature what="Cloud save, Game Center, Sign in with Apple" tech="Firebase" tone="text-peach" />
+            <Feature what="Rebuilt the lost source from the shipped app" tech="Decompiled Dart" tone="text-peach" />
+          </ul>
+          <div className="mt-7 flex flex-wrap items-center gap-3.5">
+            <a href={CROSS_MY_WORDS.appStore} className="btn-primary">App Store ↗</a>
+            <span className="brut inline-flex -rotate-2 items-center rounded-xl bg-white px-4 py-2.5 text-[15px] font-bold">
+              Android · {CROSS_MY_WORDS.androidLaunch}
+            </span>
+          </div>
+        </div>
+        <div className="flex min-w-0 flex-[1_1_440px] items-start justify-center gap-4 self-center" aria-hidden="true">
+          <img src="/img/cmw-find.webp" alt="" loading="lazy" className="brut shadow-hard mt-10 w-[31%] -rotate-[4deg] rounded-[1.4rem]" />
+          <img src="/img/cmw-trace.webp" alt="" loading="lazy" className="brut shadow-hard w-[33%] rounded-[1.4rem]" />
+          <img src="/img/cmw-champion.webp" alt="" loading="lazy" className="brut shadow-hard mt-14 w-[31%] rotate-[4deg] rounded-[1.4rem]" />
+        </div>
+      </div>
+    </section>
+  )
+}
+
+const NOTE_FILLS = ['bg-white', 'bg-mint', 'bg-lilac', 'bg-peach']
+const NOTE_TILTS = ['rotate-2', '-rotate-2', 'rotate-[1.5deg]', '-rotate-1']
+
+function Reviews() {
+  return (
+    <section aria-labelledby="reviews" className="wrap pt-28">
+      <SectionTitle id="reviews" aside="(real App Store reviews)">
+        Fan mail
+      </SectionTitle>
+      <div className="mt-11 flex flex-wrap items-start gap-6">
+        <a
+          href={CORE_PLUS.appStore}
+          className="brut wiggle flex-[0_0_220px] -rotate-3 rounded-[1.4rem] bg-ink p-6 text-white shadow-[8px_8px_0_var(--color-pop)]"
+        >
+          <p className="display text-7xl leading-[0.9] text-sun">{CORE_PLUS.rating}</p>
+          <p className="mt-1.5 text-xl tracking-[2px] text-sun" aria-label="five stars">★★★★★</p>
+          <p className="mt-2 text-sm font-bold">{CORE_PLUS.ratings} ratings · App Store</p>
+          <p className="mt-3 text-[13px] font-semibold underline">Read them all ↗</p>
+        </a>
+        {REVIEWS.map((r, i) => (
+          <figure
+            key={r.who}
+            className={`brut shadow-hard wiggle min-h-[200px] min-w-0 flex-[1_1_220px] rounded-md p-5 ${NOTE_FILLS[i % 4]} ${NOTE_TILTS[i % 4]}`}
+          >
+            <blockquote className="font-hand text-[34px] leading-none font-bold">“{r.title}”</blockquote>
+            <p className="mt-3 text-[15px] leading-normal font-medium">{r.gist}</p>
+            <figcaption className="mt-3.5 text-[13px] font-bold">— {r.who}</figcaption>
+          </figure>
         ))}
       </div>
-    </Link>
+    </section>
+  )
+}
+
+function StickerSheet() {
+  return (
+    <section aria-labelledby="stack" className="wrap pt-28">
+      <div className="brut shadow-hard-lg rounded-[2rem] bg-white p-6 sm:p-11">
+        <h2 id="stack" className="display text-5xl leading-[0.95] sm:text-7xl">
+          The sticker sheet
+        </h2>
+        <p className="mt-3 text-[17px] font-medium">Everything these apps are built with.</p>
+        <div className="mt-8 flex flex-wrap gap-7">
+          {STACK.map((g) => (
+            <div key={g.title} className="min-w-0 flex-[1_1_240px]">
+              <h3 className="display text-lg uppercase">{g.title}</h3>
+              <ul className="mt-3.5 flex flex-wrap gap-2.5">
+                {g.items.map((item, i) => (
+                  <li
+                    key={item}
+                    className={`brut wiggle rounded-full px-3.5 py-2 text-[15px] font-bold shadow-[3px_3px_0_#111] ${FILLS[i % FILLS.length]} ${TILTS[i % TILTS.length]}`}
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }
 
 const STEPS = [
-  {
-    title: 'Start from evidence',
-    body: 'Before I change the product, I query what users actually do. The biggest change I made to Core+ came from one SQL query across 83 accounts, not from a hunch.',
-  },
-  {
-    title: 'Write the spec first',
-    body: 'Each feature starts as a short spec: the goal, the rules, the tests, the exit criteria, and what we are not doing. Cosmic Cuties was built from 15 of them.',
-  },
-  {
-    title: 'Keep sessions small',
-    body: 'One task per session, each in its own git worktree, so parallel work never collides. Every commit is one change with a message that says why.',
-  },
-  {
-    title: 'Verify before it merges',
-    body: 'Nothing ships on trust. I read every diff, run the full test suite, and check it on a real device. The tests grow with the speed: 525 on Core+, 840+ on Cosmic Cuties.',
-  },
+  { title: 'Look at the data', body: 'One SQL query across 83 accounts changed Core+ more than any hunch.', tilt: '-rotate-[1.5deg]' },
+  { title: 'Write the spec', body: 'Goal, rules, tests and what we are not doing, before any code.', tilt: 'rotate-1' },
+  { title: 'Pair with AI', body: 'Claude Code drafts, one task per git worktree, one change per commit.', tilt: '-rotate-1' },
+  { title: 'Prove it works', body: 'Read every diff, run the full suite, test on a real device.', tilt: 'rotate-2' },
 ]
 
-function HowIWork() {
+function HowIBuild() {
   return (
-    <section id="ai" aria-labelledby="ai-title" className="bg-ink text-paper">
-      <div className="wrap py-20">
-        <p className="eyebrow !text-white/60">How I work</p>
-        <h2 id="ai-title" className="display mt-3 max-w-3xl text-4xl sm:text-5xl">
-          AI writes a lot of my first drafts. I decide what gets built, and what's good enough to ship.
-        </h2>
-        <p className="mt-5 max-w-2xl text-white/70">
-          I use Claude Code as a pair programmer every day. The speed is real, but only because the process around it
-          keeps quality from slipping:
-        </p>
-
-        <ol className="mt-12 grid gap-px overflow-hidden rounded-3xl bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
-          {STEPS.map((s, i) => (
-            <li key={s.title} className="bg-ink p-7">
-              <p className="font-mono text-sm text-core-mint">{String(i + 1).padStart(2, '0')}</p>
-              <h3 className="mt-3 text-lg font-semibold">{s.title}</h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-white/70">{s.body}</p>
-            </li>
-          ))}
-        </ol>
-
-        <div className="mt-14 grid gap-10 lg:grid-cols-[1fr_1.3fr]">
-          <div>
-            <h3 className="text-xl font-semibold">What changed when I moved my workflow to Claude Code</h3>
-            <p className="mt-3 text-white/70">
-              Core+, the same app and the same developer, before and after July 2026, when I started pairing with AI for
-              most changes. I shipped faster, and the codebase went from no automated tests to 525.
-            </p>
-          </div>
-          <dl className="grid grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-3">
-            <Stat dark value="202" label="commits in the first 11 months" />
-            <Stat dark value="529" label="commits in the 4 months after" />
-            <Stat dark value="49 → 117" label="version releases, same periods" />
-            <Stat dark value="77 / 79" label="Cosmic Cuties commits paired with AI" />
-            <Stat dark value="0 → 525" label="automated tests on Core+, same periods" />
-          </dl>
-        </div>
-      </div>
+    <section aria-labelledby="process" className="wrap pt-28">
+      <SectionTitle id="process">How the sausage gets made</SectionTitle>
+      <ol className="mt-9 flex flex-wrap gap-5">
+        {STEPS.map((s, i) => (
+          <li key={s.title} className={`brut shadow-hard wiggle min-w-0 flex-[1_1_230px] rounded-[1.4rem] bg-white p-6 ${s.tilt}`}>
+            <span className="brut display flex size-[52px] items-center justify-center rounded-full bg-pop text-xl">{i + 1}</span>
+            <h3 className="display mt-4 text-[22px] leading-tight">{s.title}</h3>
+            <p className="mt-2.5 text-[15px] leading-normal font-medium">{s.body}</p>
+          </li>
+        ))}
+      </ol>
     </section>
   )
 }
 
-function About() {
+function SayHi() {
   return (
-    <section id="about" aria-labelledby="about-title" className="wrap grid gap-12 py-20 lg:grid-cols-[1fr_1.2fr]">
-      <div>
-        <p className="eyebrow">About</p>
-        <h2 id="about-title" className="display mt-3 text-4xl sm:text-5xl">
-          Eight years running a business before I wrote my first app
-        </h2>
-      </div>
-      <div className="space-y-4 text-[17px] leading-relaxed text-muted">
-        <p>
-          I've managed a T-Mobile store since 2018: leading a team of 15+, running to weekly targets, enforcing
-          customer-privacy rules, and explaining technical problems to people who just want their phone to work. That's
-          where I learned to own outcomes and communicate clearly.
-        </p>
-        <p>
-          I taught myself to code through Meta's front-end, back-end and Android certificates, then did the part courses
-          can't teach: I shipped. Core+ has real users, so bugs have real consequences. I've traced crashes in test
-          builds, shipped fixes to both stores, and written release rules so a bad build can't strand anyone.
-        </p>
-        <p className="text-ink">
-          I want to join a team where I can learn from senior engineers, take on real scope early, and bring the same
-          ownership I've brought to my own apps.
-        </p>
-        <ul className="flex flex-wrap gap-2 pt-2" aria-label="Certifications">
-          {[
-            'Meta Front-End Developer',
-            'Meta Back-End Developer',
-            'Meta Android Developer',
-            'Google AI Essentials',
-            'Google Cloud Generative AI',
-          ].map((c) => (
-            <li key={c} className="rounded-full border border-line bg-white px-3 py-1 text-xs text-ink">
-              {c}
-            </li>
-          ))}
-        </ul>
+    <section id="hi" aria-labelledby="hi-title" className="wrap pt-28 pb-12">
+      <div className="brut flex flex-wrap items-end gap-10 rounded-[2.25rem] bg-ink p-7 text-white shadow-[12px_12px_0_var(--color-pop)] sm:p-14">
+        <div className="min-w-0 flex-[2_1_480px]">
+          <p className="font-hand inline-block -rotate-2 text-3xl font-bold text-sun">psst, I'm open to work</p>
+          <h2 id="hi-title" className="display mt-2.5 text-[clamp(3rem,6vw,5.5rem)] leading-[0.92]">
+            Want app #4
+            <br />
+            to be yours?
+          </h2>
+          <p className="mt-5 max-w-xl text-[17px] leading-relaxed text-white/90">
+            Junior or associate engineering roles in React, React Native or full-stack. Orange County, or remote in the
+            US. Before code, eight years leading a team of 15+ at T-Mobile.
+          </p>
+        </div>
+        <div className="flex flex-[1_1_260px] flex-col gap-3">
+          <a href={`mailto:${PERSON.email}`} className="btn !border-white bg-sun text-ink shadow-[5px_5px_0_#fff]">
+            {PERSON.email}
+          </a>
+          <a href={PERSON.linkedin} className="btn !border-white">LinkedIn ↗</a>
+          <a href={PERSON.github} className="btn !border-white">GitHub ↗</a>
+          <a href={PERSON.resume} className="btn !border-white" download>Résumé (PDF) ↓</a>
+        </div>
       </div>
     </section>
   )
