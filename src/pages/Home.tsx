@@ -106,7 +106,7 @@ const SHELF = [
     name: 'Cross My Words',
     kind: 'Word game · iOS, Android soon',
     tags: ['Flutter', 'Flame', 'Firebase'],
-    shot: <img src="/img/cmw-define.webp" alt="" className="brut absolute -bottom-28 left-1/2 w-[190px] -translate-x-1/2 rounded-[1.6rem]" />,
+    shot: <img src="/img/cmw-find.webp" alt="" className="brut absolute -bottom-28 left-1/2 w-[190px] -translate-x-1/2 rounded-[1.6rem]" />,
   },
 ]
 
@@ -282,9 +282,9 @@ function CrossMyWordsCard() {
           </div>
         </div>
         <div className="flex min-w-0 flex-[1_1_440px] items-start justify-center gap-4 self-center" aria-hidden="true">
-          <img src="/img/cmw-home.webp" alt="" loading="lazy" className="brut shadow-hard mt-10 w-[31%] -rotate-[4deg] rounded-[1.4rem]" />
-          <img src="/img/cmw-define.webp" alt="" loading="lazy" className="brut shadow-hard w-[33%] rounded-[1.4rem]" />
-          <img src="/img/cmw-board.webp" alt="" loading="lazy" className="brut shadow-hard mt-14 w-[31%] rotate-[4deg] rounded-[1.4rem]" />
+          <img src="/img/cmw-find.webp" alt="" loading="lazy" className="brut shadow-hard mt-10 w-[31%] -rotate-[4deg] rounded-[1.4rem]" />
+          <img src="/img/cmw-learn.webp" alt="" loading="lazy" className="brut shadow-hard w-[33%] rounded-[1.4rem]" />
+          <img src="/img/cmw-streak.webp" alt="" loading="lazy" className="brut shadow-hard mt-14 w-[31%] rotate-[4deg] rounded-[1.4rem]" />
         </div>
       </div>
     </section>
