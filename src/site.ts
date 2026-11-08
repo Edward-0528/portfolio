@@ -32,9 +32,10 @@ export const COSMIC = {
   testflight: '',
 }
 
-export const CAREBRIDGE = {
-  repo: 'https://github.com/Edward-0528/CareBridge',
-  tests: '43',
+export const CROSS_MY_WORDS = {
+  appStore: 'https://apps.apple.com/us/app/cross-my-words/id6766165878',
+  /** Shown until the Android build is out; then add the Play link here and drop this. */
+  androidLaunch: 'December 2026',
 }
 
 /** Automated tests across Core+ (525) and Cosmic Cuties (840+). */
@@ -61,8 +62,8 @@ export const REVIEWS = [
 ]
 
 export const STACK = [
-  { title: 'Mobile', items: ['React Native', 'Expo', 'Flutter', 'Dart', 'Swift', 'Kotlin'] },
+  { title: 'Mobile', items: ['React Native', 'Expo', 'Flutter', 'Flame', 'Dart', 'Swift', 'Kotlin'] },
   { title: 'Web', items: ['React', 'TypeScript', 'Tailwind', 'Vite'] },
-  { title: 'Backend + data', items: ['Supabase', 'PostgreSQL', 'Node', 'C# / .NET', 'SQL Server'] },
+  { title: 'Backend + data', items: ['Supabase', 'PostgreSQL', 'Firebase', 'Firestore', 'Node'] },
   { title: 'Ship it', items: ['Claude Code', 'Gemini', 'HealthKit', 'App Store Connect', 'Play Console', 'Netlify'] },
 ]

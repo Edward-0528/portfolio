@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { Link } from 'react-router'
-import { CAREBRIDGE, CORE_PLUS, COSMIC, PERSON, REVIEWS, STACK, TOTAL_TESTS } from '../site'
+import { CORE_PLUS, COSMIC, CROSS_MY_WORDS, PERSON, REVIEWS, STACK, TOTAL_TESTS } from '../site'
 
 export function Home() {
   return (
@@ -10,7 +10,7 @@ export function Home() {
       <Marquee />
       <CorePlusCard />
       <CosmicCard />
-      <CareBridgeCard />
+      <CrossMyWordsCard />
       <Reviews />
       <StickerSheet />
       <HowIBuild />
@@ -99,14 +99,14 @@ const SHELF = [
     shot: <img src="/img/cc-gameplay.webp" alt="" className="brut absolute -bottom-28 left-1/2 w-[190px] -translate-x-1/2 rounded-[1.6rem]" />,
   },
   {
-    href: '#carebridge',
+    href: '#crossmywords',
     bg: 'bg-peach',
     tilt: '-rotate-1',
-    icon: <span className="brut display flex size-14 items-center justify-center rounded-2xl bg-white text-lg">CB</span>,
-    name: 'CareBridge',
-    kind: 'Healthcare web app',
-    tags: ['React', 'C#', 'SQL Server'],
-    shot: <img src="/img/cb-record.webp" alt="" className="brut absolute top-[8.5rem] right-5 left-5 rounded-xl" />,
+    icon: <img src="/img/cmw-icon.webp" alt="" className="brut size-14 rounded-2xl" />,
+    name: 'Cross My Words',
+    kind: 'Word game · iOS, Android soon',
+    tags: ['Flutter', 'Flame', 'Firebase'],
+    shot: <img src="/img/cmw-trace.webp" alt="" className="brut absolute -bottom-28 left-1/2 w-[190px] -translate-x-1/2 rounded-[1.6rem]" />,
   },
 ]
 
@@ -143,7 +143,7 @@ function Shelf() {
   )
 }
 
-const MARQUEE = ['React Native', 'Flutter', 'Swift', 'Kotlin', 'TypeScript', 'Supabase', 'Postgres', 'C#', 'Claude Code']
+const MARQUEE = ['React Native', 'Flutter', 'Flame', 'Swift', 'Kotlin', 'TypeScript', 'Supabase', 'Firebase', 'Claude Code']
 
 function Marquee() {
   const row = MARQUEE.map((t) => `${t.toUpperCase()} ✦ `).join('')
@@ -248,39 +248,43 @@ function CosmicCard() {
   )
 }
 
-function CareBridgeCard() {
+function CrossMyWordsCard() {
   return (
-    <section id="carebridge" aria-labelledby="carebridge-title" className="wrap pt-20">
-      <div className="brut shadow-hard-lg relative flex flex-wrap items-center gap-11 rounded-[2rem] bg-peach p-6 sm:p-11">
-        <Badge className="left-8 -rotate-2">APP #3 · OPEN SOURCE</Badge>
-        <div className="min-w-0 flex-[1_1_360px]">
-          <h2 id="carebridge-title" className="display text-5xl leading-[0.95] sm:text-6xl">
-            CareBridge
-          </h2>
-          <p className="mt-4 text-lg leading-relaxed font-medium">
-            A healthcare care-coordination app designed around protected health information: masked IDs, an audit entry
-            on every record view, IDs-only logging.
-          </p>
-          <div className="mt-5 flex flex-wrap gap-2">
-            {['React + TypeScript', 'ASP.NET Core (C#)', 'EF Core', 'SQL Server', `${CAREBRIDGE.tests} tests`].map((t) => (
-              <span key={t} className="chip !text-[13px]">
-                {t}
-              </span>
-            ))}
-          </div>
-          <a href={CAREBRIDGE.repo} className="btn-primary mt-7">
-            Read the code on GitHub ↗
-          </a>
-        </div>
-        <div className="min-w-0 flex-[1_1_480px]">
-          <div className="brut shadow-hard-lg rotate-[1.5deg] overflow-hidden rounded-2xl bg-white">
-            <div className="flex gap-1.5 border-b-[3px] border-ink px-3.5 py-2.5" aria-hidden="true">
-              <span className="size-3 rounded-full border-2 border-ink bg-pop" />
-              <span className="size-3 rounded-full border-2 border-ink bg-sun" />
-              <span className="size-3 rounded-full border-2 border-ink bg-mint" />
+    <section id="crossmywords" aria-labelledby="crossmywords-title" className="wrap pt-20">
+      <div className="brut shadow-hard-lg relative flex flex-wrap gap-11 rounded-[2rem] bg-peach p-6 sm:p-11">
+        <Badge className="left-8 -rotate-2">APP #3 · JUST LAUNCHED</Badge>
+        <div className="min-w-0 flex-[1_1_380px]">
+          <div className="flex items-center gap-4">
+            <img src="/img/cmw-icon.webp" alt="" className="brut size-[76px] rounded-[1.25rem]" />
+            <div>
+              <h2 id="crossmywords-title" className="display text-5xl leading-[0.95] sm:text-6xl">
+                Cross My Words
+              </h2>
+              <p className="mt-1 text-[15px] font-bold">Word search that teaches you words</p>
             </div>
-            <img src="/img/cb-record.webp" alt="CareBridge client record page with visit history and a scheduling form" loading="lazy" className="block w-full" />
           </div>
+          <p className="mt-5 text-lg leading-relaxed font-medium">
+            Swipe across the grid to trace hidden words, learn what each one means, and keep your daily streak alive. Live
+            on the App Store now, with Android arriving in {CROSS_MY_WORDS.androidLaunch}.
+          </p>
+          <ul className="mt-6 flex flex-col gap-3">
+            <Feature what="Trace hidden words in any direction" tech="Flame engine" tone="text-peach" />
+            <Feature what="A short definition for every word you find" tech="Flutter + Riverpod" tone="text-peach" />
+            <Feature what="Daily challenge and streak reminders" tech="Local notifications" tone="text-peach" />
+            <Feature what="Cloud save, Game Center, Sign in with Apple" tech="Firebase" tone="text-peach" />
+            <Feature what="Rebuilt the lost source from the shipped app" tech="Decompiled Dart" tone="text-peach" />
+          </ul>
+          <div className="mt-7 flex flex-wrap items-center gap-3.5">
+            <a href={CROSS_MY_WORDS.appStore} className="btn-primary">App Store ↗</a>
+            <span className="brut inline-flex -rotate-2 items-center rounded-xl bg-white px-4 py-2.5 text-[15px] font-bold">
+              Android · {CROSS_MY_WORDS.androidLaunch}
+            </span>
+          </div>
+        </div>
+        <div className="flex min-w-0 flex-[1_1_440px] items-start justify-center gap-4 self-center" aria-hidden="true">
+          <img src="/img/cmw-find.webp" alt="" loading="lazy" className="brut shadow-hard mt-10 w-[31%] -rotate-[4deg] rounded-[1.4rem]" />
+          <img src="/img/cmw-trace.webp" alt="" loading="lazy" className="brut shadow-hard w-[33%] rounded-[1.4rem]" />
+          <img src="/img/cmw-champion.webp" alt="" loading="lazy" className="brut shadow-hard mt-14 w-[31%] rotate-[4deg] rounded-[1.4rem]" />
         </div>
       </div>
     </section>
