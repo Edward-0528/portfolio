@@ -8,7 +8,7 @@ type Props = {
   result: ReactNode
   media?: ReactNode
   tags?: string[]
-  /** Text color for the index and labels. */
+  /** Kept for existing call sites; the sticker style uses one look for every page. */
   tone?: string
 }
 
@@ -16,31 +16,35 @@ type Props = {
  * One engineering story: what went wrong, what I did, what changed.
  * Problem → approach → result is the order an interviewer asks for it.
  */
-export function Story({ index, title, problem, approach, result, media, tags = [], tone = 'text-accent' }: Props) {
+export function Story({ index, title, problem, approach, result, media, tags = [] }: Props) {
   return (
-    <article className={`grid gap-8 border-t border-line py-12 ${media ? 'md:grid-cols-[1fr_260px] md:gap-14' : ''}`}>
+    <article
+      className={`brut shadow-hard mt-10 grid gap-8 rounded-3xl bg-white p-6 sm:p-9 ${media ? 'md:grid-cols-[1fr_240px] md:gap-12' : ''}`}
+    >
       <div>
-        <p className={`font-mono text-sm ${tone}`}>{String(index).padStart(2, '0')}</p>
-        <h3 className="display mt-2 text-3xl sm:text-4xl">{title}</h3>
-        <dl className="mt-6 grid gap-5 text-[15px] leading-relaxed sm:grid-cols-[110px_1fr]">
-          <dt className="eyebrow pt-1">The problem</dt>
+        <span className="brut inline-flex size-12 items-center justify-center rounded-full bg-pop display text-lg">
+          {index}
+        </span>
+        <h3 className="display mt-4 text-3xl leading-tight sm:text-4xl">{title}</h3>
+        <dl className="mt-6 grid gap-5 text-[15px] leading-relaxed sm:grid-cols-[120px_1fr]">
+          <dt className="eyebrow pt-1 !text-ink">The problem</dt>
           <dd>{problem}</dd>
-          <dt className="eyebrow pt-1">What I did</dt>
+          <dt className="eyebrow pt-1 !text-ink">What I did</dt>
           <dd>{approach}</dd>
-          <dt className="eyebrow pt-1">Result</dt>
-          <dd className="font-medium">{result}</dd>
+          <dt className="eyebrow pt-1 !text-ink">Result</dt>
+          <dd className="brut rounded-xl bg-sun px-4 py-3 font-semibold">{result}</dd>
         </dl>
         {tags.length > 0 && (
           <ul className="mt-6 flex flex-wrap gap-2" aria-label="Skills used">
             {tags.map((t) => (
-              <li key={t} className="rounded-full border border-line bg-white px-3 py-1 text-xs text-muted">
+              <li key={t} className="chip">
                 {t}
               </li>
             ))}
           </ul>
         )}
       </div>
-      {media && <div className="mx-auto w-full max-w-[260px]">{media}</div>}
+      {media && <div className="mx-auto w-full max-w-[240px]">{media}</div>}
     </article>
   )
 }

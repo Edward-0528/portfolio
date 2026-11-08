@@ -1,14 +1,24 @@
 @import 'tailwindcss';
 
 @theme {
+  /* Inter stays the base font so the app policy pages (outside the portfolio layout) look unchanged. */
   --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-display: 'Instrument Serif', ui-serif, Georgia, serif;
+  --font-grotesk: 'Space Grotesk Variable', 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Archivo Black', 'Space Grotesk Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-hand: 'Caveat', ui-rounded, cursive;
 
   --color-paper: #f6f4ef;
-  --color-ink: #15171c;
-  --color-muted: #5c5f68;
-  --color-line: #e2ded4;
+  --color-ink: #111111;
+  --color-muted: #3f3c35;
+  --color-line: #111111;
   --color-accent: #1f6f50;
+
+  /* Sticker-shelf palette. `sun` and `pop` are overridden per theme by the palette switcher in Layout. */
+  --color-sun: #ffe14d;
+  --color-pop: #ff7ac6;
+  --color-mint: #bff0d4;
+  --color-lilac: #d9ccff;
+  --color-peach: #ffd3b8;
 
   /* Core+ brand: deep green with a mint highlight */
   --color-core-950: #0b1a14;
@@ -24,37 +34,57 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 6rem;
   }
   body {
     @apply bg-paper text-ink font-sans antialiased;
   }
   ::selection {
-    @apply bg-core-mint text-core-950;
+    @apply bg-ink text-sun;
   }
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-accent;
+    @apply outline-3 outline-offset-2 outline-ink;
   }
 }
 
 /* Shared building blocks. @utility (not @layer components) so they can @apply each other in Tailwind v4. */
 @utility wrap {
-  @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  @apply mx-auto w-full max-w-[1280px] px-5 sm:px-10;
 }
 @utility eyebrow {
-  @apply text-xs font-semibold tracking-[0.14em] uppercase text-muted;
+  @apply font-grotesk text-xs font-bold tracking-[0.14em] uppercase text-muted;
 }
 @utility display {
   @apply font-display font-normal tracking-tight;
 }
+/* Thick outline + hard offset shadow: the sticker look. */
+@utility brut {
+  @apply border-[3px] border-ink;
+}
+@utility shadow-hard {
+  box-shadow: 6px 6px 0 var(--color-ink);
+}
+@utility shadow-hard-lg {
+  box-shadow: 10px 10px 0 var(--color-ink);
+}
+@utility shadow-hard-pop {
+  box-shadow: 5px 5px 0 var(--color-pop);
+}
+/* Straightens a tilted sticker on hover. */
+@utility wiggle {
+  @apply transition duration-200 hover:rotate-0 hover:-translate-y-1.5;
+}
+@utility chip {
+  @apply inline-block rounded-full border-2 border-ink bg-white px-2.5 py-1 font-grotesk text-xs font-bold;
+}
 @utility btn {
-  @apply inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition;
+  @apply inline-flex items-center gap-2 rounded-xl border-[3px] border-ink px-5 py-3 font-grotesk text-[15px] font-bold transition hover:-translate-x-0.5 hover:-translate-y-0.5;
 }
 @utility btn-primary {
-  @apply btn bg-ink text-paper hover:bg-accent;
+  @apply btn bg-ink text-white shadow-hard-pop;
 }
 @utility btn-ghost {
-  @apply btn border border-ink/15 hover:border-ink/40 hover:bg-white;
+  @apply btn bg-white text-ink shadow-hard;
 }
 
 /* The screenshot rail scrolls sideways on small screens instead of shrinking phones to stamps. */
@@ -64,6 +94,19 @@
 }
 .rail > * {
   scroll-snap-align: start;
+}
+
+/* Tech marquee: the content is duplicated in the markup so the loop is seamless. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee {
+  animation: marquee 40s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
