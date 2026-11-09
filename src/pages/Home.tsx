@@ -351,7 +351,7 @@ function OnceALiarCard() {
           <div className="mt-7 flex flex-wrap items-center gap-3.5">
             <a href={ONCE_A_LIAR.demo} className="btn-primary">Play the demo ↗</a>
             <span className="brut inline-flex -rotate-2 items-center rounded-xl bg-sun px-4 py-2.5 text-[15px] font-bold">
-              App stores · coming soon
+              Free · no download, plays in any browser
             </span>
           </div>
           <p className="mt-4 text-[13px] font-semibold text-muted">
