@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { Link } from 'react-router'
-import { CORE_PLUS, COSMIC, CROSS_MY_WORDS, PERSON, REVIEWS, STACK, TOTAL_TESTS } from '../site'
+import { CORE_PLUS, COSMIC, CROSS_MY_WORDS, ONCE_A_LIAR, PERSON, REVIEWS, STACK, TOTAL_TESTS } from '../site'
 
 export function Home() {
   return (
@@ -11,6 +11,7 @@ export function Home() {
       <CorePlusCard />
       <CosmicCard />
       <CrossMyWordsCard />
+      <OnceALiarCard />
       <Reviews />
       <StickerSheet />
       <HowIBuild />
@@ -108,6 +109,22 @@ const SHELF = [
     tags: ['Flutter', 'Flame', 'Firebase'],
     shot: <img src="/img/cmw-find.webp" alt="" className="brut absolute -bottom-28 left-1/2 w-[190px] -translate-x-1/2 rounded-[1.6rem]" />,
   },
+  {
+    href: '#oncealiar',
+    bg: 'bg-white',
+    tilt: 'rotate-2 sm:mt-6',
+    icon: <img src="/img/oal-icon.webp" alt="" className="brut size-14 rounded-2xl" />,
+    name: 'Once a Liar',
+    kind: 'Party game · Play in your browser',
+    tags: ['React', 'Socket.IO', 'Node'],
+    shot: (
+      <div className="absolute bottom-0 left-1/2 h-[280px] w-[320px] -translate-x-1/2">
+        <img src="/img/oal-chancla.webp" alt="" className="absolute top-6 left-0 w-[140px] -rotate-12" />
+        <img src="/img/oal-duck.webp" alt="" className="absolute top-0 right-0 w-[135px] rotate-6" />
+        <img src="/img/oal-cow.webp" alt="" className="absolute bottom-[-1rem] left-[92px] w-[140px] -rotate-3" />
+      </div>
+    ),
+  },
 ]
 
 function Shelf() {
@@ -117,7 +134,7 @@ function Shelf() {
         <a
           key={app.name}
           href={app.href}
-          className={`brut shadow-hard-lg wiggle relative h-[440px] min-w-0 flex-[1_1_320px] overflow-hidden rounded-[1.6rem] p-5 ${app.bg} ${app.tilt}`}
+          className={`brut shadow-hard-lg wiggle relative h-[440px] min-w-0 flex-[1_1_440px] overflow-hidden rounded-[1.6rem] p-5 ${app.bg} ${app.tilt}`}
         >
           <div className="flex items-center gap-3">
             {app.icon}
@@ -143,7 +160,7 @@ function Shelf() {
   )
 }
 
-const MARQUEE = ['React Native', 'Flutter', 'Flame', 'Swift', 'Kotlin', 'TypeScript', 'Supabase', 'Firebase', 'Claude Code']
+const MARQUEE = ['React Native', 'Flutter', 'Flame', 'Swift', 'Kotlin', 'TypeScript', 'Socket.IO', 'Supabase', 'Firebase', 'Claude Code']
 
 function Marquee() {
   const row = MARQUEE.map((t) => `${t.toUpperCase()} ✦ `).join('')
@@ -289,6 +306,57 @@ function CrossMyWordsCard() {
           <img src="/img/cmw-find.webp" alt="" loading="lazy" className="brut shadow-hard mt-10 w-[31%] -rotate-[4deg] rounded-[1.4rem]" />
           <img src="/img/cmw-learn.webp" alt="" loading="lazy" className="brut shadow-hard w-[33%] rounded-[1.4rem]" />
           <img src="/img/cmw-streak.webp" alt="" loading="lazy" className="brut shadow-hard mt-14 w-[31%] rotate-[4deg] rounded-[1.4rem]" />
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function OnceALiarCard() {
+  return (
+    <section id="oncealiar" aria-labelledby="oncealiar-title" className="wrap pt-20">
+      <div className="brut shadow-hard-lg relative flex flex-wrap-reverse items-center gap-11 rounded-[2rem] bg-white p-6 sm:p-11">
+        <Badge className="right-8 rotate-2">APP #4 · PLAY THE DEMO</Badge>
+        <div className="min-w-0 flex-[1_1_460px]">
+          <a href={ONCE_A_LIAR.demo} className="block">
+            <img
+              src="/img/oal-lineup.webp"
+              alt="The Lineup: twelve Once a Liar characters in a police lineup under the headline 'One of these suspects is lying'"
+              loading="lazy"
+              className="brut shadow-hard-lg wiggle w-full -rotate-[1.5deg] rounded-2xl"
+            />
+          </a>
+        </div>
+        <div className="min-w-0 flex-[1_1_360px]">
+          <div className="flex items-center gap-4">
+            <img src="/img/oal-icon.webp" alt="" className="brut size-[76px] rounded-[1.25rem]" />
+            <div>
+              <h2 id="oncealiar-title" className="display text-5xl leading-[0.95] sm:text-6xl">
+                Once a Liar
+              </h2>
+              <p className="mt-1 text-[15px] font-bold">The party game where someone's lying</p>
+            </div>
+          </div>
+          <p className="mt-5 text-lg leading-relaxed font-medium">
+            A real-time social deduction game for 3 to 18 players. Everyone gets the secret word except the liar: give
+            clues, argue, vote, and unmask them. No install, just phones and a room code.
+          </p>
+          <ul className="mt-6 flex flex-col gap-3">
+            <Feature what="Live rooms you join with a code or QR" tech="Socket.IO" tone="text-sun" />
+            <Feature what="Game server that runs every round" tech="Node + Express" tone="text-sun" />
+            <Feature what="Phone-first client, no app install" tech="React + Vite" tone="text-sun" />
+            <Feature what="One set of types for client and server" tech="TypeScript monorepo" tone="text-sun" />
+            <Feature what="24 characters drawn as code, exported as stickers" tech="SVG + resvg" tone="text-sun" />
+          </ul>
+          <div className="mt-7 flex flex-wrap items-center gap-3.5">
+            <a href={ONCE_A_LIAR.demo} className="btn-primary">Play the demo ↗</a>
+            <span className="brut inline-flex -rotate-2 items-center rounded-xl bg-sun px-4 py-2.5 text-[15px] font-bold">
+              App stores · coming soon
+            </span>
+          </div>
+          <p className="mt-4 text-[13px] font-semibold text-muted">
+            Hosted free on Render: the first visit can take up to a minute while the game server wakes up.
+          </p>
         </div>
       </div>
     </section>
