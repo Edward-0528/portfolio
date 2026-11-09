@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react'
-import { Route, Routes } from 'react-router'
+import { Navigate, Route, Routes } from 'react-router'
 import { Layout } from './components/Layout'
 import { CorePlus } from './pages/CorePlus'
 import { CosmicCuties } from './pages/CosmicCuties'
@@ -44,6 +44,9 @@ function Portfolio() {
         <Route path="/" element={<Home />} />
         <Route path="/work/core-plus" element={<CorePlus />} />
         <Route path="/work/cosmic-cuties" element={<CosmicCuties />} />
+        {/* Short links used as the developer website on the Play and App Store listings. */}
+        <Route path="/cc" element={<Navigate to="/work/cosmic-cuties" replace />} />
+        <Route path="/cmw" element={<Navigate to="/#crossmywords" replace />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>
