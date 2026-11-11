@@ -43,6 +43,10 @@ export const ONCE_A_LIAR = {
   demo: 'https://oncealiar.onrender.com/',
 }
 
+export const POP_POP = {
+  live: 'https://ladle-a41d6.web.app',
+}
+
 /** Automated tests across Core+ (525) and Cosmic Cuties (840+). */
 export const TOTAL_TESTS = '1,365+'
 
@@ -69,6 +73,6 @@ export const REVIEWS = [
 export const STACK = [
   { title: 'Mobile', items: ['React Native', 'Expo', 'Flutter', 'Flame', 'Dart', 'Swift', 'Kotlin'] },
   { title: 'Web', items: ['React', 'TypeScript', 'Tailwind', 'Vite'] },
-  { title: 'Backend + data', items: ['Supabase', 'PostgreSQL', 'Firebase', 'Node', 'Express', 'Socket.IO'] },
+  { title: 'Backend + data', items: ['Supabase', 'PostgreSQL', 'Firebase', 'Node', 'Express', 'Socket.IO', 'Stripe'] },
   { title: 'Ship it', items: ['Claude Code', 'Gemini', 'HealthKit', 'App Store Connect', 'Play Console', 'Netlify'] },
 ]

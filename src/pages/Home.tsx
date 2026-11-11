@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { Link } from 'react-router'
-import { CORE_PLUS, COSMIC, CROSS_MY_WORDS, ONCE_A_LIAR, PERSON, REVIEWS, STACK, TOTAL_TESTS } from '../site'
+import { CORE_PLUS, COSMIC, CROSS_MY_WORDS, ONCE_A_LIAR, PERSON, POP_POP, REVIEWS, STACK, TOTAL_TESTS } from '../site'
 
 export function Home() {
   return (
@@ -12,6 +12,7 @@ export function Home() {
       <CosmicCard />
       <CrossMyWordsCard />
       <OnceALiarCard />
+      <PopPopCard />
       <Reviews />
       <StickerSheet />
       <HowIBuild />
@@ -78,6 +79,15 @@ function Hero() {
   )
 }
 
+/** Pop Pop avatars on its shelf card; the outer two only show when the card is wide. */
+const PP_STICKERS = [
+  { kind: 'goose', className: 'hidden -rotate-12 md:block' },
+  { kind: 'tomato', className: 'mb-8 rotate-6' },
+  { kind: 'jelly', className: '-rotate-3' },
+  { kind: 'pickle', className: 'mb-10 rotate-12' },
+  { kind: 'donut', className: 'hidden -rotate-6 md:block' },
+]
+
 const SHELF = [
   {
     href: '#coreplus',
@@ -122,6 +132,22 @@ const SHELF = [
         <img src="/img/oal-chancla.webp" alt="" className="absolute top-6 left-0 w-[140px] -rotate-12" />
         <img src="/img/oal-duck.webp" alt="" className="absolute top-0 right-0 w-[135px] rotate-6" />
         <img src="/img/oal-cow.webp" alt="" className="absolute bottom-[-1rem] left-[92px] w-[140px] -rotate-3" />
+      </div>
+    ),
+  },
+  {
+    href: '#poppop',
+    bg: 'bg-peach',
+    tilt: '-rotate-1',
+    icon: <img src="/img/pp-icon.webp" alt="" className="brut size-14 rounded-2xl" />,
+    name: 'Pop Pop',
+    kind: 'Live quiz game · Play in your browser',
+    tags: ['React', 'Socket.IO', 'Firebase'],
+    shot: (
+      <div className="absolute inset-x-0 bottom-12 flex items-end justify-center">
+        {PP_STICKERS.map((s) => (
+          <img key={s.kind} src={`/img/pp-${s.kind}.webp`} alt="" className={`-mx-2 w-[110px] sm:-mx-3 sm:w-[165px] ${s.className}`} />
+        ))}
       </div>
     ),
   },
@@ -363,6 +389,52 @@ function OnceALiarCard() {
   )
 }
 
+function PopPopCard() {
+  return (
+    <section id="poppop" aria-labelledby="poppop-title" className="wrap pt-20">
+      <div className="brut shadow-hard-lg relative flex flex-wrap gap-11 rounded-[2rem] bg-peach p-6 sm:p-11">
+        <Badge className="left-8 -rotate-2">APP #5 · LIVE</Badge>
+        <div className="min-w-0 flex-[1_1_380px]">
+          <div className="flex items-center gap-4">
+            <img src="/img/pp-icon.webp" alt="" className="brut size-[76px] rounded-[1.25rem]" />
+            <div>
+              <h2 id="poppop-title" className="display text-5xl leading-[0.95] sm:text-6xl">
+                Pop Pop
+              </h2>
+              <p className="mt-1 text-[15px] font-bold">The live quiz game for classrooms and parties</p>
+            </div>
+          </div>
+          <p className="mt-5 text-lg leading-relaxed font-medium">
+            The host puts a quiz on the big screen, everyone joins on their phone with a code, picks one of 20 silly
+            stickers, and races to answer. Scores, streaks and a confetti podium update live. No account needed to play.
+          </p>
+          <ul className="mt-6 flex flex-col gap-3">
+            <Feature what="Join from any phone with a code or QR" tech="Socket.IO" tone="text-peach" />
+            <Feature what="Drop out mid-game and pick up where you left off" tech="Reconnect tokens" tone="text-peach" />
+            <Feature what="Type a topic, get a quiz" tech="Gemini API" tone="text-peach" />
+            <Feature what="Every move checked on the server" tech="Express + zod" tone="text-peach" />
+            <Feature what="Quiz library, homework mode and Pro plans" tech="Firebase + Stripe" tone="text-peach" />
+          </ul>
+          <div className="mt-7 flex flex-wrap items-center gap-3.5">
+            <a href={POP_POP.live} className="btn-primary">Play it live ↗</a>
+            <span className="brut inline-flex rotate-2 items-center rounded-xl bg-sun px-4 py-2.5 text-[15px] font-bold">
+              Free · no download, plays in any browser
+            </span>
+          </div>
+          <p className="mt-4 text-[13px] font-semibold text-muted">
+            The game server is hosted free on Render: the first game of the day can take up to a minute to start.
+          </p>
+        </div>
+        <div className="flex min-w-0 flex-[1_1_440px] items-start justify-center gap-4 self-center" aria-hidden="true">
+          <img src="/img/pp-join.webp" alt="" loading="lazy" className="brut shadow-hard mt-10 w-[31%] -rotate-[4deg] rounded-[1.4rem]" />
+          <img src="/img/pp-question.webp" alt="" loading="lazy" className="brut shadow-hard w-[33%] rounded-[1.4rem]" />
+          <img src="/img/pp-reveal.webp" alt="" loading="lazy" className="brut shadow-hard mt-14 w-[31%] rotate-[4deg] rounded-[1.4rem]" />
+        </div>
+      </div>
+    </section>
+  )
+}
+
 const NOTE_FILLS = ['bg-white', 'bg-mint', 'bg-lilac', 'bg-peach']
 const NOTE_TILTS = ['rotate-2', '-rotate-2', 'rotate-[1.5deg]', '-rotate-1']
 
@@ -458,7 +530,7 @@ function SayHi() {
         <div className="min-w-0 flex-[2_1_480px]">
           <p className="font-hand inline-block -rotate-2 text-3xl font-bold text-sun">psst, I'm open to work</p>
           <h2 id="hi-title" className="display mt-2.5 text-[clamp(3rem,6vw,5.5rem)] leading-[0.92]">
-            Want app #4
+            Want app #6
             <br />
             to be yours?
           </h2>
