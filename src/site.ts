@@ -44,7 +44,7 @@ export const ONCE_A_LIAR = {
 }
 
 export const POP_POP = {
-  live: 'https://ladle-a41d6.web.app',
+  live: 'https://ladle.netlify.app',
 }
 
 /** Automated tests across Core+ (525) and Cosmic Cuties (840+). */
